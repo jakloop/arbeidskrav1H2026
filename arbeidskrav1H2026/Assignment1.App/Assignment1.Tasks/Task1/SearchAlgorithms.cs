@@ -1,11 +1,7 @@
-namespace arbeidskrav1H2027.Assignment1.App.Assignment1.Tasks.Task1;
+namespace arbeidkrav1H2026.searchalgorithms;
 
 public class SearchAlgorithms
 {
-    public int[] SortedArray = [1, 2, 3, 4, 5];
-    
-    public int[] UnsortedArray = [4, 2, 3, 4, 5, ];
-    
     // binary search
     public static int BinarySearch(int[] array, int value)
     {
@@ -23,10 +19,11 @@ public class SearchAlgorithms
         {
             // mid starts in the middle of the array
             int mid = (left + right) / 2;
-            if (array[mid] == value) 
+            if (array[mid] == value)
             {
-                counter++; 
-                return mid;
+
+                    counter++;
+                    return mid;
             }
             
             // if the value is smaller than the value inside the mid index,
@@ -53,7 +50,7 @@ public class SearchAlgorithms
     {
         int counter = 0;
         
-        // for each element in array while i is less than the lenght
+        // for each element in array while I is less than the lenght
         for (int i = 0; i < array.Length; i++) 
         {
             counter++;
