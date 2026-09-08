@@ -2,10 +2,11 @@ namespace arbeidskrav1H2027.Assignment1.App.Assignment1.Tasks.Task1;
 
 public class SearchAlgorithms
 {
-    public new int[] SortedArray = [1, 2, 3, 4, 5];
+    public int[] SortedArray = [1, 2, 3, 4, 5];
     
-    public new int[] UnsortedArray = [4, 2, 3, 4, 5, ];
+    public int[] UnsortedArray = [4, 2, 3, 4, 5, ];
     
+    // binary search
     public static int BinarySearch(int[] array, int value)
     {
         // The left side starts at index 0
@@ -44,6 +45,23 @@ public class SearchAlgorithms
             }
         }
         // if value is not found, return -1
+        return -1;
+    }
+
+    // Linear search 
+    public static int LinearSearch(int[] array, int value)
+    {
+        int counter = 0;
+        
+        // for each element in array while i is less than the lenght
+        for (int i = 0; i < array.Length; i++) 
+        {
+            counter++;
+            if (value == array[i])
+            {
+                return i;
+            }
+        }
         return -1;
     }
 }
