@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arbeidskrav1H2026", "arbeidskrav1H2026\arbeidskrav1H2026.csproj", "{72A5F77F-CE9A-4245-9E33-E9198856B96A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "arveidskrav1H2026.Tests", "arveidskrav1H2026.Tests\arveidskrav1H2026.Tests.csproj", "{61E9CFAB-FB97-40BC-A73E-0D597E76AC08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{72A5F77F-CE9A-4245-9E33-E9198856B96A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72A5F77F-CE9A-4245-9E33-E9198856B96A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72A5F77F-CE9A-4245-9E33-E9198856B96A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E9CFAB-FB97-40BC-A73E-0D597E76AC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E9CFAB-FB97-40BC-A73E-0D597E76AC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E9CFAB-FB97-40BC-A73E-0D597E76AC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E9CFAB-FB97-40BC-A73E-0D597E76AC08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

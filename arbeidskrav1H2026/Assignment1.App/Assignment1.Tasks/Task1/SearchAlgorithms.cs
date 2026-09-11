@@ -1,4 +1,4 @@
-namespace arbeidkrav1H2026.searchalgorithms;
+namespace arbeidskrav1H2026.searchalgorithms;
 
 public class SearchAlgorithms
 {
@@ -7,13 +7,10 @@ public class SearchAlgorithms
     {
         // The left side starts at index 0
         int left = 0;
-        
         // the right side starts at the end index of the array
         int right = array.Length - 1;
-        
         // Counting amount of operations
         int counter = 0;
-        
         // As long as left is smaller or the same as right we´re still inside the array
         while (left <= right)
         {
@@ -21,7 +18,6 @@ public class SearchAlgorithms
             int mid = (left + right) / 2;
             if (array[mid] == value)
             {
-
                     counter++;
                     return mid;
             }
