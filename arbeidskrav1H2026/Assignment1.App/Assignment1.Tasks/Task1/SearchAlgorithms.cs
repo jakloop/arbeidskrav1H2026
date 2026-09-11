@@ -15,6 +15,8 @@ public class SearchAlgorithms
         while (left <= right)
         {
             // mid starts in the middle of the array
+            
+            // TODO add a way to check that the first occurance of dupicate value is the one that is returned
             int mid = (left + right) / 2;
             if (array[mid] == value)
             {
