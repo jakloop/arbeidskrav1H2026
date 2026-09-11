@@ -1,31 +1,27 @@
-namespace arbeidskrav1H2027.Assignment1.App.Assignment1.Tasks.Task1;
+namespace arbeidskrav1H2026.searchalgorithms;
 
 public class SearchAlgorithms
 {
-    public new int[] SortedArray = [1, 2, 3, 4, 5];
-    
-    public new int[] UnsortedArray = [4, 2, 3, 4, 5, ];
-    
+    // binary search
     public static int BinarySearch(int[] array, int value)
     {
         // The left side starts at index 0
         int left = 0;
-        
         // the right side starts at the end index of the array
         int right = array.Length - 1;
-        
         // Counting amount of operations
         int counter = 0;
-        
         // As long as left is smaller or the same as right we´re still inside the array
         while (left <= right)
         {
             // mid starts in the middle of the array
+            
+            // TODO add a way to check that the first occurance of dupicate value is the one that is returned
             int mid = (left + right) / 2;
-            if (array[mid] == value) 
+            if (array[mid] == value)
             {
-                counter++; 
-                return mid;
+                    counter++;
+                    return mid;
             }
             
             // if the value is smaller than the value inside the mid index,
@@ -44,6 +40,23 @@ public class SearchAlgorithms
             }
         }
         // if value is not found, return -1
+        return -1;
+    }
+
+    // Linear search 
+    public static int LinearSearch(int[] array, int value)
+    {
+        int counter = 0;
+        
+        // for each element in array while I is less than the lenght
+        for (int i = 0; i < array.Length; i++) 
+        {
+            counter++;
+            if (value == array[i])
+            {
+                return i;
+            }
+        }
         return -1;
     }
 }
