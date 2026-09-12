@@ -3,7 +3,7 @@ namespace arbeidskrav1H2026.searchalgorithms;
 public class SearchAlgorithms
 {
     // binary search
-    public static int BinarySearch(int[] array, int value)
+    public static (int index, int comparisons) BinarySearch(int[] array, int value)
     {
         // The left side starts at index 0
         int left = 0;
@@ -11,22 +11,23 @@ public class SearchAlgorithms
         int right = array.Length - 1;
         // Counting amount of operations
         int counter = 0;
+        // default result if no value is found
+        int result = -1;
         // As long as left is smaller or the same as right we´re still inside the array
         while (left <= right)
         {
-            // mid starts in the middle of the array
-            
-            // TODO add a way to check that the first occurance of dupicate value is the one that is returned
+            // AI help - (2) AI documentation
             int mid = (left + right) / 2;
+            counter++;
             if (array[mid] == value)
             {
-                    counter++;
-                    return mid;
+                result = mid;
+                right = mid - 1;
+                
             }
-            
             // if the value is smaller than the value inside the mid index,
             // move right one index down below mid (it's already checked)
-            if  (array[mid] > value)
+            else if (array[mid] > value)
             {
                 counter++;
                 right = mid - 1; 
@@ -39,13 +40,13 @@ public class SearchAlgorithms
                 left = mid + 1; 
             }
         }
-        // if value is not found, return -1
-        return -1;
+        return (result,  counter);
     }
 
     // Linear search 
-    public static int LinearSearch(int[] array, int value)
+    public static (int index, int comparisons) LinearSearch(int[] array, int value)
     {
+        int result = -1;
         int counter = 0;
         
         // for each element in array while I is less than the lenght
@@ -54,9 +55,10 @@ public class SearchAlgorithms
             counter++;
             if (value == array[i])
             {
-                return i;
+                result = i;
+                break;
             }
         }
-        return -1;
+        return (result, counter);
     }
 }
