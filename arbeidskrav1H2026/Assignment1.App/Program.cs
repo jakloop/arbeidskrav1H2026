@@ -19,7 +19,7 @@ class Program
         var btest1 = SearchAlgorithms.BinarySearch(SortedArray, 13);
         var btest2 = SearchAlgorithms.BinarySearch(SortedArray, 4);
         var btest3 = SearchAlgorithms.BinarySearch(EmptyArray, 8);
-        var btest4 = SearchAlgorithms.BinarySearch(SortedArray2, 0);
+        var btest4 = SearchAlgorithms.BinarySearch(SortedArray2, 9);
         var ltest1 = SearchAlgorithms.LinearSearch(UnsortedArray, 7);
         var ltest2 = SearchAlgorithms.LinearSearch(UnsortedArray, 42);
         Console.WriteLine($"B-search index: {btest1.index}, Comparison counter = {btest1.comparisons}");

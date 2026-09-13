@@ -14,6 +14,7 @@ public class SearchAlgorithms
         // default result if no value is found
         int result = -1;
         // As long as left is smaller or the same as right we´re still inside the array
+        counter++;
         while (left <= right)
         {
             // AI help - (2) AI documentation
@@ -49,7 +50,7 @@ public class SearchAlgorithms
         int result = -1;
         int counter = 0;
         
-        // for each element in array while I is less than the lenght
+        // for each element in array while i is less than the lenght
         for (int i = 0; i < array.Length; i++) 
         {
             counter++;
