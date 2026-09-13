@@ -24,7 +24,6 @@ public class SearchAlgorithms
             {
                 result = mid;
                 right = mid - 1;
-                
             }
             // if the value is smaller than the value inside the mid index,
             // move right one index down below mid (it's already checked)

@@ -32,7 +32,22 @@ class Program
         Console.WriteLine(" ");
         Console.WriteLine("========== Task 2 ==========");
         Console.WriteLine(" ");
-
+        
+        var norwegianAnimals = new CustomStack<string>();
+        norwegianAnimals.Push("Horse");
+        norwegianAnimals.Push("Dog");
+        norwegianAnimals.Push("Cat");
+        norwegianAnimals.Push("Cow");
+        norwegianAnimals.Push("Bear");
+        norwegianAnimals.Push("Puffin");
+        
+        Console.WriteLine($"{norwegianAnimals.Pop()}");
+        Console.WriteLine($"{norwegianAnimals.LookUpCount()}");
+        Console.WriteLine($"{norwegianAnimals.Pop()}");
+        Console.WriteLine($"{norwegianAnimals.LookUpCount()}");
+        Console.WriteLine($"{norwegianAnimals.Peek()}");
+        Console.WriteLine($"{norwegianAnimals.LookUpCount()}");
+        
     }
     
 }
