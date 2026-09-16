@@ -1,6 +1,6 @@
 ﻿using arbeidskrav1H2026.searchalgorithms;
 
-namespace arveidskrav1H2026.Tests;
+namespace arbveidskrav1H2026.Tests;
 
 public class UnitTest1
 {

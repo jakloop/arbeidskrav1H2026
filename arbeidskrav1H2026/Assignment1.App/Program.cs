@@ -42,11 +42,11 @@ class Program
         norwegianAnimals.Push("Puffin");
         
         Console.WriteLine($"{norwegianAnimals.Pop()}");
-        Console.WriteLine($"{norwegianAnimals.LookUpCount()}");
+        Console.WriteLine($"{norwegianAnimals.Count()}");
         Console.WriteLine($"{norwegianAnimals.Pop()}");
-        Console.WriteLine($"{norwegianAnimals.LookUpCount()}");
+        Console.WriteLine($"{norwegianAnimals.Count()}");
         Console.WriteLine($"{norwegianAnimals.Peek()}");
-        Console.WriteLine($"{norwegianAnimals.LookUpCount()}");
+        Console.WriteLine($"{norwegianAnimals.Count()}");
         
     }
     
