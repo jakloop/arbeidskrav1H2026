@@ -41,11 +41,10 @@ public class CustomStack<T>
             throw new IndexOutOfRangeException("Stack is empty!");
         }
         {
-            return items[count];
+            return items[count - 1];
         }
     }
-    
-    public int LookUpCount()
+    public int Count()
     {
         return count;
     }
