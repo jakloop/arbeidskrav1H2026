@@ -48,6 +48,20 @@ class Program
         Console.WriteLine($"{norwegianAnimals.Peek()}");
         Console.WriteLine($"{norwegianAnimals.Count()}");
         
+        Console.WriteLine(" ");
+        Console.WriteLine("========== Task 3 ==========");
+        Console.WriteLine(" ");
+
+
+        int[] NewArray = [64, 34, 25, 12, 22, 11, 90];
+        int[] NewSortedArray = [1, 2, 3, 4, 5];
+        int[] OpositeSortedArray = [9, 8, 7, 6, 5];
+        // empty array
+        // array with duplicates
+        QuickSorter.QuickSort(NewArray, 0, NewArray.Length - 1);
+        
+        Console.WriteLine($" New Array: {string.Join(", ", NewArray)}");
+        
     }
     
 }
