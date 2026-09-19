@@ -14,7 +14,6 @@ public class SearchAlgorithms
         // default result if no value is found
         int result = -1;
         // As long as left is smaller or the same as right we´re still inside the array
-        counter++;
         while (left <= right)
         {
             // AI help - (2) AI documentation
@@ -36,7 +35,6 @@ public class SearchAlgorithms
             // move left one index above mid (it's already checked)
             else
             {
-                counter++;
                 left = mid + 1; 
             }
         }

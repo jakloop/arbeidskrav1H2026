@@ -38,3 +38,9 @@ Når man leter etter en verdi i et array og skal vurdere om
 --- Kostnad på å sortere data vs. kost
 
 
+Learning materials:
+Videos -
+Bro Code "Learn Quick Sort in 13 minutes" -https://www.youtube.com/watch?v=Vtckgz38QHs
+Michael Sambol "Quick sort in 4 minutes" - https://www.youtube.com/watch?v=Hoixgm4-P4M
+
+Sources:
