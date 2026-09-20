@@ -10,7 +10,7 @@ class Program
         
         // TASK 1 (TEMPORARY OUTLINE
         Console.WriteLine("========== Task 1 ==========");
-        Console.WriteLine(" ");
+        Console.WriteLine("  LINEAR AND BINARY SEARCH");
         //adding some arrays
         int[] SortedArray = [2, 5, 7, 11, 13, 17];
         int[] SortedArray2 = [0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,5,6,7,8,9,9,9,9,9,9];
@@ -31,7 +31,7 @@ class Program
         
         Console.WriteLine(" ");
         Console.WriteLine("========== Task 2 ==========");
-        Console.WriteLine(" ");
+        Console.WriteLine(" CUSTOM STACK ");
         
         var norwegianAnimals = new CustomStack<string>();
         norwegianAnimals.Push("Horse");
@@ -50,7 +50,7 @@ class Program
         
         Console.WriteLine(" ");
         Console.WriteLine("========== Task 3 ==========");
-        Console.WriteLine(" ");
+        Console.WriteLine(" QUICKSORT ");
 
 
         int[] NewArray = [64, 34, 25, 12, 22, 11, 90];
@@ -62,7 +62,27 @@ class Program
         
         Console.WriteLine($" New Array: {string.Join(", ", NewArray)}");
         
+        
+        
+        Console.WriteLine(" ");
+        Console.WriteLine("========== Task 4 ==========");
+        Console.WriteLine(" BFS");
+
+        var graph = new Graph();
+        graph.AddConnection("Majorstuen", "Nationaltheateret");
+        graph.AddConnection("Nationaltheateret", "Stortinget");
+        graph.AddConnection("Stortinget", "Jernbanetorget");
+        graph.AddConnection("Jernbanetorget", "Grønland");
+        graph.AddConnection("Grønland" , "Tøyen");
+        graph.AddConnection("Majorstuen", "Blindern");
+        graph.AddConnection("Blindern", "Forskningsparken");
+        graph.AddConnection("Forskningsparken", "Ullevål Stadion");
+        
+        int result = BFSearch.BFS(graph, "Majorstuen", "Ullevål Stadion");
+        
+        Console.WriteLine(result);
+        Console.WriteLine("========== Task 5 ==========");
+
     }
-    
 }
 
