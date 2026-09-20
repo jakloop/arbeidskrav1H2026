@@ -16,7 +16,7 @@ Tidskompleksitet i algoritmene
 Lineært søk og binært søk er to veldig ulike måter å søke i et array. Linære søk søker sekvensielt 
 gjennom elementene. Hvert eneste element sammenlignes med måleverdien. Algorimen stopper ved første treff
 eller når har gått gjennom hele samlingen (Gokstad Akademiet, Økt1 uke 34). Det betyr at i beste fall
-så blir den ferdig veldig fort, ved f.eks, tom liste, kort liste eller at den treffer verdien tidlig i listen.
+så blir den ferdig veldig tidlig, ved f.eks, tom liste, kort liste eller at den treffer verdien tidlig i listen.
 I verste fall så går den gjennom en veldig lang liste og bruker lang tid. 
 
 I binærsøk er vi avhengige av at arrayet er sortert. Dette er fordi den hele tiden prøver å peile seg 
@@ -38,9 +38,17 @@ Når man leter etter en verdi i et array og skal vurdere om
 --- Kostnad på å sortere data vs. kost
 
 
+
+
+
 Learning materials:
 Videos -
 Bro Code "Learn Quick Sort in 13 minutes" -https://www.youtube.com/watch?v=Vtckgz38QHs
 Michael Sambol "Quick sort in 4 minutes" - https://www.youtube.com/watch?v=Hoixgm4-P4M
+Michael Sambol "Breadth-first search in 4 minutes - https://www.youtube.com/watch?v=HZ5YTanv5QE
+tutorialsEUC "How to use queues in C#" - https://www.youtube.com/watch?v=4MQwKvsGCms
 
 Sources:
+
+AlgorithmsNotesForProfessionals  - pdf
+Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
