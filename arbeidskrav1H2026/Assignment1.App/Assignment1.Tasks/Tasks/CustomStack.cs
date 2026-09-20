@@ -24,6 +24,7 @@ public class CustomStack<T>
         count++;
     }
     
+    // returns the last item added to the stack
     public T Pop()
     {
         if (count == 0)
@@ -34,6 +35,7 @@ public class CustomStack<T>
         return items[count];
     }
     
+    // Looks at the last inserted item in the stack
     public T Peek()
     {
         if (count == 0)
