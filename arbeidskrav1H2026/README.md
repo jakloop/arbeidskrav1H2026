@@ -52,3 +52,5 @@ Sources:
 
 AlgorithmsNotesForProfessionals  - pdf
 Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
+Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
+
