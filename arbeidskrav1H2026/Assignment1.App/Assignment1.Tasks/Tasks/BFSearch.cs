@@ -8,6 +8,13 @@ public class BFSearch
 
     public static int BFS(Graph graph, string stationA, string stationB)
     {
+        // if graph is empty
+        if (graph.IsEmpty())
+        {
+            Console.WriteLine($"The graph is empty");
+            return -1;
+        }
+        
         // if one of the stations were not found.
         if (!graph.ContainsStation(stationA) || !graph.ContainsStation(stationB))
         {
