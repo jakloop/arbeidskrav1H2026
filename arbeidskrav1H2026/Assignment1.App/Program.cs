@@ -82,7 +82,13 @@ class Program
         
         Console.WriteLine(result);
         Console.WriteLine("========== Task 5 ==========");
-
+        Console.WriteLine(" Depth First Search ");
+        
+        HashSet<string> visited = new HashSet<string>();
+        DepthFirstSearch.RecursiveDFSearch(graph, "Majorstuen", visited);
+        
+        Console.WriteLine(" ");
+        Console.WriteLine("========== Task 6 ==========");
     }
 }
 
