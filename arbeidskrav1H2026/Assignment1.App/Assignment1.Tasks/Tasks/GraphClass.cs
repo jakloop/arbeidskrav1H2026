@@ -21,6 +21,15 @@ public class Graph
         return graph.ContainsKey(station);
     }
 
+    public bool IsEmpty()
+    {
+        if (graph.Count == 0)
+            {
+            return true;
+            }
+        return false;
+    }
+
     public void AddConnection(string stationA, string stationB)
     {
         if (!graph.ContainsKey(stationA))

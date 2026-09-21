@@ -112,3 +112,113 @@ public bool ContainsStation(string station)
 {
 return graph.ContainsKey(station);
 }
+
+5: Help with structure and headers in README analysis:
+
+Input: I need help with structuring my analysis in the README. Please help me create headers I can fill in this task
+*filled in task 1. Repeated this for all the tasks
+
+Output: (this an example of one of the outputs, but this was done on all the tasks
+before i started writing the analysis
+# Søkealgoritmer – Lineært søk og binærsøk
+
+## 1. Formål
+<!-- Kort beskrivelse av hva oppgaven undersøker og hva du har implementert. -->
+
+
+## 2. Implementasjon
+
+### 2.1 Lineært søk
+<!-- Forklar kort hvordan LinearSearch fungerer. -->
+<!-- Legg gjerne inn eller lenk til relevant kode. -->
+
+
+### 2.2 Binærsøk
+<!-- Forklar kort hvordan BinarySearch fungerer. -->
+<!-- Beskriv hvordan nedre grense, øvre grense og midtpunkt brukes. -->
+<!-- Forklar også hvordan du finner første forekomst ved duplikater. -->
+
+
+## 3. Hvordan sammenligninger telles
+<!-- Definer nøyaktig hva du teller som én sammenligning. -->
+<!-- Forklar at samme definisjon brukes for begge algoritmene. -->
+
+
+## 4. Testresultater
+
+### 4.1 Lineært søk – testdata
+<!-- Test på [8, 3, 11, 7, 2, 9, 5]. -->
+
+| Målverdi | Forventet indeks | Faktisk indeks | Antall sammenligninger |
+|----------|------------------|----------------|------------------------|
+| 7        |                  |                |                        |
+| 42       |                  |                |                        |
+
+
+### 4.2 Binærsøk – testdata
+<!-- Test på [2, 5, 7, 9, 11, 13, 17]. -->
+
+| Målverdi | Forventet indeks | Faktisk indeks | Antall sammenligninger |
+|----------|------------------|----------------|------------------------|
+| 13       |                  |                |                        |
+| 4        |                  |                |                        |
+
+
+### 4.3 Binærsøk på usorterte data
+<!-- Beskriv testen med usortert array. -->
+<!-- Hva returnerte algoritmen? Hvorfor kan resultatet ikke stoles på? -->
+
+
+### 4.4 Kanttilfeller
+
+#### Tomt array
+<!-- Resultat og forklaring. -->
+
+#### Array med ett element
+<!-- Test både treff og ikke-treff. -->
+
+#### Målverdi utenfor området
+<!-- Test en verdi mindre enn minste og/eller større enn største verdi. -->
+
+#### Duplikater
+<!-- Vis at første/laveste indeks returneres. -->
+
+
+## 5. Tidskompleksitet
+
+### 5.1 Lineært søk
+<!-- Beste tilfelle: -->
+<!-- Verste tilfelle: -->
+<!-- Big-O: -->
+
+
+### 5.2 Binærsøk
+<!-- Beste tilfelle: -->
+<!-- Verste tilfelle: -->
+<!-- Big-O: -->
+
+
+### 5.3 Sammenligning av algoritmene
+<!-- Forklar forskjellen i effektivitet basert på testresultatene. -->
+
+
+## 6. Hvorfor må binærsøk ha sorterte data?
+<!-- Forklar hvorfor algoritmen er avhengig av at dataene er sortert. -->
+<!-- Forklar hva som kan gå galt på usorterte data. -->
+
+
+## 7. Kostnaden ved sortering
+<!-- Diskuter når det kan lønne seg å sortere data før man bruker binærsøk. -->
+<!-- Tenk på hvor ofte dataene skal søkes i og hvor store datasett man har. -->
+
+
+## 8. Analyse og refleksjon
+<!-- Hva viser resultatene dine? -->
+<!-- Hvordan stemmer resultatene med Big-O-analysen? -->
+<!-- Hvilke forutsetninger har de to algoritmene? -->
+<!-- Hva har du lært om effektivitet og algoritmevalg? -->
+
+
+## 9. Konklusjon
+<!-- Oppsummer kort forskjellen mellom lineært søk og binærsøk. -->
+<!-- Oppsummer hva testene og sammenligningene viste. -->

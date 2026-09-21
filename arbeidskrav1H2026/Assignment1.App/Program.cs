@@ -86,6 +86,10 @@ class Program
         
         HashSet<string> visited = new HashSet<string>();
         DepthFirstSearch.RecursiveDFSearch(graph, "Majorstuen", visited);
+
+        Console.WriteLine("SOME ROOM BETWEEN");
+        
+        DepthFirstSearch.IterativeDFSearch(graph, "Majorstuen");
         
         Console.WriteLine(" ");
         Console.WriteLine("========== Task 6 ==========");
