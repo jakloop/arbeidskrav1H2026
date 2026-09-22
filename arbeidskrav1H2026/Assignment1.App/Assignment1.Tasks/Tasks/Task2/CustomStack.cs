@@ -46,6 +46,8 @@ public class CustomStack<T>
             return items[count - 1];
         }
     }
+    
+    //TODO? REMOVE?
     public int Count()
     {
         return count;

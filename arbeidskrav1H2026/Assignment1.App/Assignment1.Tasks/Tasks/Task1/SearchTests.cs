@@ -5,7 +5,6 @@ public class SearchTests
     public void Run()
     {
         
-        TestCheck Check = new TestCheck();
         Console.WriteLine("========== Task 1 ==========");
         
         int[] unsortedlist = [8, 3, 11, 7, 2, 9, 5];

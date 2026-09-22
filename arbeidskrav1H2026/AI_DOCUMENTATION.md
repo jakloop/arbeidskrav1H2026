@@ -21,6 +21,8 @@ Jeg har ikke lagt inn lengre diskusjoner og spørsmål for å hjelp med forståe
 - Help with finding lowest instance in a sorted array
 - getting access to neighboring stations
 - check if the stations exist in the graph
+- Help with structuring the analysis part of all tasks
+- Help with changing from xunit testing to printable tests 
 
 
 1. Guidance with project structure:
@@ -31,7 +33,7 @@ Input: How would you go about the structure in this assignment?
 
 Output:
 Repository & Project structure
-
+```
 BackendAssignment/
 ├── BackendAssignment.sln
 ├── src/
@@ -60,7 +62,7 @@ BackendAssignment/
 │       └── Task5Tests.cs
 ├── README.md                                # Build instructions, analyses, reflections
 └── AI_DOCUMENTATION.md                      # AI prompt logs (or included in README)
-
+```
 
 -- 2. Help with finding the lowest instance in a sorted list (ChatGPT)
 Here I tried to find the lowest instance in a sorted list.
@@ -86,7 +88,7 @@ result = mid;      // "This is a match, for now"
 right = mid - 1;   // "But let's see if there's one further left"
 }
 
--- 3 Giving access to neighbors in graphs
+# 3 Giving access to neighbors in graphs
 input: Input code of BFS with issues on this line. Tried to use indexing on HashSet...
 
 foreach (string linkingStation in graph[current])
@@ -102,7 +104,7 @@ Give Graph a way to access neighbors
    return graph[station];
    }
 
-4: Check if one of the stations do not exist in the HashSet/graph
+# 4: Check if one of the stations do not exist in the HashSet/graph
 
 Input: I need to check if the stations exist before running the method. how can I do that?
 
@@ -113,13 +115,14 @@ public bool ContainsStation(string station)
 return graph.ContainsKey(station);
 }
 
-5: Help with structure and headers in README analysis:
+# 5: Help with structure and headers in README analysis:
 
 Input: I need help with structuring my analysis in the README. Please help me create headers I can fill in this task
 *filled in task 1. Repeated this for all the tasks
 
 Output: (this an example of one of the outputs, but this was done on all the tasks
 before i started writing the analysis
+````
 # Søkealgoritmer – Lineært søk og binærsøk
 
 ## 1. Formål
@@ -222,3 +225,68 @@ before i started writing the analysis
 ## 9. Konklusjon
 <!-- Oppsummer kort forskjellen mellom lineært søk og binærsøk. -->
 <!-- Oppsummer hva testene og sammenligningene viste. -->
+````
+
+# 6
+
+How can i do these tests in a printable.cs testfile, the same way i did the first tests
+```
+   [Fact]
+    public void CustomStack_PeekShowsLatestPushedValue()
+    {
+        //arrange 
+        CustomStack<int> stack = new CustomStack<int>();
+        stack.Push(10);
+        stack.Push(20);
+        // act
+        int result = stack.Peek();
+        // assert
+        Assert.Equal(20, result);
+    }
+
+    [Fact]
+    public void CustomStack_PopReturnsTheLastValue()
+    {
+        // arrange
+        CustomStack<string> stack = new CustomStack<string>();
+        stack.Push("Some");
+        stack.Push("Body");
+        stack.Push("Once");
+        stack.Push("Told");
+        stack.Push("Me");
+        // act
+        string result = stack.Pop();
+        // assert
+        Assert.Equal("Me", result);
+    }
+    
+    [Fact]
+    public void CustomStack_ThrowsErrorWhenStackIsFull()
+    {
+        // arrange
+        CustomStack<string> stack = new CustomStack<string>();
+        for (int i = 0; i < 10; i++)
+        {
+            stack.Push("Hello");
+        }
+        Assert.Throws<IndexOutOfRangeException>(() => stack.Push("Goodbye"));
+    }
+
+    [Fact]
+    public void CustomStack_PopOnEmptyStack()
+    {
+        // arrange
+        CustomStack<string> stack = new CustomStack<string>();
+        // assert
+        Assert.Throws<IndexOutOfRangeException>(() => stack.Pop());
+    }
+```
+
+- output:
+  Yes. What you have now is basically the manual version of those xUnit tests. 
+   You can translate each test into a section inside Run().
+  The pattern is:
+  Arrange → create/setup the stack
+  Act     → call Push/Pop/Peek
+  Assert  → use your TestCheck class
+  For the tests involving exceptions, you can use try/catch instead of Assert.Throws.
