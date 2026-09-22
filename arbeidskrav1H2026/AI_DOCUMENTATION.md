@@ -63,7 +63,7 @@ BackendAssignment/
 
 
 -- 2. Help with finding the lowest instance in a sorted list (ChatGPT)
-Here i tried to find the lowest instance in a sorted list.
+Here I tried to find the lowest instance in a sorted list.
 The help made me use "return result", letting the code narrow down to
 the leftmost instance of a value instead of returning the first one.
 
