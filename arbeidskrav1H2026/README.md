@@ -116,8 +116,8 @@ tross for at listen var usortert. Dette er likevel bare flaks og en grunn til at
 
 ### 5.1 Lineært søk
 <!-- Beste tilfelle: -->
-<!-- Verste tilfelle: -->
-<!-- Big-O: -->
+<!-- Verste tilfelle: --> om hele arrayet må undersøkes
+<!-- Big-O: --> antall sammenligninger øker omtrent propsjonalt med antall elementer
 
 
 ### 5.2 Binærsøk
@@ -131,6 +131,50 @@ tross for at listen var usortert. Dette er likevel bare flaks og en grunn til at
 
 # Oppgave 2 - egen generisk datastruktur
 
+### Custom stakk
+I denne oppgaven valgte jeg å lage stakk. Jeg har verken laget stakk, sirklulær kø, lenket liste eller kø før,
+så uansett hvilken jeg lagde visste jeg at dette ville bli en lærerik opplevelse. 
+
+### Hvordan datastrukturen fungerer
+<!-- Forklar hvordan strukturen fungerer. -->
+<!-- Hvilken regel følger den? F.eks. LIFO for stakk eller FIFO for kø. -->
+
+### 3. Intern representasjon
+<!-- Hvordan er datastrukturen bygget opp internt? -->
+<!-- F.eks. array, noder og pekere/referanser, front/rear osv. -->
+<!-- Forklar hvorfor du valgte denne løsningen. -->
+
+### 4. API og operasjoner
+<!-- Hvilke metoder har du laget? -->
+<!-- Forklar kort hva hver metode gjør. -->
+<!-- F.eks. Push, Pop, Peek og IsEmpty. -->
+
+### 5. Håndtering av tom struktur og kanttilfeller
+<!-- Hva skjer når strukturen er tom? -->
+<!-- Hvilke andre kanttilfeller har du testet? -->
+<!-- Forklar hvordan implementasjonen håndterer disse. -->
+
+### 6. Tester og resultater
+<!-- Hvilke tester har du gjennomført? -->
+<!-- Test normal bruk og relevante kanttilfeller. -->
+<!-- Beskriv kort hva testene viste. -->
+
+### 7. Tidskompleksitet
+<!-- Forklar Big-O for de viktigste operasjonene. -->
+<!-- Forklar hvorfor operasjonene har denne kompleksiteten basert på implementasjonen. -->
+
+### 8. Bruksområder
+<!-- Når kan denne datastrukturen være nyttig? -->
+<!-- Gi noen konkrete eksempler på hvor den kan brukes. -->
+
+### 9. Effektivitet og valg av intern representasjon
+<!-- Hvordan påvirker den interne representasjonen effektiviteten? -->
+<!-- Kunne en annen representasjon gitt andre egenskaper? -->
+
+### 10. Refleksjon
+<!-- Hva lærte du av å implementere datastrukturen selv? -->
+<!-- Hva var utfordrende? -->
+<!-- Hva ville du eventuelt gjort annerledes? -->
 
 
 
