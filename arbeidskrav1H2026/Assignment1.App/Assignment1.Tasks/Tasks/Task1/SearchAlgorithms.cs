@@ -9,16 +9,16 @@ public class SearchAlgorithms
         int left = 0;
         // the right side starts at the end index of the array
         int right = array.Length - 1;
-        // Counting amount of operations
-        int counter = 0;
+        // Counting amount of comparisons between the array elements and mid
+        int comparisons = 0;
         // default result if no value is found
         int result = -1;
         // As long as left is smaller or the same as right we´re still inside the array
         while (left <= right)
         {
-            // AI help - (2) AI documentation
+            // AI help - (2) AI documentation (on saving the value and continuing the search
             int mid = (left + right) / 2;
-            counter++;
+            comparisons++;
             if (array[mid] == value)
             {
                 result = mid;
@@ -28,7 +28,7 @@ public class SearchAlgorithms
             // move right one index down below mid (it's already checked)
             else if (array[mid] > value)
             {
-                counter++;
+                comparisons++;
                 right = mid - 1; 
             }
             // if the value is greater than the value in the mid index,
@@ -38,7 +38,7 @@ public class SearchAlgorithms
                 left = mid + 1; 
             }
         }
-        return (result,  counter);
+        return (result,  comparisons);
     }
 
     // Linear search 
