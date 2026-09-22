@@ -125,12 +125,22 @@ left = mid + 1;
 
 
 ### 4.3 Binærsøk på usorterte data
-<!-- Beskriv testen med usortert array. -->
-<!-- Hva returnerte algoritmen? Hvorfor kan resultatet ikke stoles på? -->
+I testene hvor binærsøk ble testet på usorterte lister så kan man ikke stole på resultatet. Listen
+var [8, 3, 11, 7, 2, 9, 5].
+Jeg kjørte to forsøk, i det ene forsøket søkte den etter tallet 5 som har index 6. Her fant ikke
+algoritmen fram til tallet. Det er naturligvis fordi den er programmert til å bruke sorterte lister
+og styres av tallene den ser. Den gjorde akkurat som den var programmert til, den fant mid på index 3
+hvor tallet 7 befinner seg. Her forkaster den hele høyresiden og søker på venstre hvor måltallet ikke
+finnes og algoritmen gjør seg ferdig.
 
+Men når jeg søker etter tallet 9 så finner den riktig index. Det er fordi den søker på høyre
+side etter den treffer mid 7. Når den kalkulerer et nytt midtpunkt så tar den 4 + 6 / 2 og finner index
+5, hvor tallet 9 befinner seg. Det betyr at algoritmen var i stand til å finne fram til indeksen, til
+tross for at listen var usortert. Dette er likevel bare flaks og en grunn til at den ikke kan stoles på.
 
 
 ## 5. Tidskompleksitet
+// TODO!
 
 ### 5.1 Lineært søk
 <!-- Beste tilfelle: -->
