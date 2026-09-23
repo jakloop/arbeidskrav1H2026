@@ -22,7 +22,8 @@ Jeg har ikke lagt inn lengre diskusjoner og spørsmål for å hjelp med forståe
 - getting access to neighboring stations
 - check if the stations exist in the graph
 - Help with structuring the analysis part of all tasks
-- Help with changing from xunit testing to printable tests 
+- Help with changing from xunit testing to printable tests
+- 7 checking if lists are equal
 
 
 1. Guidance with project structure:
@@ -290,3 +291,30 @@ How can i do these tests in a printable.cs testfile, the same way i did the firs
   Act     → call Push/Pop/Peek
   Assert  → use your TestCheck class
   For the tests involving exceptions, you can use try/catch instead of Assert.Throws.
+
+
+# 7 checking if lists are equal
+
+input (in the context of having discussed ways to compare equal lists):
+```
+how can I compare lists to see if they are equal or not?
+
+```
+output:
+```
+For List<T>, the simplest way to compare whether they contain the same elements in the same order is SequenceEqual():`
+
+using System.Linq;
+
+List<int> list1 = new List<int> { 1, 2, 3 };
+List<int> list2 = new List<int> { 1, 2, 3 };
+
+if (list1.SequenceEqual(list2))
+{
+    Console.WriteLine("The lists are equal");
+}
+else
+{
+    Console.WriteLine("The lists are different");
+}
+```

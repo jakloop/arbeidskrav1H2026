@@ -8,9 +8,9 @@ class Program
     static void Main(string[] args)
     {
         
-        // new SearchTests().Run();
-        new CustomStackTests().Run();
-        
+        //new SearchTests().Run();
+        //new CustomStackTests().Run();
+        new QuickSortTests().Run();
 
         /*
 
