@@ -10,8 +10,6 @@
 
 
 # Søkealgoritmer – Lineært søk og binærsøk
-
-## 1. Formål
 I denne oppgaven har jeg implementert LinearSearch, og BinarySearch.
 jeg har kjørt en rekke tester og svart på spørsmål i oppgaven.
 
@@ -133,48 +131,76 @@ tross for at listen var usortert. Dette er likevel bare flaks og en grunn til at
 
 ### Custom stakk
 I denne oppgaven valgte jeg å lage stakk. Jeg har verken laget stakk, sirklulær kø, lenket liste eller kø før,
-så uansett hvilken jeg lagde visste jeg at dette ville bli en lærerik opplevelse. 
+så uansett hvilken jeg lagde visste jeg at dette ville bli en lærerik oppgave.
 
 ### Hvordan datastrukturen fungerer
 <!-- Forklar hvordan strukturen fungerer. -->
-<!-- Hvilken regel følger den? F.eks. LIFO for stakk eller FIFO for kø. -->
+Stacken fungerer slik at jeg har to felter T[] items og int count. Disse initialiseres av
+konstruktøren. Begge feltene er private, slik at de kun kan behandles gjennom 
+APIet. T gjør stacken generisk, som betyr at den kan brukes med ulike datatyper, eks. string, 
+float, int etc. 
+Jeg har satt en begrensning på 10 items for å kunne teste edgecase på full stack. 
+Push(T item) -  setter inn en verdi i den nåværende indeksen og plusser deretter på 1 på count.
+Da vil count nå være på èn verdi høyere enn indexen på det siste elementet. Man setter for inn verdi
+i index 0 og setter count til 1.
+Pop() - reduserer først count med en, og returnerer items[count], da får du den siste
+verdien som ble satt inn i stacken.
+Peek() - gjør ingenting med count, men returnerer items[count - 1] slik at man kan se det
+siste som har blitt satt inn.
 
-### 3. Intern representasjon
-<!-- Hvordan er datastrukturen bygget opp internt? -->
-<!-- F.eks. array, noder og pekere/referanser, front/rear osv. -->
-<!-- Forklar hvorfor du valgte denne løsningen. -->
-
-### 4. API og operasjoner
-<!-- Hvilke metoder har du laget? -->
-<!-- Forklar kort hva hver metode gjør. -->
-<!-- F.eks. Push, Pop, Peek og IsEmpty. -->
-
-### 5. Håndtering av tom struktur og kanttilfeller
-<!-- Hva skjer når strukturen er tom? -->
-<!-- Hvilke andre kanttilfeller har du testet? -->
-<!-- Forklar hvordan implementasjonen håndterer disse. -->
+Alle API funksjonene har innebygd exception handlers som gjør at de hånderer kall som kan 
+krasje koden. For eksempel, en push på full stack, pop() på tom stack osv.
 
 ### 6. Tester og resultater
-<!-- Hvilke tester har du gjennomført? -->
-<!-- Test normal bruk og relevante kanttilfeller. -->
-<!-- Beskriv kort hva testene viste. -->
+Jeg har testet følgende normaltilfeller:
+- Pop() på stakk
+- Push() på stakk
+Jeg har testet følgende kanttilfeller
+- Pop() på tom stakk
+- Peek() på tom liste
+- Push() på full stakk
+
+Testene viste at:
+- Push() legger elementer inn i riktig rekkefølge
+- Pop() returnerer det siste plasserte elementet først - i tråd med LIFO (last in first out).
+- Peek() returnerer det siste innsatte elementet uten å endre på count
+- Pop() og Peek() på tom stakk kaster IndexOutOfRangeException
+- Push() på full stack kaster IndexOutOfRangeException
 
 ### 7. Tidskompleksitet
-<!-- Forklar Big-O for de viktigste operasjonene. -->
-<!-- Forklar hvorfor operasjonene har denne kompleksiteten basert på implementasjonen. -->
+Operasjonenene i denne stakken har tidskompleksitet O(1). Det batyr at antall operasjoner er konstant
+og ikke påvirkes av hvor mange elementer som ligger i stakken. 
+som gjennomføres hver gang (Microsoft, n.db). Det tar for eksempel ikke lengere tid å
+sette inn stakken'1000' i algoritmen enn tallet '1'. Alle operasjonene i dette APIet setter
+direkte inn eller returnerer verdier basert på index. Denne indexen får den av count som også
+kun gjennomfører en konstant operasjon hver gang, enten legger til eller fjerner 1. Det vil si
+at også count++ count--  er O(1)
+- Push() - O(1)
+- Pop() - O(1)
+- Peek() - O(1)
 
 ### 8. Bruksområder
-<!-- Når kan denne datastrukturen være nyttig? -->
-<!-- Gi noen konkrete eksempler på hvor den kan brukes. -->
+Denne datastrukturen kan være nyttig mange sammenhenger. Er nyttig når du trenger midlertidig minne
+for informasjon, for eksempel når du vil forkaste informasjonen etter du har mottatt den (Microsoft, ingen
+dato). 
+Eksempler på dette er funksjonskall og rekursjon er det siste funksjonskallet må avsluttes før tidliger
+kall kan fortsette. Stakk overflyt er et eksempel på når stakken flyter over fori den inneholder for mange
+nestede kall(Microsoft, n.da).
 
-### 9. Effektivitet og valg av intern representasjon
-<!-- Hvordan påvirker den interne representasjonen effektiviteten? -->
-<!-- Kunne en annen representasjon gitt andre egenskaper? -->
+Den kan også være nyttig når man skal implementere angre-funksjonaliteter, som når du skriver
+i word og skal angre og andre algoritmer der du ofte vil tilbake til tidligere steg. Man kan 
+for eksempel se på Git som en slags stakk, hvor du legger en ny versjon oppå stakken for hver gang.
 
 ### 10. Refleksjon
-<!-- Hva lærte du av å implementere datastrukturen selv? -->
-<!-- Hva var utfordrende? -->
-<!-- Hva ville du eventuelt gjort annerledes? -->
+Jeg fikk mer erfaring om hvordan man kan styre hva som er synlig for brukeren ved hjelp
+av private felter som kun kan returneres ved hjelp av API-kall. Dette har vi allerede lært
+om, men jeg føler at jeg fikk enda mer forståelse. Det var også artig å tenke på at man kan bruke 
+Pop() en liste, og returnere mange verdier uten at de er slettet. Du får ikke returnert verdiene 
+flere ganger, fordi count er redusert, så det eneste du kan gjøre med de indexene som fortsatt lagrer
+verdiene er å sette inn.
+Når man går fra å ikke kjenne til hvordan slike datastrukturer fungerer til å skulle lage en selv
+så møter man mange utfordringer. For min del løste jeg dette med å se videoforklaringer og å gå 
+gjennom fagstoff på Gokstad sine hjemmesider. Det har vært svært lærerikt, men også vanskelig.
 
 
 
@@ -192,3 +218,5 @@ AlgorithmsNotesForProfessionals  - pdf
 Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
 Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
 Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
+Microsoft. (n.d.). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
+Microsoft. (n.da). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux
