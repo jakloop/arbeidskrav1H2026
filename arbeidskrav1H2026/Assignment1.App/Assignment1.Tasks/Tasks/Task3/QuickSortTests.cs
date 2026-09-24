@@ -32,7 +32,7 @@ public class QuickSortTests
         Console.WriteLine(" ");
         
         // et omvendt sortert array, for eksempel [9, 8, 7, 6, 5]
-        Console.WriteLine("Sorted array ");
+        Console.WriteLine("Reverse sorted array ");
         int[] sortedArrayDecreasing = [9, 8, 7, 6, 5];
         int[] sortedArrayDecreasingTest = [5, 6, 7, 8, 9];
         Console.WriteLine("Before: ");

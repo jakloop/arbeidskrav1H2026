@@ -9,11 +9,11 @@
 
 
 
-# Søkealgoritmer – Lineært søk og binærsøk
+# 2. Søkealgoritmer – Lineært søk og binærsøk
 I denne oppgaven har jeg implementert LinearSearch, og BinarySearch.
 jeg har kjørt en rekke tester og svart på spørsmål i oppgaven.
 
-## 2. Implementasjon
+## 2.0 Implementasjon
 
 ### 2.1 Lineært søk
 Lineært søk og binært søk er to veldig ulike måter å søke i et array. Linære søk søker sekvensielt
@@ -33,7 +33,7 @@ forkaster man den delen hvor måleverdien umulig kan være. Dersom man treffer m
 og fortsetter søket mot venstre, forutsett at arrayet er sortert i stigende rekkefølge mot høyre. På den måten
 får finner man den laveste indexen av verdien.
 
-## 3. Hvordan sammenligninger telles
+## 2.3 Hvordan sammenligninger telles
 <!-- Definer nøyaktig hva du teller som én sammenligning. -->
 <!-- Forklar at samme definisjon brukes for begge algoritmene. -->
 I denne oppgaven har jeg tolket en sammenligning som når målverdien måles
@@ -74,9 +74,9 @@ left = mid + 1;
 }
 ```
 
-## 4. Testresultater
+## 2.4 Testresultater
 
-### 4.1 Lineært søk – testdata
+### 2.4.1 Lineært søk – testdata
 <!-- Test på [8, 3, 11, 7, 2, 9, 5]. -->
 
 | Målverdi  | Forventet indeks  | Faktisk indeks | Antall sammenligninger |
@@ -85,7 +85,7 @@ left = mid + 1;
 | 42        | -1                | -1             | 7                      |
 
 
-### 4.2 Binærsøk – testdata
+### 2.4.2 Binærsøk – testdata
 <!-- Test på [2, 5, 7, 9, 11, 13, 17]. -->
 
 | Målverdi  | Forventet indeks | Faktisk indeks | Antall sammenligninger |
@@ -94,7 +94,7 @@ left = mid + 1;
 | 4         | -1               | -1             | 5                      |
 
 
-### 4.3 Binærsøk på usorterte data
+### 2.4.3 Binærsøk på usorterte data
 I testene hvor binærsøk ble testet på usorterte lister så kan man ikke stole på resultatet. Listen
 var [8, 3, 11, 7, 2, 9, 5].
 Jeg kjørte to forsøk, i det ene forsøket søkte den etter tallet 5 som har index 6. Her fant ikke
@@ -109,31 +109,31 @@ side etter den treffer mid 7. Når den kalkulerer et nytt midtpunkt så tar den 
 tross for at listen var usortert. Dette er likevel bare flaks og en grunn til at den ikke kan stoles på.
 
 
-## 5. Tidskompleksitet
+## 2.5 Tidskompleksitet
 // TODO!
 
-### 5.1 Lineært søk
+### 2.5.1 Lineært søk
 <!-- Beste tilfelle: -->
 <!-- Verste tilfelle: --> om hele arrayet må undersøkes
 <!-- Big-O: --> antall sammenligninger øker omtrent propsjonalt med antall elementer
 
 
-### 5.2 Binærsøk
+### 2.5.2 Binærsøk
 <!-- Beste tilfelle: -->
 <!-- Verste tilfelle: -->
 <!-- Big-O: -->
 
-### 6. Sammenligning av de to logaritmene
+### 2.6 Sammenligning av de to logaritmene
+// TODO!
 
 
+# 3.0 Oppgave 2 - egen generisk datastruktur
 
-# Oppgave 2 - egen generisk datastruktur
-
-### Custom stakk
+### 3.1 Custom stakk
 I denne oppgaven valgte jeg å lage stakk. Jeg har verken laget stakk, sirklulær kø, lenket liste eller kø før,
 så uansett hvilken jeg lagde visste jeg at dette ville bli en lærerik oppgave.
 
-### Hvordan datastrukturen fungerer
+### 3.2 Hvordan datastrukturen fungerer
 <!-- Forklar hvordan strukturen fungerer. -->
 Stacken fungerer slik at jeg har to felter T[] items og int count. Disse initialiseres av
 konstruktøren. Begge feltene er private, slik at de kun kan behandles gjennom 
@@ -151,7 +151,7 @@ siste som har blitt satt inn.
 Alle API funksjonene har innebygd exception handlers som gjør at de hånderer kall som kan 
 krasje koden. For eksempel, en push på full stack, pop() på tom stack osv.
 
-### 6. Tester og resultater
+### 3.3 Tester og resultater
 Jeg har testet følgende normaltilfeller:
 - Pop() på stakk
 - Push() på stakk
@@ -167,7 +167,7 @@ Testene viste at:
 - Pop() og Peek() på tom stakk kaster IndexOutOfRangeException
 - Push() på full stack kaster IndexOutOfRangeException
 
-### 7. Tidskompleksitet
+### 3.4 Tidskompleksitet
 Operasjonenene i denne stakken har tidskompleksitet O(1). Det batyr at antall operasjoner er konstant
 og ikke påvirkes av hvor mange elementer som ligger i stakken. 
 som gjennomføres hver gang (Microsoft, n.db). Det tar for eksempel ikke lengere tid å
@@ -179,7 +179,7 @@ at også count++ count--  er O(1)
 - Pop() - O(1)
 - Peek() - O(1)
 
-### 8. Bruksområder
+### 3.5 Bruksområder
 Denne datastrukturen kan være nyttig mange sammenhenger. Er nyttig når du trenger midlertidig minne
 for informasjon, for eksempel når du vil forkaste informasjonen etter du har mottatt den (Microsoft, ingen
 dato). 
@@ -191,7 +191,7 @@ Den kan også være nyttig når man skal implementere angre-funksjonaliteter, so
 i word og skal angre og andre algoritmer der du ofte vil tilbake til tidligere steg. Man kan 
 for eksempel se på Git som en slags stakk, hvor du legger en ny versjon oppå stakken for hver gang.
 
-### 10. Refleksjon
+### 3.6 Refleksjon
 Jeg fikk mer erfaring om hvordan man kan styre hva som er synlig for brukeren ved hjelp
 av private felter som kun kan returneres ved hjelp av API-kall. Dette har vi allerede lært
 om, men jeg føler at jeg fikk enda mer forståelse. Det var også artig å tenke på at man kan bruke 
@@ -203,6 +203,9 @@ så møter man mange utfordringer. For min del løste jeg dette med å se videof
 gjennom fagstoff på Gokstad sine hjemmesider. Det har vært svært lærerikt, men også vanskelig.
 
 
+# Oppgave 3 - QuickSort()
+
+I denne oppgaven valgte jeg QuickSort().
 
 
 Learning materials:
