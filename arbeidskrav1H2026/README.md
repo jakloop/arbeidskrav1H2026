@@ -334,9 +334,32 @@ TODO TODO TODO TODO
 
 ## 5.3 ShortestDistance - Korteste vei
 
-## 5.4 Tests
+## 5.4 Tests (AI help with making the table)
+Dette er testene jeg kjørte på algoritmen
+
+| Test                    | Hva testes                                      | Forventet resultat | Resultat |
+| ----------------------- | ----------------------------------------------- | -----------------: | -------: |
+| BFS fra Majorstuen      | Besøksrekkefølgen gjennom alle nåbare stasjoner | 9 stasjoner besøkt |  Bestått |
+| Majorstuen → Grønland   | Korteste antall stopp                           |                  4 |  Bestått |
+| Tøyen → Ullevål Stadion | Korteste rute mellom de to grenene              |                  8 |  Bestått |
+| BFS fra isolert stasjon | Kun den isolerte stasjonen skal besøkes         |   1 stasjon besøkt |  Bestått |
+| Sognsvann → Tøyen       | Ingen rute mellom isolert stasjon og Tøyen      |                 -1 |  Bestått |
+| Ukjent startstasjon     | Håndtering av stasjon som ikke finnes           |                 -1 |  Bestått |
+| Ukjent mål              | Håndtering av mål som ikke finnes               |                 -1 |  Bestått |
+| Tom graf                | Håndtering av tom graf uten krasj               |                 -1 |  Bestått |
+
+BFS fra `Majorstuen` besøkte stasjonene i følgende rekkefølge:
+
+`Majorstuen → Nationaltheateret → Blindern → Stortinget → Forskningsparken → Jernbanetorget → Ullevål Stadion → Grønland → Tøyen`
+
+Alle testene ga forventet resultat.
+
+## 5.5 Tidskompleksitet
 
 
+
+
+# 6.0 Breadth First Search
 
 Learning materials:
 Videos -

@@ -407,3 +407,116 @@ Jeg testet algoritmen med:
 | Array med ett element  | `[1]`                                  | `[1]`                                  |           0 |     0 | Test passed |
 
 ```
+
+# 9 Help with making table for tests in BFS
+
+input:
+```
+Kan du hjelpe meg å gjøre om disse testene til en tabell
+========== Task 4: Breadth First Search ==========
+Documentation: Order of visits
+Nåværende stopp: Majorstuen, antall stopp: 0
+La til Nationaltheateret i besøkt. Besøk nr: 1
+La til Blindern i besøkt. Besøk nr: 2
+Nåværende stopp: Nationaltheateret, antall stopp: 1
+La til Stortinget i besøkt. Besøk nr: 3
+Nåværende stopp: Blindern, antall stopp: 1
+La til Forskningsparken i besøkt. Besøk nr: 4
+Nåværende stopp: Stortinget, antall stopp: 2
+La til Jernbanetorget i besøkt. Besøk nr: 5
+Nåværende stopp: Forskningsparken, antall stopp: 2
+La til Ullevål Stadion i besøkt. Besøk nr: 6
+Nåværende stopp: Jernbanetorget, antall stopp: 3
+La til Grønland i besøkt. Besøk nr: 7
+Nåværende stopp: Ullevål Stadion, antall stopp: 3
+Nåværende stopp: Grønland, antall stopp: 4
+La til Tøyen i besøkt. Besøk nr: 8
+Nåværende stopp: Tøyen, antall stopp: 5
+9
+Shortest amount of stops from Majorstuen to Grønland
+Endestasjon funnet, antall stopp: 4
+Expected value: 4, result: 4
+Test passed
+Shortest amount of stops from Tøyen to Ullevål Stadion
+Endestasjon funnet, antall stopp: 8
+Expected value: 8, result: 8
+Test passed
+BFS from isolated station, only one node visited
+Nåværende stopp: Sognsvann, antall stopp: 0
+Expected value: 1, result: 1
+Test passed
+BFS from isolated station, only one node visited
+No route found from Sognsvann to Tøyen
+Expected value: −1, result: −1
+Test passed
+Unknown departure station
+One of the stations was not found.
+Expected value: −1, result: −1
+Test passed
+Unknown destination
+One of the stations was not found.
+Expected value: −1, result: −1
+Test passed
+Empty graph traversal, handeled without crash
+The graph is empty
+Expected value: −1, result: −1
+Test passed
+
+TestCheck testcheck = new TestCheck(); // BSF from majorstuen // Shortest distance from majorstuen -> grønland korteste
+ avstand = 4 // ullevål -> tøyen rute mellom grenene // BFS fra isolert stasjon - bare en node besøkes // Isolert -> 
+ tøyen ingen rute = -1 // ukjent start hånderes uten krasj // ukjent mål hånderes uten krasj // tom graf håndteres uten
+  krasj Console.WriteLine("========== Task 4: Breadth First Search =========="); // BSF from majorstuen 
+  Console.WriteLine("Documentation: Order of visits"); var graph = new Graph(); graph.AddConnection("Majorstuen",
+   "Nationaltheateret"); graph.AddConnection("Nationaltheateret", "Stortinget"); graph.AddConnection("Stortinget",
+    "Jernbanetorget"); graph.AddConnection("Jernbanetorget", "Grønland"); graph.AddConnection("Grønland" , "Tøyen");
+     graph.AddConnection("Majorstuen", "Blindern"); graph.AddConnection("Blindern", "Forskningsparken"); 
+     graph.AddConnection("Forskningsparken", "Ullevål Stadion"); int normalTraversal = BFSearch.BFS(graph, 
+     "Majorstuen"); Console.WriteLine(normalTraversal); Console.WriteLine(" "); // Shortest distance from majorstuen 
+     -> grønland korteste avstand = 4 Console.WriteLine(" Shortest amount of stops from Majorstuen to Grønland"); 
+     int shortestDistanceM2G = BFSearch.ShortestDistance(graph, "Majorstuen", "Grønland"); 
+     Console.WriteLine($"{TestCheck.Check(4, shortestDistanceM2G)}"); Console.WriteLine(" "); // ullevål -> 
+     tøyen rute mellom grenene Console.WriteLine("Shortest amount of stops from Tøyen to Ullevål Stadion"); int route
+     BetweenBranches = BFSearch.ShortestDistance(graph, "Tøyen", "Ullevål Stadion"); Console.WriteLine($"{T
+     estCheck.Check(8, routeBetweenBranches)}"); Console.WriteLine(" "); // BFS fra isolert stasjon - bare en node 
+     besøkes Console.WriteLine("BFS from isolated station, only one node visited"); var graphWithIsolatedStation = 
+     new Graph(); graphWithIsolatedStation.AddConnection("Majorstuen", "Nationaltheateret"); graphWithIsolatedStatio
+     n.AddConnection("Nationaltheateret", "Stortinget"); graphWithIsolatedStation.AddConnection("Stortinget", "Jernb
+     anetorget"); graphWithIsolatedStation.AddConnection("Jernbanetorget", "Grønland"); graphWithIsolatedStation.AddC
+     onnection("Grønland" , "Tøyen"); graphWithIsolatedStation.AddConnection("Majorstuen", "Blindern"); 
+     .AddConnection("Blindern", "Forskningsparken"); graphWithIsolatedStation.AddConnection("Forskningsparken", "Ulle
+     vål Stadion"); graphWithIsolatedStation.AddStation("Sognsvann"); int lonelyNode = BFSearch.BFS(
+     , "Sognsvann"); Console.WriteLine($"{TestCheck.Check(1, lonelyNode)}"); Console.WriteLine(" "); // Isolert -> tø
+     yen ingen rute = -1 Console.WriteLine("BFS from isolated station, only one node visited"); int lonelyNode2 = BFS
+     earch.ShortestDistance(graphWithIsolatedStation, "Sognsvann", "Tøyen"); Console.WriteLine($"{TestCheck.Check(-1,
+      lonelyNode2)}"); Console.WriteLine(" "); // var graph = new Graph(); // ukjent start hånderes uten krasj Consol
+      e.WriteLine("Unknown departure station"); int unknownStart = BFSearch.ShortestDistance(graph, "Sesam Stasjon", 
+      "Grønland"); Console.WriteLine($"{TestCheck.Check(-1, unknownStart)}"); Console.WriteLine(" "); // ukjent mål h
+      ånderes uten krasj Console.WriteLine("Unknown destination"); int unknownEnd = BFSearch.ShortestDistance(graph, 
+      "Majorstuen", "Sesam Stasjon"); Console.WriteLine($"{TestCheck.Check(-1, unknownEnd)}"); Console.WriteLine(" 
+      // tom graf håndteres uten krasj Console.WriteLine("Empty graph traversal, handeled without crash"); var empty
+      Graph = new Graph(); int emptyGraphTraversal = BFSearch.BFS(emptyGraph, "Majorstuen"); Console.WriteLine($"{
+      .Check(-1, emptyGraphTraversal)}"); Console.WriteLine(" ");
+```
+
+output:
+```
+### Testing
+
+| Test                    | Hva testes                                      | Forventet resultat | Resultat |
+| ----------------------- | ----------------------------------------------- | -----------------: | -------: |
+| BFS fra Majorstuen      | Besøksrekkefølgen gjennom alle nåbare stasjoner | 9 stasjoner besøkt |  Bestått |
+| Majorstuen → Grønland   | Korteste antall stopp                           |                  4 |  Bestått |
+| Tøyen → Ullevål Stadion | Korteste rute mellom de to grenene              |                  8 |  Bestått |
+| BFS fra isolert stasjon | Kun den isolerte stasjonen skal besøkes         |   1 stasjon besøkt |  Bestått |
+| Sognsvann → Tøyen       | Ingen rute mellom isolert stasjon og Tøyen      |                 -1 |  Bestått |
+| Ukjent startstasjon     | Håndtering av stasjon som ikke finnes           |                 -1 |  Bestått |
+| Ukjent mål              | Håndtering av mål som ikke finnes               |                 -1 |  Bestått |
+| Tom graf                | Håndtering av tom graf uten krasj               |                 -1 |  Bestått |
+
+BFS fra `Majorstuen` besøkte stasjonene i følgende rekkefølge:
+
+`Majorstuen → Nationaltheateret → Blindern → Stortinget → Forskningsparken → Jernbanetorget → Ullevål Stadion → Grønland → Tøyen`
+
+Alle testene ga forventet resultat.
+
+```
