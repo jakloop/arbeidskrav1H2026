@@ -203,9 +203,99 @@ så møter man mange utfordringer. For min del løste jeg dette med å se videof
 gjennom fagstoff på Gokstad sine hjemmesider. Det har vært svært lærerikt, men også vanskelig.
 
 
-# Oppgave 3 - QuickSort()
+# 4.0 Oppgave 3 - QuickSort()
 
-I denne oppgaven valgte jeg QuickSort().
+### 1. Valg av algoritme og pivotstrategi
+Jeg valgte QuickSort()-algoritmen fordi jeg syntes den virket spennende å implementere. Jeg
+har ikke implementert verken MergeSort eller QuickSort før, så valget for meg var helt tilfeldig.
+
+### 2. Hvordan QuickSort fungerer
+QuickSort fungerer slik at den jobber seg gjennom arrayet ved hjelp av en pivot. I min kode er pivot-strategien slik
+at man velger det siste elementet (del)arrayet som pivot. Deretter går man gjennom alle verdiene i (del)arrayet, 
+bortsett fra pivoten, og setter de verdiene som er mindre enn pivoten til venstre. Når arrayet er gjennomgått, 
+setter man pivoten på riktig plass, slik at verdiene som er mindre enn pivoten er til venstre, og resten er til høyre.
+
+Deretter kjøres det i gang to nye QuickSort-funksjoner. Disse funksjonene jobber på hver sin side av pivoten. 
+Hver av disse sidene deles nok en gang opp helt til delarrayet består av 0 eller 1 element. Da returnerer funksjonene 
+uten å gjøre noe mer. Dette sørger for at rekursjonen stopper og forhindrer en uendelig loop.
+
+- QuickSort() stopper når delarrayet har 0 eller 1 element.
+- Partition() finner pivotens endelige plassering.
+- Algoritmen kaller deretter QuickSort() rekursivt på området til venstre og høyre for pivoten.
+- Når alle delområdene er ferdig behandlet, er hele arrayet sortert.
+
+### 3. Sammenligninger og bytter
+- Jeg teller sammenligninger mellom `arr[j]` og pivoten.
+- Jeg teller også antall bytter som utføres når et element er mindre enn pivoten.
+- [Sett inn resultatene fra testene dine.]
+- Dette gjør det mulig å sammenligne hvor mye arbeid QuickSort gjør på forskjellige typer input.
+
+
+### 4. Testresultater (AI hjalp til med å lage tabellen)
+Jeg testet algoritmen med:
+* Vanlig/usortert array
+* Allerede sortert array
+* Omvendt sortert array
+* Array med duplikater
+* Tomt array
+* Array med ett element
+
+| Test                   | Før                                    | Etter                                  | Comparisons | Swaps | Resultat    |
+| ---------------------- | -------------------------------------- | -------------------------------------- | ----------: | ----: | ----------- |
+| Vanlig/usortert array  | `[64, 34, 25, 12, 22, 11, 90]`         | `[11, 12, 22, 25, 34, 64, 90]`         |          19 |    16 | Test passed |
+| Allerede sortert array | `[1, 2, 3, 4, 5]`                      | `[1, 2, 3, 4, 5]`                      |          10 |    14 | Test passed |
+| Omvendt sortert array  | `[9, 8, 7, 6, 5]`                      | `[5, 6, 7, 8, 9]`                      |          10 |     8 | Test passed |
+| Array med duplikater   | `[64, 34, 25, 12, 22, 22, 11, 34, 90]` | `[11, 12, 22, 22, 25, 34, 34, 64, 90]` |          25 |    23 | Test passed |
+| Tomt array             | `[]`                                   | `[]`                                   |           0 |     0 | Test passed |
+| Array med ett element  | `[1]`                                  | `[1]`                                  |           0 |     0 | Test passed |
+
+Alle testene kontrollerer at resultatet er sortert og at kanttilfellene håndteres korrekt.
+
+### 5. Tidskompleksitet
+- Beste tilfelle: O(n log n)
+- Gjennomsnittlig tilfelle: O(n log n)
+- Verste tilfelle: O(n^2)
+- Plasskompleksitet: O(log n) i gjennomsnitt på grunn av rekursjonen, men O(n) i verste tilfelle.
+
+### 6. Betydningen av pivotvalg
+I min strategi så velger jeg det siste elementet som pivot. Hvilken verdi dette elementet har kan påvirke ytelsen
+og hvor jevnt arrayet blir delt.
+
+Hvis pivoten havner omtrent på midten, vil de nye delarrayene bli ca. like store og man vil få en ganske balansert
+rekursjon, hvor begge rekursjonene starter omtrent like mange nye nivåer. Siden jeg alltid velger det siste elementet
+som pivot, kan pivotvalget påvirke hvor jevnt arrayet blir delt.
+Både det beste og gjennomsnittlige utfallet av ytelse i QuickSort har O(n log n) (Gokstad Akademiet, n.d.). I disse
+tilfellene får man et logaritmisk antall nivåer, fordi delarrayene blir omtrent halvert for hver gang en ny partition
+aktiveres.
+
+Om man er uheldig med pivotvalg, derimot, blir ytelsen svakere. Vi kan for eksempel se i testen med det sorterte
+arrayet at det er flere swaps enn det er i det usorterte arrayet. Det kommer av at for hver ny partition blir det
+siste elementet valgt som pivot. Når arrayet allerede er sortert, vil pivoten være det største elementet, og nesten
+alle elementene vil bli 'satt' på venstre side i partisjoneringen. I verste tilfelle blir partitioneringen veldig 
+ubalansert. Da kan det ene delarrayet inneholde nesten alle elementene,
+mens det andre delarrayet nesten er tomt. Dette gjør at man får omtrent 'n' nivåer i rekursjonen i stedet for log₂(n),
+og tidskompleksiteten blir O(n^2).
+
+
+### 7. Styrker og svakheter
+Styrken med quicksort er at den er ganske så effektiv når pivotstrategien passer godt til arrayet.
+Da vil du kunne få en ytelse som er tilnærmet logaritmisk. En annen styrke er at alt foregår i det samme
+arrayet hele tiden. Da slipper man å returnere et nytt array som må lagres.
+
+Svakheten til quicksort er at pivotstrategien også kan føre til O(n^2).
+Jeg har også hørt at lange lister med dype rekursjoner kan føre til stackoverflow. StackOverflow er når kjøringsstakken
+går tom for plass til nye rekursjoner fordi den inneholder for mange nestede metodekall (Microsoft. n.da).
+
+### 8. Refleksjon
+//TODO!
+Testene viste at 
+- Hva viste testene om forskjellen mellom de ulike inputtypene?
+- Hvordan påvirket pivotstrategien resultatene?
+- Hva lærte jeg om rekursjon og del-og-hersk?
+
+
+
+
 
 
 Learning materials:
@@ -220,6 +310,7 @@ Sources:
 AlgorithmsNotesForProfessionals  - pdf
 Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
 Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
+Gokstad Akademiet. (n.d.) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
 Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
 Microsoft. (n.d.). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
 Microsoft. (n.da). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux

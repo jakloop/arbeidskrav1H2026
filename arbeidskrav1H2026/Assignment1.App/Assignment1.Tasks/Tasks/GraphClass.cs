@@ -15,18 +15,18 @@ public class Graph
         return graph[station];
     }
     
-    // ContainsStation fucntion from AI help
+    // ContainsStation function from AI help
     public bool ContainsStation(string station)
     {
         return graph.ContainsKey(station);
     }
 
     public bool IsEmpty()
-    {
+    { 
         if (graph.Count == 0)
-            {
-            return true;
-            }
+        {
+            return true; 
+        }
         return false;
     }
 
@@ -41,6 +41,7 @@ public class Graph
         {
             graph[stationB] = new HashSet<string>();
         }
+        // creates a two-way connection
         graph[stationA].Add(stationB);
         graph[stationB].Add(stationA);
     }
