@@ -46,4 +46,12 @@ public class Graph
         graph[stationB].Add(stationA);
     }
     
+    public void AddStation(string station)
+    {
+        if (!graph.ContainsKey(station))
+        {
+            graph[station] = new HashSet<string>();
+        }
+    }
+    
 }

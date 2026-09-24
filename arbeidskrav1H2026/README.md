@@ -294,7 +294,47 @@ Testene viste at
 - Hva lærte jeg om rekursjon og del-og-hersk?
 
 
+# 5.0 Breadth First Search
 
+## 5.1 Forklaring av Graph
+
+For å lage grafen som brukes i Breadth First Search og Depth First Search
+så har jeg brukt en 'adjacecy list'. Det består av en dictionary med nøkkel og verdier.
+Hvor nøkkelene består av stasjonene og verdiene er nabostasjonene. For eksempel, hvis Majorstuen
+har to naboer: NationalTheateret og Blindern vil Key være ["Majorstuen"] og value være ["Nationaltheateret", "Blindern"].
+Nationaltheateret på sin side kan ha ["Majorstuen", "Stortinget"] som sine keys. Og sånn dannes kantene mellom
+stasjonene. Keys er også satt om som HashSet<string> som gjør at man sikrer at verdiene bare kan skrives en gang.
+En annen grunn til at det er satt opp som HashSet er at dette er en rask value å hente fra. 
+
+For å lage stasjoner så bruker man 'AddStation()'. Her sjekkes det først om grafen allerede inneholder 
+stasjonen, og hvis den ikke gjør det så oppretter den en ny Key med den verdien.
+```
+    public void AddStation(string station)
+    {
+        if (!graph.ContainsKey(station))
+        {
+            graph[station] = new HashSet<string>();
+        }
+    }
+
+```
+
+For å lage en knytning mellom to stasjoner så bruker man AddConnection(), denne metoden
+sjekker først om stasjonene eksisterer som nøkler. Hvis de ikke eksisterer så opprettes de. 
+Når denne sjekken passeres så legges de inn som nøkler hos hverandre
+```
+        graph[stationA].Add(stationB);
+        graph[stationB].Add(stationA);
+```
+TODO!
+snakke om GetNeighbors, ContainsStation, IsEmpty
+TODO TODO TODO TODO
+
+## 5.2 Breadth First Search
+
+## 5.3 ShortestDistance - Korteste vei
+
+## 5.4 Tests
 
 
 

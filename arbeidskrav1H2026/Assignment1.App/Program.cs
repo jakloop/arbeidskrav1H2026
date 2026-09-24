@@ -11,24 +11,7 @@ class Program
         // new SearchTests().Run();
         // new CustomStackTests().Run();
         // new QuickSortTests().Run();
-        
-        
-        Console.WriteLine("========== Task 4 ==========");
-        Console.WriteLine(" BFS");
-
-        var graph = new Graph();
-        graph.AddConnection("Majorstuen", "Nationaltheateret");
-        graph.AddConnection("Nationaltheateret", "Stortinget");
-        graph.AddConnection("Stortinget", "Jernbanetorget");
-        graph.AddConnection("Jernbanetorget", "Grønland");
-        graph.AddConnection("Grønland" , "Tøyen");
-        graph.AddConnection("Majorstuen", "Blindern");
-        graph.AddConnection("Blindern", "Forskningsparken");
-        graph.AddConnection("Forskningsparken", "Ullevål Stadion");
-
-        int result = BFSearch.BFS(graph, "Majorstuen", "Ullevål Stadion");
-
-        Console.WriteLine(result);
+        new BFSearchTests().Run();
         
         /*
         Console.WriteLine("========== Task 5 ==========");
