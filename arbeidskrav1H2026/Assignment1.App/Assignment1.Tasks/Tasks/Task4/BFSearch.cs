@@ -6,7 +6,59 @@ namespace arbeidskrav1H2026.searchalgorithms;
 public class BFSearch
 {
 
-    public static int BFS(Graph graph, string stationA, string stationB)
+    public static int BFS(Graph graph, string stationA)
+    {
+        // if graph is empty
+        if (graph.IsEmpty())
+        {
+            Console.WriteLine($"The graph is empty");
+            return -1;
+        }
+        
+        // if one of the stations were not found.
+        if (!graph.ContainsStation(stationA))
+        {
+            Console.WriteLine("One of the stations was not found.");
+            return -1;
+        }
+        
+        Queue<string> q = new Queue<string>();
+        HashSet<string> visited = new HashSet<string>();
+        
+        // AI help implementing this element into the code
+        Dictionary<string, int> distance = new Dictionary<string, int>();
+        
+        
+        q.Enqueue(stationA);
+        visited.Add(stationA);
+        distance[stationA] = 0;
+        
+        // while there is a queue, that's not empty
+        while (q.Count > 0)
+        {
+            // Take the first element of the queue
+            string current = q.Dequeue();
+            Console.WriteLine($"Nåværende stopp: {current}, antall stopp: {distance[current]}");
+            
+
+            // AI assistance on this line
+            foreach (string linkingStation in graph.GetNeighbors(current))
+            {
+                if (!visited.Contains(linkingStation))
+                {
+                    Console.WriteLine($"La til {linkingStation} i besøkt. Besøk nr: {visited.Count}");
+                    visited.Add(linkingStation);
+                    q.Enqueue(linkingStation);
+                    distance[linkingStation] =  distance[current] + 1;
+                }
+            }
+        }
+        
+        // return the count of visited stations
+        return visited.Count;
+    }
+    
+        public static int ShortestDistance(Graph graph, string stationA, string stationB)
     {
         // if graph is empty
         if (graph.IsEmpty())
@@ -21,6 +73,7 @@ public class BFSearch
             Console.WriteLine("One of the stations was not found.");
             return -1;
         }
+        
         Queue<string> q = new Queue<string>();
         HashSet<string> visited = new HashSet<string>();
         
@@ -34,8 +87,8 @@ public class BFSearch
         // while there is a queue, that's not empty
         while (q.Count > 0)
         {
+            // Take the first element of the queue
             string current = q.Dequeue();
-            Console.WriteLine($"Nåværende stopp: {current}, antall stopp: {distance[current]}");
 
             if (current == stationB)
             {
@@ -43,14 +96,12 @@ public class BFSearch
                 return distance[current];
             }
 
-            // AI assitance on this line
+            // AI assistance on this line
             foreach (string linkingStation in graph.GetNeighbors(current))
             {
                 if (!visited.Contains(linkingStation))
                 {
-                    Console.WriteLine($"La til {linkingStation} i besøkt");
                     visited.Add(linkingStation);
-                    Console.WriteLine($"La til {linkingStation} i køen");
                     q.Enqueue(linkingStation);
                     distance[linkingStation] =  distance[current] + 1;
                 }
@@ -60,4 +111,7 @@ public class BFSearch
         Console.WriteLine($"No route found from {stationA} to {stationB}");
         return -1;
     }
+    
+    
+    
 }
