@@ -7,6 +7,7 @@ I denne oppgaven har jeg brukt AI til følgende.
 - Spørsmål om struktur på oppgaven
 - Spørsmål for å kunne forstå konsepter rundt datastrukturer og algoritmer.
 - Veiledning, ideutvikling og hjelp til å løse problemer.
+- Noe språkvask
 
 Jeg har også gjort mitt ytterste for å rpøve å finne andre kilder før jeg velger
 å bruke AI assistanse, eksempelvis, videoer på YouTube, pensum og digitale læreverk.
@@ -17,12 +18,14 @@ Jeg har ikke lagt inn lengre diskusjoner og spørsmål for å hjelp med forståe
 
 
 
-- Structure help
-- Help with finding lowest instance in a sorted array
-- getting access to neighboring stations
-- check if the stations exist in the graph
-- Help with structuring the analysis part of all tasks
-- Help with changing from xunit testing to printable tests 
+- 1 Structure help
+- 2 Help with finding lowest instance in a sorted array
+- 3 getting access to neighboring stations
+- 4 check if the stations exist in the graph
+- 5 Help with structuring the analysis part of all tasks
+- 6 Help with changing from xunit testing to printable tests
+- 7 checking if lists are equal
+- 8 Help with making a test result table
 
 
 1. Guidance with project structure:
@@ -290,3 +293,117 @@ How can i do these tests in a printable.cs testfile, the same way i did the firs
   Act     → call Push/Pop/Peek
   Assert  → use your TestCheck class
   For the tests involving exceptions, you can use try/catch instead of Assert.Throws.
+
+
+# 7 checking if lists are equal
+
+input (in the context of having discussed ways to compare equal lists):
+```
+how can I compare lists to see if they are equal or not?
+
+```
+output:
+```
+For List<T>, the simplest way to compare whether they contain the same elements in the same order is SequenceEqual():`
+
+using System.Linq;
+
+List<int> list1 = new List<int> { 1, 2, 3 };
+List<int> list2 = new List<int> { 1, 2, 3 };
+
+if (list1.SequenceEqual(list2))
+{
+    Console.WriteLine("The lists are equal");
+}
+else
+{
+    Console.WriteLine("The lists are different");
+}
+```
+
+# 8 Help with making test result table 
+
+input:
+```
+kan du gjøre om dette til en md tabell som passer til dette
+========== Task 3: Quick Sort ==========
+Normal array
+Before:
+64, 34, 25, 12, 22, 11, 90
+After
+11, 12, 22, 25, 34, 64, 90
+Test passed
+Comparisons: 19
+Swaps: 16
+Sorted array
+Before:
+1, 2, 3, 4, 5
+After
+1, 2, 3, 4, 5
+Test passed
+Comparisons: 10
+Swaps: 14
+Reverse sorted array
+Before:
+9, 8, 7, 6, 5
+After
+5, 6, 7, 8, 9
+Test passed
+Comparisons: 10
+Swaps: 8
+Array with duplicates
+Before:
+64, 34, 25, 12, 22, 22, 11, 34, 90
+After
+11, 12, 22, 22, 25, 34, 34, 64, 90
+Test passed
+Comparisons: 25
+Swaps: 23
+Empty array
+Before:
+After
+Test passed
+Comparisons: 0
+Swaps: 0
+Array with one element
+Before:
+1
+After
+1
+Test passed
+Comparisons: 0
+Swaps: 0
+### 4. Testresultater
+Jeg testet algoritmen med:
+- Vanlig/usortert array
+- Allerede sortert array
+- Omvendt sortert array
+- Array med duplikater
+- Tomt array
+- Array med ett element
+
+```
+
+Output:
+```
+### 4. Testresultater
+
+Jeg testet algoritmen med:
+
+* Vanlig/usortert array
+* Allerede sortert array
+* Omvendt sortert array
+* Array med duplikater
+* Tomt array
+* Array med ett element
+
+| Test                   | Før                                    | Etter                                  | Comparisons | Swaps | Resultat    |
+| ---------------------- | -------------------------------------- | -------------------------------------- | ----------: | ----: | ----------- |
+| Vanlig/usortert array  | `[64, 34, 25, 12, 22, 11, 90]`         | `[11, 12, 22, 25, 34, 64, 90]`         |          19 |    16 | Test passed |
+| Allerede sortert array | `[1, 2, 3, 4, 5]`                      | `[1, 2, 3, 4, 5]`                      |          10 |    14 | Test passed |
+| Omvendt sortert array  | `[9, 8, 7, 6, 5]`                      | `[5, 6, 7, 8, 9]`                      |          10 |     8 | Test passed |
+| Array med duplikater   | `[64, 34, 25, 12, 22, 22, 11, 34, 90]` | `[11, 12, 22, 22, 25, 34, 34, 64, 90]` |          25 |    23 | Test passed |
+| Tomt array             | `[]`                                   | `[]`                                   |           0 |     0 | Test passed |
+| Array med ett element  | `[1]`                                  | `[1]`                                  |           0 |     0 | Test passed |
+
+```
