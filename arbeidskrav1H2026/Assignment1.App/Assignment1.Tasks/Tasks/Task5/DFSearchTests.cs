@@ -26,8 +26,6 @@ public class DFSearchTests
         Console.WriteLine("Iterativ metode DFS Search fra majorstuen");
         DepthFirstSearch.IterativeDFSearch(graphDFS, "Majorstuen");
         Console.WriteLine(" ");
-
-        // Comparison with BFS, different order of visits
         
         
         Console.WriteLine("Rekursiv metode DFS Search på isolert stasjon");
@@ -63,7 +61,7 @@ public class DFSearchTests
 
         // unknown station
 
-        Console.WriteLine("Recursive and iterative depth first search");
+        Console.WriteLine("Recursive and iterative depth first search with unknow station");
         Console.WriteLine("Recursive: ");
         DepthFirstSearch.RecursiveDFSearch(graphDFS, "Unknown");
         Console.WriteLine("Iterative: ");

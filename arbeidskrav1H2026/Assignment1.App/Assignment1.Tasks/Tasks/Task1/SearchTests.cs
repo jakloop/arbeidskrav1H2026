@@ -1,5 +1,6 @@
 namespace arbeidskrav1H2026.searchalgorithms;
 
+// tests for binary and linear search
 public class SearchTests
 {
     public void Run()

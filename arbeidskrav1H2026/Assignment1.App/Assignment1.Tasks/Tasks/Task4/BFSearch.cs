@@ -5,7 +5,8 @@ namespace arbeidskrav1H2026.searchalgorithms;
 // Breadth-First Search
 public class BFSearch
 {
-
+    
+    // Breadth-first Search
     public static int BFS(Graph graph, string stationA)
     {
         // if graph is empty
@@ -38,15 +39,15 @@ public class BFSearch
         {
             // Take the first element of the queue
             string current = q.Dequeue();
-            Console.WriteLine($"Nåværende stopp: {current}, antall stopp: {distance[current]}");
+            Console.WriteLine($"Nåværende stopp: {current}, stasjoner fra start: {distance[current]}");
             
 
-            // AI assistance on this line
+            // AI assistance on this part
             foreach (string linkingStation in graph.GetNeighbors(current))
             {
                 if (!visited.Contains(linkingStation))
                 {
-                    Console.WriteLine($"La til {linkingStation} i besøkt. Besøk nr: {visited.Count}");
+                    Console.WriteLine($"La til {linkingStation} i besøkte stasjoner. Besøk totalt: {visited.Count}");
                     visited.Add(linkingStation);
                     q.Enqueue(linkingStation);
                     distance[linkingStation] =  distance[current] + 1;
@@ -92,7 +93,7 @@ public class BFSearch
 
             if (current == stationB)
             {
-                Console.WriteLine($"Endestasjon funnet, antall stopp: {distance[stationB]}");
+                Console.WriteLine($"Endestasjon funnet: {current}, antall stopp: {distance[stationB]}");
                 return distance[current];
             }
 

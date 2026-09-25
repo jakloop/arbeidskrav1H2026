@@ -1,34 +1,38 @@
-Contents
-- AI statement
-AI bruk som er tillat på gokstad er følgende. Man kan bruke AI som støtte til læring,
+
+# AI statement
+AI bruk som er tillat på gokstad er følgende: Man kan bruke AI som støtte til læring,
 ideutvikling, strukturering og problemløsing.
 
 I denne oppgaven har jeg brukt AI til følgende.
 - Spørsmål om struktur på oppgaven
 - Spørsmål for å kunne forstå konsepter rundt datastrukturer og algoritmer.
 - Veiledning, ideutvikling og hjelp til å løse problemer.
-- Noe språkvask
+- Noe språkvask og tilbakemelding på tekster.
+- Forklaring av konsepter og kode jeg ikke forstår.
 
-Jeg har også gjort mitt ytterste for å rpøve å finne andre kilder før jeg velger
+Jeg har også gjort mitt ytterste for å prøve å finne andre kilder før jeg velger
 å bruke AI assistanse, eksempelvis, videoer på YouTube, pensum og digitale læreverk.
-Likevel er det svært nyttig å bruke AI som diskusjonpartner nå du trenger hjelp til
-å forstå. I de tilfellene hvor AI har hjulpet meg med å lage kode har jeg kommentert
-det i koden, og lagt det inn i dette dokumentet. Det gjelder også hjelp med struktur. 
+Likevel, er det svært nyttig å bruke AI som diskusjonpartner nå du trenger hjelp til
+å forstå. I de tilfellene hvor AI har hjulpet meg med å løse kodeproblemer har jeg kommentert
+det i koden, og lagt det inn i dette dokumentet. Det gjelder også hjelp med struktur og generering av tabeller
+hvor jeg har gitt AI verdiene de skal fylle inn.
 Jeg har ikke lagt inn lengre diskusjoner og spørsmål for å hjelp med forståelse.
 
+# Contents
+- 1. Structure help
+- 2. Help with finding the lowest instance in a sorted array
+- 3. getting access to neighboring stations
+- 4. check if the stations exist in the graph
+- 5. Help with structuring the analysis part of all tasks
+- 6. Help with changing from xunit testing to printable tests
+- 7. checking if lists are equal
+- 8. Help with making a test result table 
+- 9. Help with making table for tests in BFS
+- 10. Help with making test table
+- 11. help with test result table in linear and binary search
 
 
-- 1 Structure help
-- 2 Help with finding lowest instance in a sorted array
-- 3 getting access to neighboring stations
-- 4 check if the stations exist in the graph
-- 5 Help with structuring the analysis part of all tasks
-- 6 Help with changing from xunit testing to printable tests
-- 7 checking if lists are equal
-- 8 Help with making a test result table
-
-
-1. Guidance with project structure:
+## 1. Guidance with project structure:
 
 
 (Gemini, 5. September)
@@ -67,7 +71,7 @@ BackendAssignment/
 └── AI_DOCUMENTATION.md                      # AI prompt logs (or included in README)
 ```
 
--- 2. Help with finding the lowest instance in a sorted list (ChatGPT)
+## 2. Help with finding the lowest instance in a sorted list (ChatGPT)
 Here I tried to find the lowest instance in a sorted list.
 The help made me use "return result", letting the code narrow down to
 the leftmost instance of a value instead of returning the first one.
@@ -91,7 +95,7 @@ result = mid;      // "This is a match, for now"
 right = mid - 1;   // "But let's see if there's one further left"
 }
 
-# 3 Giving access to neighbors in graphs
+## 3 Giving access to neighbors in graphs
 input: Input code of BFS with issues on this line. Tried to use indexing on HashSet...
 
 foreach (string linkingStation in graph[current])
@@ -107,7 +111,7 @@ Give Graph a way to access neighbors
    return graph[station];
    }
 
-# 4: Check if one of the stations do not exist in the HashSet/graph
+## 4: Check if one of the stations do not exist in the HashSet/graph
 
 Input: I need to check if the stations exist before running the method. how can I do that?
 
@@ -118,7 +122,7 @@ public bool ContainsStation(string station)
 return graph.ContainsKey(station);
 }
 
-# 5: Help with structure and headers in README analysis:
+## 5: Help with structure and headers in README analysis:
 
 Input: I need help with structuring my analysis in the README. Please help me create headers I can fill in this task
 *filled in task 1. Repeated this for all the tasks
@@ -230,7 +234,7 @@ before i started writing the analysis
 <!-- Oppsummer hva testene og sammenligningene viste. -->
 ````
 
-# 6
+## 6
 
 How can i do these tests in a printable.cs testfile, the same way i did the first tests
 ```
@@ -295,7 +299,7 @@ How can i do these tests in a printable.cs testfile, the same way i did the firs
   For the tests involving exceptions, you can use try/catch instead of Assert.Throws.
 
 
-# 7 checking if lists are equal
+## 7 checking if lists are equal
 
 input (in the context of having discussed ways to compare equal lists):
 ```
@@ -321,7 +325,7 @@ else
 }
 ```
 
-# 8 Help with making test result table 
+## 8. Help with making test result table 
 
 input:
 ```
@@ -408,7 +412,7 @@ Jeg testet algoritmen med:
 
 ```
 
-# 9 Help with making table for tests in BFS
+## 9. Help with making table for tests in BFS
 
 input:
 ```
@@ -521,7 +525,7 @@ Alle testene ga forventet resultat.
 
 ```
 
-# 10 Help with making test table
+## 10. Help with making test table
 
 input:
 ```
@@ -812,3 +816,55 @@ output: Her er en README-klar tabell basert på testene og resultatene dine
 | Binærsøk    | Tomt array                        |         1 |               -1 |             -1 |               0 | Bestått  |
 | Binærsøk    | Array med duplikater              |         7 |                3 |              3 |               4 | Bestått  |
 | Binærsøk    | Array med ett element             |         1 |                0 |              0 |               1 | Bestått  |
+
+# 11 Help with making Table of Contents:
+input:
+```
+Kan du hjelpe meg å lage innholdsfortegnelse som matcher punktene i denne readme (limte inn README.md*)
+```
+
+output:
+````
+## Table of contents
+
+- [Filstruktur](#filstruktur)
+- [2. Søkealgoritmer – Lineært søk og binærsøk](#2-søkealgoritmer--lineært-søk-og-binærsøk)
+    - [2.0 Implementasjon](#20-implementasjon)
+        - [2.1 Lineært søk](#21-lineært-søk)
+        - [2.2 Binærsøk](#22-binærsøk)
+    - [2.3 Hvordan sammenligninger telles](#23-hvordan-sammenligninger-telles)
+    - [2.4 Testresultater](#24-testresultater)
+    - [2.5 Tidskompleksitet](#25-tidskompleksitet)
+    - [2.6 Sammenligning av tidskompleksitet](#26-sammenligning-av-tidskompleksitet)
+- [3.0 Oppgave 2 - Egen generisk datastruktur](#30-oppgave-2---egen-generisk-datastruktur)
+    - [3.1 Egen stakk](#31-egen-stakk)
+    - [3.2 Hvordan datastrukturen fungerer](#32-hvordan-datastrukturen-fungerer)
+    - [3.3 Tester og resultater](#33-tester-og-resultater)
+    - [3.4 Tidskompleksitet](#34-tidskompleksitet)
+    - [3.5 Bruksområder](#35-bruksområder)
+    - [3.6 Refleksjon](#36-refleksjon)
+- [4.0 Oppgave 3 - QuickSort()](#40-oppgave-3---quicksort)
+    - [4.1 Valg av algoritme og pivotstrategi](#41-valg-av-algoritme-og-pivotstrategi)
+    - [4.2 Hvordan QuickSort fungerer](#42-hvordan-quicksort-fungerer)
+    - [4.3 Sammenligninger og bytter](#43-sammenligninger-og-bytter)
+    - [4.4 Testresultater](#44-testresultater)
+    - [4.5 Tidskompleksitet](#45-tidskompleksitet)
+    - [4.6 Betydningen av pivotvalg](#46-betydningen-av-pivotvalg)
+    - [4.7 Styrker og svakheter](#47-styrker-og-svakheter)
+    - [4.8 Refleksjon](#48-refleksjon)
+- [5.0 Breadth First Search](#50-breadth-first-search)
+    - [5.1 Forklaring av Graph](#51-forklaring-av-graph)
+    - [5.2 Breadth First Search](#52-breadth-first-search)
+    - [5.3 ShortestDistance - Korteste vei](#53-shortestdistance---korteste-vei)
+    - [5.4 Tests](#54-tests)
+    - [5.5 Plass og tidskompleksitet](#55-plass-og-tidskompleksitet)
+- [6.0 Depth First Search](#60-depth-first-search)
+    - [6.1 Recursive](#61-recursive)
+    - [6.2 Iterative](#62-iterative)
+    - [6.3 RouteExists](#63-routeexists)
+    - [6.4 Testing](#64-testing)
+    - [6.5 DFS og BFS](#65-dfs-og-bfs)
+    - [6.6 Tids- og plasskompleksitet](#66-tids-og-plasskompleksitet)
+- [Learning materials](#learning-materials)
+- [Sources](#sources)
+```

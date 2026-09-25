@@ -2,8 +2,7 @@ namespace arbeidskrav1H2026.searchalgorithms;
 
 public class DepthFirstSearch
 {
-    // Recursive depth first search
-    //
+    // Recursive depth first search wrapper method
     public static void RecursiveDFSearch(Graph graph, string station)
     {
         // if the station is already visited return 
@@ -25,6 +24,7 @@ public class DepthFirstSearch
 
     }
 
+    // recursive depth first search method
     private static void RecursiveDFSearch(Graph graph, string station, HashSet<string> visited)
     {
         if (visited.Contains(station))
@@ -47,7 +47,6 @@ public class DepthFirstSearch
     }
     
     // Iterative depth first search
-    //
     public static void IterativeDFSearch(Graph graph,  string station)
     {
         // create empty stack and hashset
@@ -95,6 +94,7 @@ public class DepthFirstSearch
         
     }
 
+    // Checks if there is a route between stationA and StationB
     public static bool RouteExists(Graph graph, string stationA, string stationB)
     {
         if (graph.IsEmpty())
@@ -138,12 +138,3 @@ public class DepthFirstSearch
         return false;
     }
 }
-
-// tests
-// empty graph
-// Unknown starting node
-// only one node
-// every node is only handled one time each travers
-// long chain
-// om backtracking fungerer i forgreining
-// frakoblede komponenter

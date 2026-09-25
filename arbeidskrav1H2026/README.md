@@ -1,4 +1,7 @@
+
+
 # Arbeidskrav 1, HØST 2026, Backend Programmering
+- Modul 1: Algoritmer 
 - Student: Jakob Sørli
 - Date: 04 - 25th September
 
@@ -28,17 +31,58 @@ Assignment1.App/
 └── README.md
 ```
 
+## Innholdsfortegnelse
+(AI hjalp med å lage innholdsfortegnelse)
+- [Filstruktur](#filstruktur)
+- [2.0 Søkealgoritmer – Lineært søk og binærsøk](#2-søkealgoritmer--lineært-søk-og-binærsøk)
+    - [2.0 Implementasjon](#20-implementasjon)
+        - [2.1 Lineært søk](#21-lineært-søk)
+        - [2.2 Binærsøk](#22-binærsøk)
+    - [2.3 Hvordan sammenligninger telles](#23-hvordan-sammenligninger-telles)
+    - [2.4 Testresultater](#24-testresultater)
+    - [2.5 Tidskompleksitet](#25-tidskompleksitet)
+    - [2.6 Sammenligning av tidskompleksitet](#26-sammenligning-av-tidskompleksitet)
+- [3.0 Egen generisk datastruktur](#30-oppgave-2---egen-generisk-datastruktur)
+    - [3.1 Egen stakk](#31-egen-stakk)
+    - [3.2 Hvordan datastrukturen fungerer](#32-hvordan-datastrukturen-fungerer)
+    - [3.3 Tester og resultater](#33-tester-og-resultater)
+    - [3.4 Tidskompleksitet](#34-tidskompleksitet)
+    - [3.5 Bruksområder](#35-bruksområder)
+    - [3.6 Refleksjon](#36-refleksjon)
+- [4.0 QuickSort()](#40-oppgave-3---quicksort)
+    - [4.1 Valg av algoritme og pivotstrategi](#41-valg-av-algoritme-og-pivotstrategi)
+    - [4.2 Hvordan QuickSort fungerer](#42-hvordan-quicksort-fungerer)
+    - [4.3 Sammenligninger og bytter](#43-sammenligninger-og-bytter)
+    - [4.4 Testresultater](#44-testresultater)
+    - [4.5 Tidskompleksitet](#45-tidskompleksitet)
+    - [4.6 Betydningen av pivotvalg](#46-betydningen-av-pivotvalg)
+    - [4.7 Styrker og svakheter](#47-styrker-og-svakheter)
+    - [4.8 Refleksjon](#48-refleksjon)
+- [5.0 Breadth First Search](#50-breadth-first-search)
+    - [5.1 Forklaring av Graph](#51-forklaring-av-graph)
+    - [5.2 Breadth First Search](#52-breadth-first-search)
+    - [5.3 ShortestDistance - Korteste vei](#53-shortestdistance---korteste-vei)
+    - [5.4 Tests](#54-tests)
+    - [5.5 Plass og tidskompleksitet](#55-plass-og-tidskompleksitet)
+- [6.0 Depth First Search](#60-depth-first-search)
+    - [6.1 Recursive Depth First Search](#61-recursive)
+    - [6.2 Iterative Depth First Search](#62-iterative)
+    - [6.3 RouteExists](#63-routeexists)
+    - [6.4 Testing](#64-testing)
+    - [6.5 DFS og BFS](#65-dfs-og-bfs)
+    - [6.6 Tids- og plasskompleksitet](#66-tids-og-plasskompleksitet)
+- [Learning materials](#learning-materials)
+- [Sources](#sources)
 
-## Table of contents
- - Introduction
 
 # 1. Introduksjon
-Dette er det første arbeidskravet på 2. år Backend Programmering. Det dreier seg om algorimer, Big-O og datastrukturer.
+Dette er det første arbeidskravet på år. 2 Backend Programmering. Det dreier seg om algorimer, Big-O og datastrukturer.
 I dette arbeidskravet har jeg jobbet med, lineærsøk, binærsøk, stack, quicksort, breadth-first search og depth-first
-search. En annen sentral del av oppgaven var å teste algoritmene og skrive ut resultatene.
+search og mye annet knyttet til dette. En annen sentral del av oppgaven var også å teste algoritmene mot vanlig bruk
+og kanttilfeller.
 
-I tillegg til dette består oppgaven av å lage en videopresentasjon hvor man skal reflektere 
-
+I tillegg til dette, består oppgaven av å lage en videopresentasjon hvor man skal reflektere. Den ligger vedlagt i 
+innleveringsfilen
 
 
 # 2. Søkealgoritmer – Lineært søk og binærsøk
@@ -48,25 +92,25 @@ I denne oppgaven har jeg implementert LinearSearch, og BinarySearch.
 ### 2.1 Lineært søk
 Lineært søk og binært søk er to veldig ulike måter å søke i et array. Lineære søk søker sekvensielt
 gjennom elementene og hvert eneste element sammenlignes med målverdien. Algortimen stopper ved første treff
-eller når har gått gjennom hele samlingen (Gokstad Akademiet, n.d.). Det betyr at i beste fall
+eller når har gått gjennom hele samlingen (Gokstad Akademiet, ingen dato A). Det betyr at i beste fall,
 så blir den ferdig veldig tidlig, ved f.eks, tom liste, kort liste eller at den treffer verdien tidlig i listen.
-I verste fall så går den gjennom en veldig lang liste og bruker lang tid.
+I verste fall så går den gjennom en veldig lang liste og må dermed utføre flere handlinger.
 
 ### 2.2 Binærsøk
 I binærsøk er vi avhengige av at arrayet er sortert. Dette er fordi den hele tiden prøver å peile seg
 inn på verdien basert på de grenseverdiene man har satt. Dersom dataene ikke er sorterte vil denne peilingen
 bli helt feil og man kan ikke gjennomføre et gyldig søk, fordi data som potensielt skulle vært søkt blir valgt bort.
 
-I binærsøk så sammenligner man alltid den midterste verdien med "target". Hvis målverdien er større eller mindre,
-forkaster man den delen hvor måleverdien umulig kan være. I min implementasjon har jeg gjort det slik at når
-man treffer måleverdien med "mid", lagrer man treffet
+I binærsøk så sammenligner man alltid den midterste verdien med målverdien. Hvis målverdien er større eller mindre enn
+'mid', forkaster man den delen hvor måleverdien umulig kan være. I min implementasjon har jeg gjort det slik at når
+man treffer måleverdien med 'mid', lagrer man treffet
 og fortsetter søket mot venstre, forutsatt at arrayet er sortert i stigende rekkefølge mot høyre. På den måten
-finner man den laveste indexen av verdien.
+finner man den laveste indexen av verdien om det finnes duplikater. Dette var en del oppgaven.
 
 ## 2.3 Hvordan sammenligninger telles
 I denne oppgaven har jeg tolket en sammenligning som, når målverdien måles
 mot en annen verdi. I linear search så sammenlignes det hver eneste verdi i 
-arrayet helt til verdien treffes.
+arrayet helt til man treffer målverdien eller søket er ferdig.
 ```for (int i = 0; i < array.Length; i++)
 {
 counter++;
@@ -78,9 +122,9 @@ break;
 }
 ```
 
-I BinarySearch så har jeg talt sammenligninger når mid verdien sammenlignes med et 
-en annen verdi. Den første sammenligningen skjer når man sjekker om mid er = målverdien.
-Den andre sjekken kommer etterpå og da sjekkes det om mid er større enn value.
+I BinarySearch så har jeg talt sammenligninger når mid verdien sammenlignes med målverdien.
+Den første sammenligningen skjer når man sjekker om mid er = målverdien.
+Den andre sjekken kommer etterpå og da sjekkes det om mid er større enn målverdien.
 
 ```
 int mid = (left + right) / 2;
@@ -124,13 +168,13 @@ left = mid + 1;
 ### 2.4.3 Binærsøk på usorterte data
 I testene hvor binærsøk ble testet på usorterte lister så kan man ikke stole på resultatet. Listen
 jeg testet var denne:  [ 8, 3, 11, 7, 2, 9, 5].
-Jeg kjørte to forsøk, i det ene forsøket søkte den etter tallet 5, som har index 6. Her fant
+Jeg kjørte to forsøk. I det ene forsøket søkte den etter tallet 5, som har index 6. Her fant
 algoritmen ikke fram til tallet. Dette er naturligvis fordi den er programmert til å bruke sorterte lister
 og styres av tallene den ser. Den gjorde akkurat som den var programmert til, den fant mid på index 3
-hvor tallet 7 befinner seg. Og så forkaster den hele høyresiden og søker på venstre siden hvor måltallet ikke
-finnes og algoritmen gjør seg ferdig.
+hvor tallet 7 befinner seg. Og så forkaster den hele høyresiden (hvor tallet 5 ligger) og søker på venstre siden hvor 
+måltallet ikke finnes og algoritmen gjør seg ferdig. Indexen med målverdien ble altså forkastet i søket.
 
-Men når jeg søker etter tallet '9' i den samme listen, så finner den riktig index. Det er fordi den søker på høyre
+Men når jeg søker etter tallet '9' i den samme listen, så finner den faktisk riktig index. Det er fordi den søker på høyre
 side etter den treffer mid 7. Når den kalkulerer et nytt midtpunkt så tar den (4 + 6) / 2 og finner index
 5, hvor tallet 9 befinner seg. Det betyr at algoritmen var i stand til å finne fram til indeksen, til
 tross for at listen var usortert. Dette er likevel bare flaks, så man må ikke tro at denne typen søk egner
@@ -139,7 +183,7 @@ seg til usorterte lister.
 ## 2.5 Tidskompleksitet
 ### 2.5.1 Lineært søk
 Lineært søk har tidskompleksitet med O(n). Det er n tall som bestemmer hvor mange sammenligninger man må
-gjøre. I det verste tilfellet så må man gå gjennom hele listen før man finner eller ikke finner målet.
+gjøre. I det verste tilfellet, så må man gå gjennom hele listen før man finner eller ikke finner måltallet.
 
 I det beste tilfellet så er O(1), og dette er om man treffer verdien på første sammenligning.
 
@@ -158,7 +202,7 @@ halveres for hver sammenligning.
 
 Til gjengjeld krever binærsøk sorterte lister, noe lineærsøk
 ikke krever. Lineærsøk trenger heller ikke være mindre effektiv en binærsøk på små lister, her 
-presterer de ganske likt. Man kan se at det er få antall sammenligninger som skiller de to logaritmene
+presterer de ganske likt. Man kan se at det er få antall sammenligninger som skiller de to algoritmene
 i tester på små lister.
 
 # 3.0 Oppgave 2 - egen generisk datastruktur
@@ -172,18 +216,29 @@ Stacken fungerer slik at jeg har to felter T[] items og int count. Disse initial
 konstruktøren. Begge feltene er private, slik at de kun kan behandles gjennom 
 API-et. T gjør stacken generisk, som betyr at den kan brukes med ulike datatyper, eks. string, 
 float, int etc. 
+```
+    private T[] items;
+    private int count;
+
+    public CustomStack()
+    {
+        items = new T[10];
+        count = 0;
+```
 
 Jeg har satt en begrensning på 10 items for å kunne teste edgecase på full stack. 
 Push(T item) -  setter inn en verdi i den nåværende indeksen og plusser deretter på 1 på count.
 Da vil count nå være på èn verdi høyere enn indexen på det siste elementet. Man setter altså inn verdi
 'i' index 0 og setter count til 1.
+
 Pop() - reduserer først count med 1, og returnerer items[count], da får du den siste
 verdien som ble satt inn i stacken.
+
 Peek() - gjør ingenting med count, men returnerer items[count - 1] slik at man kan se det
 siste som har blitt satt inn.
 
 Alle API funksjonene håndterer ugyldige verdier ved å kaste exceptions. 
-For eksempel, en push på full stack, pop() på tom stack osv.
+For eksempel, en push på full stack, pop() på tom stack vil hånderes slik at programmet ikke krasjer.
 
 ### 3.3 Tester og resultater
 Jeg har testet følgende normaltilfeller:
@@ -203,8 +258,9 @@ Testene viste at:
 
 ### 3.4 Tidskompleksitet
 Operasjonenene i denne stakken har tidskompleksitet O(1). Det batyr at antall operasjoner er konstant
-og ikke påvirkes av hvor mange elementer som ligger i stakken. 
-som gjennomføres hver gang (Microsoft, n.db). Det tar for eksempel ikke lengere tid å
+og ikke påvirkes av hvor mange elementer som ligger i stakken. Stakkens størrelse er også konstant.
+
+Det tar for eksempel ikke lengere tid å
 sette inn tallet '1000' i stakken enn tallet '1'. Alle operasjonene i dette APIet setter
 direkte inn eller returnerer verdier basert på index. Denne indexen får den av count som også
 kun gjennomfører en konstant operasjon hver gang, enten legger til eller fjerner 1. Det vil si
@@ -213,23 +269,27 @@ at også count++ count--  er O(1)
 - Pop() - O(1)
 - Peek() - O(1)
 
+Jeg vil også påpeke at det går an å lage en stakk hvor kapasiteten blir gradvis større, og da vil Push() bli en O(n) 
+operasjon, og Pop() fortsatt være en O(1) operasjon(Microsoft, ingen dato A).
+
 ### 3.5 Bruksområder
-Denne datastrukturen kan være nyttig mange sammenhenger. Er nyttig når du trenger midlertidig minne
+Stakk kan være nyttig mange sammenhenger. Den er nyttig når du trenger midlertidig minne
 for informasjon, for eksempel når du vil forkaste informasjonen etter du har mottatt den (Microsoft, ingen
-dato). 
-Eksempler på dette er funksjonskall og rekursjon er det siste funksjonskallet må avsluttes før tidliger
+dato A). 
+
+Eksempler på dette er funksjonskall og rekursjon der det siste funksjonskallet må avsluttes før tidligere
 kall kan fortsette. Stakk overflyt er et eksempel på når kallstakken flyter over fordi den inneholder for mange
-nestede kall(Microsoft, n.da).
+nestede kall(Microsoft, ingen dato B).
 
 Den kan også være nyttig når man skal implementere angre-funksjonaliteter, som når du skriver
 i word og skal angre en bokstav, og andre algoritmer der du ofte vil tilbake til tidligere steg.
 
 ### 3.6 Refleksjon
 Jeg fikk mer erfaring om hvordan man kan styre hva som er synlig for brukeren ved hjelp
-av private felter som kun kan returneres ved hjelp av API-kall. Dette har vi allerede lært
+av private felter, som kun kan returneres ved hjelp av API-kall. Dette har vi allerede lært
 om, men jeg føler at jeg fikk enda mer forståelse. Det var også artig å tenke på at man kan bruke 
-Pop() en liste, og returnere mange verdier uten at de er slettet. Du får ikke returnert verdiene 
-flere ganger, fordi count er redusert, så det eneste du kan gjøre med de indexene som fortsatt lagrer
+Pop() på en liste, og returnere mange verdier uten at de er fysisk er slettet. Du får ikke returnert verdiene 
+på nytt, fordi count er redusert, så det eneste du kan gjøre med de indexene som fortsatt lagrer
 verdiene er å sette inn nye.
 
 Når man går fra å ikke kjenne til hvordan slike datastrukturer fungerer til å skulle lage en selv
@@ -237,7 +297,7 @@ så møter man mange utfordringer. For min del løste jeg dette med å se videof
 gjennom fagstoff på Gokstad sine hjemmesider. Det har vært svært lærerikt, men også vanskelig.
 
 
-# 4.0 Oppgave 3 - QuickSort()
+# 4.0 QuickSort()
 
 ### 4.1 Valg av algoritme og pivotstrategi
 Jeg valgte QuickSort()-algoritmen fordi jeg syntes den virket spennende å implementere. Jeg
@@ -266,7 +326,7 @@ Jeg holder kontroll på antall sammenligninger og bytter ved å bruke to verdier
         Swaps = 0;
     }
 ```
-Disse teller antall sammenligninger og bytter som skjer.
+Disse ligger inne i partition() og teller antall sammenligninger og bytter som skjer.
 
 Jeg har valgt å telle sammenligninger mellom arr[j] og pivoten. Dette skjer når man går gjennom
 alle tallene i arrayet som ikke er pivoten. I koden kan du se at man først setter 'Comparisons++' og etterpå 
@@ -278,8 +338,28 @@ sammenligner.
             if (arr[j] < pivot)
 ``` 
 Når et element i arrayet er mindre enn pivoten så settes så settes det til venstre og man plusser på 'Swaps'. Da har man
-gjort et bytte.
+gjort et bytte. Dette skjer først flere ganger inne loopen.
 
+```
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                Swaps++;
+```
+
+Etter hele arrayet er gjennomgått skjer det enda en swap, og pivoten settes til høyre for de verdiene som er mindre
+enn den
+
+```
+        int temp2 = arr[i];
+        arr[i] = arr[high];
+        arr[high] = temp2;
+        Swaps++;
+        
+// location of pivot
+    return i;
+
+```
 På denne måten kan man se hvor mange sammenligninger og bytter som skjer inne i en quicksort funksjon.
 
 ### 4.4 Testresultater (AI hjalp til med å lage tabellen)
@@ -296,10 +376,12 @@ På denne måten kan man se hvor mange sammenligninger og bytter som skjer inne 
 Alle testene kontrollerer at resultatet er sortert og at kanttilfellene håndteres korrekt.
 
 ### 4.5 Tidskompleksitet
-- Beste tilfelle: O(n log n)
+- Beste tilfelle: O(n log n), når pivoten deler arrayet i omtrent like store deler.
 - Gjennomsnittlig tilfelle: O(n log n)
-- Verste tilfelle: O(n^2)
-- Plasskompleksitet: O(log n) i gjennomsnitt på grunn av rekursjonen, men O(n) i verste tilfelle.
+- Verste tilfelle: O(n^2) - Ved ubalansert oppdeling, for eksempel når pivoten blir den største eller minste verdien i
+arrayet.
+- Plasskompleksitet: O(log n) i gjennomsnitt på grunn av rekursjonen, men O(n) i verste tilfelle, når det blir mange
+ubalanserte kall.
 
 ### 4.6 Betydningen av pivotvalg
 I min strategi så velger jeg det siste elementet som pivot. Hvilken verdi dette elementet har kan påvirke ytelsen
@@ -308,7 +390,7 @@ og hvor jevnt arrayet blir delt.
 Hvis pivoten havner omtrent på midten, vil de nye delarrayene bli ca. like store og man vil få en ganske balansert
 rekursjon, hvor begge rekursjonene starter omtrent like mange nye nivåer. Siden jeg alltid velger det siste elementet
 som pivot, kan pivotvalget påvirke hvor jevnt arrayet blir delt.
-Både det beste og gjennomsnittlige utfallet av ytelse i QuickSort har O(n log n) (Gokstad Akademiet, n.d.). I disse
+Både det beste og gjennomsnittlige utfallet av ytelse i QuickSort har O(n log n) (Gokstad Akademiet, ingen dato B). I disse
 tilfellene får man et logaritmisk antall nivåer, fordi delarrayene blir omtrent halvert for hver gang en ny partition
 aktiveres.
 
@@ -320,7 +402,6 @@ ubalansert. Da kan det ene delarrayet inneholde nesten alle elementene,
 mens det andre delarrayet nesten er tomt. Dette gjør at man får omtrent 'n' nivåer i rekursjonen i stedet for log2(n),
 og tidskompleksiteten blir O(n^2).
 
-
 ### 4.7 Styrker og svakheter
 Styrken med quicksort er at den er ganske så effektiv når pivotstrategien passer godt til arrayet.
 Da vil du kunne få en tidskompleksitet på O(n log n). En annen styrke er at alt foregår i det samme
@@ -328,10 +409,10 @@ arrayet hele tiden. Da slipper man å returnere et nytt array som må lagres.
 
 Svakheten til quicksort er at pivotstrategien også kan føre til O(n^2).
 Jeg har også hørt at lange lister med dype rekursjoner kan føre til stackoverflow. StackOverflow er når kjøringsstakken
-går tom for plass til nye rekursjoner fordi den inneholder for mange nestede metodekall (Microsoft. n.da).
+går tom for plass til nye rekursjoner fordi den inneholder for mange nestede metodekall (Microstoft, ingen dato B).
 
 ### 4.8 Refleksjon
-Det jeg har lært ved å jobbe med quicksort er at pivotstrategien har enormt mye å si for utfallet av ytelsen. Når det
+Det jeg har lært ved å jobbe med quicksort, er at pivotstrategien har enormt mye å si for utfallet av ytelsen. Når det
 siste elementet velges som pivot så kan for eksempel sorterte arrays føre til en ubalansert oppdeling.
 
 Jeg lærte også mer om hvordan rekursjon fungerer. De rekursjonsfunksjonene jeg har vært borte i før har alltid returnert
@@ -343,15 +424,15 @@ et nytt array, så det var gøy å se hvordan man kan jobbe rekursivt i det samm
 For å lage grafen som brukes i Breadth First Search og Depth First Search
 så har jeg brukt en 'adjacency list'. Det består av en dictionary med nøkkel/key og verdier/value.
 Hvor nøkkelene består av stasjonene og verdiene er nabostasjonene. For eksempel, hvis Majorstuen
-har to naboer, NationalTheateret og Blindern, vil nøkkelen være ["Majorstuen"] og verdien være ["Nationaltheateret", 
+har to naboer, NationalTheateret og Blindern, vil nøkkelen være ["Majorstuen"] og verdiene være ["Nationaltheateret", 
 "Blindern"].
 Når Nationaltheateret er nøkkelen vil den ha ["Majorstuen", "Stortinget"] som sine verdier. Og sånn dannes kantene mellom
 stasjonene. Verdiene er også satt om som HashSet<string> som gjør at man sikrer at man hindrer duplikatstasjoner i
-verdilista. HashSet har også gjennomsnittlig ytelse O[1] for Contains() og Add(), noe som gjør den raks når jeg skal
-sejkke om en stasjon finnes eller skal legge til en ny nabo.
+verdilista. HashSet har også gjennomsnittlig ytelse O[1] for Contains() og Add(), noe som gjør den raksk når jeg skal
+sjekke om en stasjon finnes eller skal legge til en ny nabo.
 
-For å lage stasjoner så bruker man 'AddStation()'. Her sjekkes det først om grafen allerede inneholder 
-stasjonen, og hvis den ikke gjør det så oppretter den en ny Key med den verdien.
+For å lage stasjoner, så bruker man 'AddStation()'. Her sjekkes det først om grafen allerede inneholder 
+stasjonen, og hvis den ikke gjør det, så oppretter den en et nytt element.
 ```
     public void AddStation(string station)
     {
@@ -365,7 +446,8 @@ stasjonen, og hvis den ikke gjør det så oppretter den en ny Key med den verdie
 
 For å lage en knytning mellom to stasjoner så bruker man AddConnection(). Denne metoden
 sjekker først om stasjonene eksisterer som nøkler. Hvis de ikke eksisterer, så opprettes de, og når
-denne sjekken passeres så legges de inn som nøkler hos hverandre.
+denne sjekken passeres så legges de inn som verdier hos hverandre.
+
 ```
         graph[stationA].Add(stationB);
         graph[stationB].Add(stationA);
@@ -374,7 +456,8 @@ denne sjekken passeres så legges de inn som nøkler hos hverandre.
 GetNeighbors() - lar oss see hvilke naboer en stasjon har.
 
 ContainsStation() - lar oss sjekke om grafen inneholder den stasjonen vi er 
-ute etter ved hjelp av.
+ute etter ved hjelp av kodelinja under.
+
 ```
 return graph.ContainsKey(station);
 ```
@@ -390,19 +473,19 @@ dens naboer i køen. I en kø (queue), så opererer man etter 'first in first ou
 elementene i den rekkefølgen de ble lagt inn i. Når køen er tom så er stopper søket. 
 
 Man kan for eksempel se på 'majorstuen', som er nabo med både 
-'Nationaltheateret' og 'Blindern'. Via disse så går stasjonene ut i 2 ulike grener, og man kan se at begge disse naboene,
+'Nationaltheateret' og 'Blindern'. Via disse så går stasjonene ut i to ulike grener, og man kan se at begge disse naboene,
 som er 1 stasjon unna, sjekkes først. Deretter går man løs på naboenes nabo, som er 2 stasjoner unna 'majorstuen'.
 På denne måten sjekkes hvert eneste 'nivå' slik at man har gått gjennom alle stasjonene som har kobling til 'majorstuen'.
 
-For å unngå å gjennomgå samme stasjon flere ganger så lagrer metodene de besøkte stasjonene i en HashSet verdi. HashSet
-har den egenskapen at man ikke kan lagre like duplikater. Så hver gang man skal sjekke en nabo i køen så sjekkes
-det om den allerede finnes i den listen. Da besøkes hver stasjon som er koblet til stasjonA kun en gang.
+For å unngå å gjennomgå samme stasjon flere ganger så lagrer metodene de besøkte stasjonene i en HashSet verdi 'visited.
+HashSet har den egenskapen at man ikke kan lagre like duplikater. Så hver gang man skal sjekke en nabo i køen så sjekkes
+det om den allerede finnes i den HashSeth visited. Da besøkes hver stasjon som er koblet til stasjonA kun en gang.
 
 ## 5.3 ShortestDistance - Korteste vei
 I ShortestDistance() så kan man finne ut hva som er færrest mulig antall kanter mellom stasjonA og stasjonB.
 Den fungerer ganske likt som Breadth First Search, men her sjekkes stasjonene i køen mot stasjonB for å se om man
 har kommet frem. Hvis man har kommet frem så returneres distansen med 'distance[current]'. Dersom grafen går gjennom
-hele køen uten å finne stasjonB så returneres -1, med en melding om at det ikke finnes en rute mellom stasjonene. 
+hele køen uten å finne stasjonB så returneres '-1', med en melding om at det ikke finnes en rute mellom stasjonene. 
 
 ## 5.4 Tests (AI help with making the table)
 Dette er testene jeg kjørte på algoritmen
@@ -431,18 +514,18 @@ O(V+E) forklares ved at hver stasjon (V) bare besøkes maks en gang, og at hver 
 gjennom naboene.
 
 BFS har en plasskompleksitet: O(V), fordi BFS i aller verste konsekvens må lagre et veldig langt nivå i 
-køen samtidig (Gokstad Akakademiet, n.d.b) . La oss si at 'majorstuen' ikke er koblet til bare to naboer, men for eksempel 1000. Da må
+køen samtidig (Gokstad Akakademiet, ingen dato C) . La oss si at 'majorstuen' ikke er koblet til bare to naboer, men for eksempel 1000. Da må
 alle de naboene ligge i køen samtidig.
 
 
 # 6.0 Depth First Search
-Depth First Search er en søkemetode, som i motsetning til BFS, går i dybden før den går tilbake. I forklaringen av BFS
+Depth First Search er en søkemetode, som i motsetning til BFS, går i dybden i hvert søk. I forklaringen av BFS
 så nevnte jeg at om man tar utgangspunkt i 'majorstuen' stasjonen, så vil den besøke begge naboene før den går videre til
 naboenes nabo. I DFS så går man rett fra utgangspunkt -> nabo -> nabos nabo -> etc. På den måten så går søket ut til
 en ende før den backtracker. Deretter vil eventuelle andre grener på veien bli undersøkt. Den fullfører alltid
 en gren før den går tilbake til et tidligere forgreiningspunkt.
 
-## 6.1 Recursive
+## 6.1 Recursive Depth First Search
 I min rekursive metode, så fungerer det som følger: Jeg har først en wrappermetode som sjekker
 om grafen er tom og at grafen inneholder stasjonen man søker ut fra.
 ```
@@ -457,7 +540,7 @@ den rekursive metoden.
     private static void RecursiveDFSearch(Graph graph, string station, HashSet<string> visited)
 ```
 
-Det første som skjer i denne metoden er at man kontrollerer 'visited'. Dette er basissteget i den rekursive metoden
+Det første som skjer i denne metoden er at man kontrollerer 'visited'.
 
 ```
         if (visited.Contains(station))
@@ -495,7 +578,7 @@ rekursive metode.
 
 
 
-## 6.2 Iterative
+## 6.2 Iterative Depth First Search
 I den iterative metoden så fungerer det litt annerledes.
 Her tar man inn grafen og stasjonen som verdier,
 og det opprettes en tom Stack og et HashSet
@@ -557,8 +640,8 @@ forgreininger som er både kortere og lengere til det punktet.
 ## 6.5 DFS og BFS
 Begge DFS-metodene besøker de samme stasjonene, men rekkefølgen blir forskjellig. Den iterative metoden bruker en Stack,
 som følger LIFO-prinsippet. Når flere naboer legges på stacken, blir den siste naboen som ble lagt inn behandlet først.
-Dette gjør at den iterative DFS-en kan følge en annen gren først enn den rekursive DFS-en. Rekkefølgen på naboene
-påvirker derfor besøksrekkefølgen, selv om alle nåbare stasjoner blir besøkt.
+Dette gjør at den iterative DFS-en og den rekursive DFS-en kan begynne på ulike grener. Rekkefølgen på naboene
+påvirker derfor besøksrekkefølgen.
 
 BFS bruker Queue og vil gjennomføre sjekkene i tur og orden, altså nivå for nivå. Først en kant unna og deretter to
 kanter unna.
@@ -571,8 +654,8 @@ ikke noe mer.
 
 ## 6.5 Tidskompleksitet
 BFS har en tidskompleksistet på O(V + E), hvor V er antall noder og E er antall kanter. Det har en plasskompleksitet
-på O(V), fordi BFS i verste fall må lagre hele nivået i køen samtidig (Gokstad Akademiet, n.d.b).
-Som i eksempelelet jeg brukete med 1000 nabostasjoner for majorstuen.
+på O(V), fordi BFS i verste fall må lagre hele nivået i køen samtidig (Gokstad Akademiet, ingen dato C).
+Som i eksempelelet jeg illustrerte med 1000 nabostasjoner for majorstuen.
 Når DFS brukes på en naboliste så bruker traverseringen O(V + E) og optil O(V) plasskompleksitet (Gokstad Akademiet,
 n.d.c) . De har samme tidskompleksitet og samme verste utfall.
 
@@ -589,14 +672,13 @@ Michael Sambol "Breadth-first search in 4 minutes - https://www.youtube.com/watc
 tutorialsEUC "How to use queues in C#" - https://www.youtube.com/watch?v=4MQwKvsGCms
 
 # Sources:
-
 AlgorithmsNotesForProfessionals  - pdf
 Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
 Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
-Gokstad Akademiet. (n.d.) Teori: lineært og binært søk. Øk 1 - Uke 34 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=14&currentorg=ORG_1&scoid=110
-Gokstad Akademiet. (n.d.a) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
-Gokstad Akademiet. (n.d.b) 03-teori. Økt 3 - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=18&currentorg=ORG_1&scoid=144
+Gokstad Akademiet. (ingen dato A) Teori: lineært og binært søk. Økt 1 - Uke 34 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=14&currentorg=ORG_1&scoid=110
+Gokstad Akademiet. (ingen dato B) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
+Gokstad Akademiet. (ingen dato C) 03-teori. Økt 3 - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=18&currentorg=ORG_1&scoid=144
 Gokstad Akademiet. (n.d.c) Teori: Depth-First Search - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=19&currentorg=ORG_1&scoid=152
 Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
-Microsoft. (n.d.). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
-Microsoft. (n.da). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux
+Microsoft. (ingen dato A). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
+Microsoft. (ingen dato B). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux
