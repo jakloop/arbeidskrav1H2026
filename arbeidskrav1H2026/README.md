@@ -150,8 +150,8 @@ verdien som ble satt inn i stacken.
 Peek() - gjør ingenting med count, men returnerer items[count - 1] slik at man kan se det
 siste som har blitt satt inn.
 
-Alle API funksjonene har innebygd exception handlers som gjør at de hånderer kall som kan 
-krasje koden. For eksempel, en push på full stack, pop() på tom stack osv.
+Alle API funksjonene håndterer ugyldige verdier ved å kaste exceptions. 
+For eksempel, en push på full stack, pop() på tom stack osv.
 
 ### 3.3 Tester og resultater
 Jeg har testet følgende normaltilfeller:
@@ -173,7 +173,7 @@ Testene viste at:
 Operasjonenene i denne stakken har tidskompleksitet O(1). Det batyr at antall operasjoner er konstant
 og ikke påvirkes av hvor mange elementer som ligger i stakken. 
 som gjennomføres hver gang (Microsoft, n.db). Det tar for eksempel ikke lengere tid å
-sette inn stakken'1000' i algoritmen enn tallet '1'. Alle operasjonene i dette APIet setter
+sette inn tallet '1000' i stakken enn tallet '1'. Alle operasjonene i dette APIet setter
 direkte inn eller returnerer verdier basert på index. Denne indexen får den av count som også
 kun gjennomfører en konstant operasjon hver gang, enten legger til eller fjerner 1. Det vil si
 at også count++ count--  er O(1)
@@ -186,12 +186,11 @@ Denne datastrukturen kan være nyttig mange sammenhenger. Er nyttig når du tren
 for informasjon, for eksempel når du vil forkaste informasjonen etter du har mottatt den (Microsoft, ingen
 dato). 
 Eksempler på dette er funksjonskall og rekursjon er det siste funksjonskallet må avsluttes før tidliger
-kall kan fortsette. Stakk overflyt er et eksempel på når stakken flyter over fori den inneholder for mange
+kall kan fortsette. Stakk overflyt er et eksempel på når kallstakken flyter over fordi den inneholder for mange
 nestede kall(Microsoft, n.da).
 
 Den kan også være nyttig når man skal implementere angre-funksjonaliteter, som når du skriver
-i word og skal angre og andre algoritmer der du ofte vil tilbake til tidligere steg. Man kan 
-for eksempel se på Git som en slags stakk, hvor du legger en ny versjon oppå stakken for hver gang.
+i word og skal angre en bokstav, og andre algoritmer der du ofte vil tilbake til tidligere steg.
 
 ### 3.6 Refleksjon
 Jeg fikk mer erfaring om hvordan man kan styre hva som er synlig for brukeren ved hjelp
@@ -199,7 +198,8 @@ av private felter som kun kan returneres ved hjelp av API-kall. Dette har vi all
 om, men jeg føler at jeg fikk enda mer forståelse. Det var også artig å tenke på at man kan bruke 
 Pop() en liste, og returnere mange verdier uten at de er slettet. Du får ikke returnert verdiene 
 flere ganger, fordi count er redusert, så det eneste du kan gjøre med de indexene som fortsatt lagrer
-verdiene er å sette inn.
+verdiene er å sette inn nye.
+
 Når man går fra å ikke kjenne til hvordan slike datastrukturer fungerer til å skulle lage en selv
 så møter man mange utfordringer. For min del løste jeg dette med å se videoforklaringer og å gå 
 gjennom fagstoff på Gokstad sine hjemmesider. Det har vært svært lærerikt, men også vanskelig.
@@ -209,11 +209,11 @@ gjennom fagstoff på Gokstad sine hjemmesider. Det har vært svært lærerikt, m
 
 ### 4.1 Valg av algoritme og pivotstrategi
 Jeg valgte QuickSort()-algoritmen fordi jeg syntes den virket spennende å implementere. Jeg
-har ikke implementert verken MergeSort eller QuickSort før, så valget for meg var helt tilfeldig.
+har ikke implementert verken MergeSort eller QuickSort før, så valget ble derfor ganske tilfeldig.
 
 ### 4.2 Hvordan QuickSort fungerer
-QuickSort fungerer slik at den jobber seg gjennom arrayet ved hjelp av en pivot. I min kode er pivot-strategien slik
-at man velger det siste elementet (del)arrayet som pivot. Deretter går man gjennom alle verdiene i (del)arrayet, 
+QuickSort fungerer slik at den jobber seg gjennom arrayet ved hjelp av en pivot. I min kode er pivot-strategien
+at man velger det siste elementet i (del)arrayet som pivot. Deretter går man gjennom alle verdiene i (del)arrayet, 
 bortsett fra pivoten, og setter de verdiene som er mindre enn pivoten til venstre. Når arrayet er gjennomgått, 
 setter man pivoten på riktig plass, slik at verdiene som er mindre enn pivoten er til venstre, og resten er til høyre.
 
@@ -221,35 +221,45 @@ Deretter kjøres det i gang to nye QuickSort-funksjoner. Disse funksjonene jobbe
 Hver av disse sidene deles nok en gang opp helt til delarrayet består av 0 eller 1 element. Da returnerer funksjonene 
 uten å gjøre noe mer. Dette sørger for at rekursjonen stopper og forhindrer en uendelig loop.
 
-- QuickSort() stopper når delarrayet har 0 eller 1 element.
-- Partition() finner pivotens endelige plassering.
-- Algoritmen kaller deretter QuickSort() rekursivt på området til venstre og høyre for pivoten.
-- Når alle delområdene er ferdig behandlet, er hele arrayet sortert.
 
 ### 4.3 Sammenligninger og bytter
-- Jeg teller sammenligninger mellom `arr[j]` og pivoten.
-- Jeg teller også antall bytter som utføres når et element er mindre enn pivoten.
-- [Sett inn resultatene fra testene dine.]
-- Dette gjør det mulig å sammenligne hvor mye arbeid QuickSort gjør på forskjellige typer input.
+Jeg holder kontroll på antall sammenligninger og bytter ved å bruke to verdier og en funksjon:
 
+```
+    public static int Comparisons { get; private set; }
+    public static int Swaps { get; private set; }
+    public static void ResetComparisonsAndSwapsCount()
+    {
+        Comparisons = 0;
+        Swaps = 0;
+    }
+```
+Disse teller antall sammenligninger og bytter som skjer.
+
+Jeg har valgt å telle sammenligninger mellom arr[j] og pivoten. Dette skjer når man går gjennom
+alle tallene i arrayet som ikke er pivoten. I koden kan du se at man først setter 'Comparisons++' og etterpå 
+sammenligner.
+```
+        for (int j = low; j <= high - 1; j++)
+        {
+            Comparisons++;
+            if (arr[j] < pivot)
+``` 
+Når et element i arrayet er mindre enn pivoten så settes så settes det til venstre og man plusser på 'Swaps'. Da har man
+gjort et bytte.
+
+På denne måten kan man se hvor mange sammenligninger og bytter som skjer inne i en quicksort funksjon.
 
 ### 4.4 Testresultater (AI hjalp til med å lage tabellen)
-Jeg testet algoritmen med:
-* Vanlig/usortert array
-* Allerede sortert array
-* Omvendt sortert array
-* Array med duplikater
-* Tomt array
-* Array med ett element
 
-| Test                   | Før                                    | Etter                                  | Comparisons | Swaps | Resultat    |
-| ---------------------- | -------------------------------------- | -------------------------------------- | ----------: | ----: | ----------- |
-| Vanlig/usortert array  | `[64, 34, 25, 12, 22, 11, 90]`         | `[11, 12, 22, 25, 34, 64, 90]`         |          19 |    16 | Test passed |
-| Allerede sortert array | `[1, 2, 3, 4, 5]`                      | `[1, 2, 3, 4, 5]`                      |          10 |    14 | Test passed |
-| Omvendt sortert array  | `[9, 8, 7, 6, 5]`                      | `[5, 6, 7, 8, 9]`                      |          10 |     8 | Test passed |
-| Array med duplikater   | `[64, 34, 25, 12, 22, 22, 11, 34, 90]` | `[11, 12, 22, 22, 25, 34, 34, 64, 90]` |          25 |    23 | Test passed |
-| Tomt array             | `[]`                                   | `[]`                                   |           0 |     0 | Test passed |
-| Array med ett element  | `[1]`                                  | `[1]`                                  |           0 |     0 | Test passed |
+| Test                   | Før                                    | Etter                                  | Sammenligninger | Bytter | Resultat    |
+| ---------------------- | -------------------------------------- | -------------------------------------- |----------------:|-------:| ----------- |
+| Vanlig/usortert array  | `[64, 34, 25, 12, 22, 11, 90]`         | `[11, 12, 22, 25, 34, 64, 90]`         |              19 |     16 | Test passed |
+| Allerede sortert array | `[1, 2, 3, 4, 5]`                      | `[1, 2, 3, 4, 5]`                      |              10 |     14 | Test passed |
+| Omvendt sortert array  | `[9, 8, 7, 6, 5]`                      | `[5, 6, 7, 8, 9]`                      |              10 |      8 | Test passed |
+| Array med duplikater   | `[64, 34, 25, 12, 22, 22, 11, 34, 90]` | `[11, 12, 22, 22, 25, 34, 34, 64, 90]` |              25 |     23 | Test passed |
+| Tomt array             | `[]`                                   | `[]`                                   |               0 |      0 | Test passed |
+| Array med ett element  | `[1]`                                  | `[1]`                                  |               0 |      0 | Test passed |
 
 Alle testene kontrollerer at resultatet er sortert og at kanttilfellene håndteres korrekt.
 
@@ -273,15 +283,15 @@ aktiveres.
 Om man er uheldig med pivotvalg, derimot, blir ytelsen svakere. Vi kan for eksempel se i testen med det sorterte
 arrayet at det er flere swaps enn det er i det usorterte arrayet. Det kommer av at for hver ny partition blir det
 siste elementet valgt som pivot. Når arrayet allerede er sortert, vil pivoten være det største elementet, og nesten
-alle elementene vil bli 'satt' på venstre side i partisjoneringen. I verste tilfelle blir partitioneringen veldig 
+alle elementene vil bli 'satt' på venstre side i partisjoneringen. I verste tilfelle blir partisjoneringen veldig 
 ubalansert. Da kan det ene delarrayet inneholde nesten alle elementene,
-mens det andre delarrayet nesten er tomt. Dette gjør at man får omtrent 'n' nivåer i rekursjonen i stedet for log₂(n),
+mens det andre delarrayet nesten er tomt. Dette gjør at man får omtrent 'n' nivåer i rekursjonen i stedet for log2(n),
 og tidskompleksiteten blir O(n^2).
 
 
 ### 4.7 Styrker og svakheter
 Styrken med quicksort er at den er ganske så effektiv når pivotstrategien passer godt til arrayet.
-Da vil du kunne få en ytelse som er tilnærmet logaritmisk. En annen styrke er at alt foregår i det samme
+Da vil du kunne få en tidskompleksitet på O(n log n). En annen styrke er at alt foregår i det samme
 arrayet hele tiden. Da slipper man å returnere et nytt array som må lagres.
 
 Svakheten til quicksort er at pivotstrategien også kan føre til O(n^2).
@@ -289,27 +299,24 @@ Jeg har også hørt at lange lister med dype rekursjoner kan føre til stackover
 går tom for plass til nye rekursjoner fordi den inneholder for mange nestede metodekall (Microsoft. n.da).
 
 ### 4.8 Refleksjon
-//TODO!
-Testene viste at 
-- Hva viste testene om forskjellen mellom de ulike inputtypene?
-- Hvordan påvirket pivotstrategien resultatene?
-- Hva lærte jeg om rekursjon og del-og-hersk?
+Det jeg har lært ved å jobbe med quicksort er at pivotstrategien har enormt mye å si for utfallet av ytelsen. Når det
+siste elementet velges som pivot så kan for eksempel sorterte arrays føre til en ubalansert oppdeling.
 
+Jeg lærte også mer om hvordan rekursjon fungerer. De rekursjonsfunksjonene jeg har vært borte i før har alltid returnert
+et nytt array, så det var gøy å se hvordan man kan jobbe rekursivt i det samme arrayet.
 
 # 5.0 Breadth First Search
 
 ## 5.1 Forklaring av Graph
-
 For å lage grafen som brukes i Breadth First Search og Depth First Search
-så har jeg brukt en 'adjacecy list'. Det består av en dictionary med nøkkel/key og verdier/value.
+så har jeg brukt en 'adjacency list'. Det består av en dictionary med nøkkel/key og verdier/value.
 Hvor nøkkelene består av stasjonene og verdiene er nabostasjonene. For eksempel, hvis Majorstuen
 har to naboer, NationalTheateret og Blindern, vil nøkkelen være ["Majorstuen"] og verdien være ["Nationaltheateret", 
 "Blindern"].
-Når Nationaltheateret er nøkkel vil den ha ["Majorstuen", "Stortinget"] som sine values. Og sånn dannes kantene mellom
+Når Nationaltheateret er nøkkelen vil den ha ["Majorstuen", "Stortinget"] som sine verdier. Og sånn dannes kantene mellom
 stasjonene. Verdiene er også satt om som HashSet<string> som gjør at man sikrer at man hindrer duplikatstasjoner i
-verdilista. En annen grunn til at det er satt opp som HashSet er at dette er en rask value å hente fra, man slipper 
-for eksempel å kjøre en loop. Man henter med ytesle O[1] fordi man kan hente objektet direkte ut, som i en liste med
-en index.
+verdilista. HashSet har også gjennomsnittlig ytelse O[1] for Contains() og Add(), noe som gjør den raks når jeg skal
+sejkke om en stasjon finnes eller skal legge til en ny nabo.
 
 For å lage stasjoner så bruker man 'AddStation()'. Her sjekkes det først om grafen allerede inneholder 
 stasjonen, og hvis den ikke gjør det så oppretter den en ny Key med den verdien.
@@ -324,9 +331,9 @@ stasjonen, og hvis den ikke gjør det så oppretter den en ny Key med den verdie
 
 ```
 
-For å lage en knytning mellom to stasjoner så bruker man AddConnection(), denne metoden
-sjekker først om stasjonene eksisterer som nøkler. Hvis de ikke eksisterer så opprettes de. 
-Når denne sjekken passeres så legges de inn som nøkler hos hverandre
+For å lage en knytning mellom to stasjoner så bruker man AddConnection(). Denne metoden
+sjekker først om stasjonene eksisterer som nøkler. Hvis de ikke eksisterer, så opprettes de, og når
+denne sjekken passeres så legges de inn som nøkler hos hverandre.
 ```
         graph[stationA].Add(stationB);
         graph[stationB].Add(stationA);
@@ -346,13 +353,13 @@ IsEmpty() - Sjekker om grafen er tom.
 ## 5.2 Breadth First Search
 Breadth First Search er en algoritme som fungerer slik at den går gjennom grafen horisontalt. 
 
-Man går gjennom hver node og legger til naboene i køen som skal sjekkes. Når da en nabo sjekkes så så legger man også til
-dens naboer i køen. I en kø (queue), så opererer man etter 'first in first out' prinsippet. Det gjør at man sjekker
-elementene i den rekkefølgen de ble lagt inn i. 
+Man går gjennom hver node og legger til naboene i køen som skal sjekkes. Når da en nabo sjekkes så legger man også til
+dens naboer i køen. I en kø (queue), så opererer man etter 'first in first out' (FIFO) prinsippet. Det gjør at man sjekker
+elementene i den rekkefølgen de ble lagt inn i. Når køen er tom så er stopper søket. 
 
 Man kan for eksempel se på 'majorstuen', som er nabo med både 
-'Nationaltheateret' og 'Blindern'. Via disse så går stasjonene ut i 2 ulike grener, og man kan se at begge disse naboene
-som er 1 stasjon unna sjekkes først. Deretter går man løs på naboenes nabo som er 2 stasjoner unna 'majorstuen'.
+'Nationaltheateret' og 'Blindern'. Via disse så går stasjonene ut i 2 ulike grener, og man kan se at begge disse naboene,
+som er 1 stasjon unna, sjekkes først. Deretter går man løs på naboenes nabo, som er 2 stasjoner unna 'majorstuen'.
 På denne måten sjekkes hvert eneste 'nivå' slik at man har gått gjennom alle stasjonene som har kobling til 'majorstuen'.
 
 For å unngå å gjennomgå samme stasjon flere ganger så lagrer metodene de besøkte stasjonene i en HashSet verdi. HashSet
@@ -361,7 +368,7 @@ det om den allerede finnes i den listen. Da besøkes hver stasjon som er koblet 
 
 ## 5.3 ShortestDistance - Korteste vei
 I ShortestDistance() så kan man finne ut hva som er færrest mulig antall kanter mellom stasjonA og stasjonB.
-Den fungerer ganske likt som Breadt First Search, men her sjekkes stasjonene i køen mot stasjonB for å se om man
+Den fungerer ganske likt som Breadth First Search, men her sjekkes stasjonene i køen mot stasjonB for å se om man
 har kommet frem. Hvis man har kommet frem så returneres distansen med 'distance[current]'. Dersom grafen går gjennom
 hele køen uten å finne stasjonB så returneres -1, med en melding om at det ikke finnes en rute mellom stasjonene. 
 
@@ -385,57 +392,62 @@ BFS fra `Majorstuen` besøkte stasjonene i følgende rekkefølge:
 
 Alle testene ga forventet resultat.
 
-## 5.5 Plass og tidsskompleksitet
-BFS har tidskompleksitet O(V + E). V er antall noder(eller stasjoner i dette tilfellet og E er antall kanter.
+## 5.5 Plass og tidskompleksitet
+BFS har tidskompleksitet O(V + E). V er antall noder og E er antall kanter.
 
-O(V+E) forklares ved at hver stasjon (V) bare besøkes maks en gang, og at hver forbindelse undersøkes når naboene
-blir gått gjennom.
+O(V+E) forklares ved at hver stasjon (V) bare besøkes maks en gang, og at hver kant/naboforbindelse E undersøkes når vi går 
+gjennom naboene.
 
-BFS har en plasskomplekistet: O(V), fordi BFS i aller verste konsekvens må lagre et veldig langt nivå i 
+BFS har en plasskompleksitet: O(V), fordi BFS i aller verste konsekvens må lagre et veldig langt nivå i 
 køen samtidig (Gokstad Akakademiet, n.d.b) . La oss si at 'majorstuen' ikke er koblet til bare to naboer, men for eksempel 1000. Da må
 alle de naboene ligge i køen samtidig.
 
 
-
 # 6.0 Depth First Search
-Depth First Search er en søkemetode som i motsetning til BFS går i dybden før den går tilbake. I forklaringen av BFS
+Depth First Search er en søkemetode, som i motsetning til BFS, går i dybden før den går tilbake. I forklaringen av BFS
 så nevnte jeg at om man tar utgangspunkt i 'majorstuen' stasjonen, så vil den besøke begge naboene før den går videre til
 naboenes nabo. I DFS så går man rett fra utgangspunkt -> nabo -> nabos nabo -> etc. På den måten så går søket ut til
 en ende før den backtracker. Deretter vil eventuelle andre grener på veien bli undersøkt. Den fullfører alltid
 en gren før den går tilbake til et tidligere forgreiningspunkt.
 
 ## 6.1 Recursive
-I min rekursive metode så fungerer det som følger. Jeg har først en wrapper metode som sjekker
+I min rekursive metode, så fungerer det som følger: Jeg har først en wrappermetode som sjekker
 om grafen er tom og at grafen inneholder stasjonen man søker ut fra.
 ```
 public static void RecursiveDFSearch(Graph graph, string station)
 ```
-Det er denne metoden man bruker når man skal kalle på den rekursive metoden:
+
+Det er denne metoden man bruker når man skal kalle på den rekursive metoden.
 Deretter opprettes det et HashSet som holder kontroll på hvilke stasjoner som er besøkt, som igjen brukes i 
 den rekursive metoden.
+
 ```
     private static void RecursiveDFSearch(Graph graph, string station, HashSet<string> visited)
 ```
-Det første som skjer i denne metoden er at man kontrollerer 'visited'.
+
+Det første som skjer i denne metoden er at man kontrollerer 'visited'. Dette er basissteget i den rekursive metoden
+
 ```
         if (visited.Contains(station))
         {
             return;
         }
 ```
-Hvis stasjonen allerede finnes i'visited' så returnerer metoden. På denne måten unngår vi en uendelig loop hvor 
+
+Hvis stasjonen allerede finnes i 'visited' så returnerer metoden. På denne måten unngår vi en loop hvor 
 naboer aktiverer hverandre i det uendelige. Dette er også særlig relevant når det finnes sykler i grafen.
 
-Deretter legger man til stasjonen som besøkt og skriver ut at den er besøkt:
+Deretter setter man til stasjonen som 'besøkt'.
+
 ```
   visited.Add(station);
 ```
 
-Nå er stasjonen lagt inn i 'visited' og neste gang den eventuelt blir sendt med den rekursive funksjonen:
+Nå er stasjonen lagt inn i 'visited', og neste gang den eventuelt blir sendt med den rekursive funksjonen
 ```
 RecursiveDFSearch(graph, neighbor, visited)
 ```
-så vet vi at den vil returnere.
+så vet vi at den vil returnere og stanse.
 
 
 Til slutt så sjekkes alle naboene til stasjonen, og alle naboene blir sendt ut med hver sin 
@@ -454,7 +466,7 @@ rekursive metode.
 ## 6.2 Iterative
 I den iterative metoden så fungerer det litt annerledes.
 Her tar man inn grafen og stasjonen som verdier,
-og det opprettes en tom stack og hashset
+og det opprettes en tom Stack og et HashSet
 ```
 public static void IterativeDFSearch(Graph graph,  string station)
 {
@@ -462,23 +474,25 @@ public static void IterativeDFSearch(Graph graph,  string station)
         HashSet<string> visited = new HashSet<string>();
 ```
 Stacken holder stasjonene som skal besøkes, og HashSet brukes, i likhet med den 
-rekursive metoden for å se hvilke stasjoner som har blitt besøkt. 
+rekursive metoden, til å se hvilke stasjoner som har blitt besøkt. 
 
-Deretter er gjennomføres det kontroller som sjekker om grafen er tom eller om den inneholder stasjonen man
+Deretter er gjennomføres det kontroller som sjekker om grafen er tom. Den sjekker også om den inneholder stasjonen man
 søker ut fra.
 
-Det første som skjer etter det er at stasjonen legges inn i stakken med 'stack.Push(station);'. Da har vi
-et element i stakken, og dette elementet skal behandles i while loopen, som går så lenge 'stack.Count > 0'.
+Det første som skjer etter det, er at stasjonen legges inn i stakken med 'stack.Push(station);'. Da har vi
+et element i stakken, og dette elementet skal behandles i en 'while-loop', som går så lenge 'stack.Count > 0'.
 
 Deretter henter man ut stasjonen av stakken med stack.Pop().
+
 ```
             string currentStation = stack.Pop();
 ```
-Om denne stasjonen du har hentet ut ikke allerede ligger i 'HashSet visited', så legger man den inn,
+
+Hvis 'currentStation' stasjonen du har hentet ut ikke allerede ligger i 'HashSet visited', så legger man den inn i 'visited',
 og skriver ut at den er besøkt.
 
-Og så, for hver nabo av stasjonen, som ikke er besøkt, så legger man de til i stakken. Deretter begynner man 
-i while loopen igjen og tar ut det øverste elementet i stakken. På denne måten så vil stakken fylles på, så lenge det
+Og så, for hver nabo av 'currenstation', som ikke er besøkt, så legger man de til i stakken. Deretter begynner man 
+i 'while-loopen' igjen og tar ut det øverste elementet i stakken. På denne måten så vil stakken fylles på, så lenge det
 kommer nye naboer. Disse naboene vil havne øverst stakken og den sist innlagte av naboene vil bli behandlet først. På den
 måten så kommer man lengere og lengere ut i forgreiningene helt til man når enden. Da går while loopen løs på det neste
 øverste elementet i stakken. Når alle er passert og er registert i visited vil stakken være tom og metoden er ferdig.
