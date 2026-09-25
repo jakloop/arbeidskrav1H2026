@@ -397,6 +397,28 @@ alle de naboene ligge i køen samtidig.
 
 # 6.0 Depth First Search
 
+## 6.1 Recursive
+
+## 6.2 Iterative
+
+## 6.3 RouteExists
+Jeg har valgt ruteteliknykting som utvidelse for depth first search.
+Metoden sjekker om det finnes en rute mellom to stasjoner. Den sier ikke noe avstand
+eller andre ting.
+
+## 6.4 Testing
+
+
+## 6.5 DFS og BFS
+Begge DFS-metodene besøker de samme stasjonene, men rekkefølgen blir forskjellig. Den iterative metoden bruker en Stack,
+som følger LIFO-prinsippet. Når flere naboer legges på stacken, blir den siste naboen som ble lagt inn behandlet først.
+Dette gjør at den iterative DFS-en kan følge en annen gren først enn den rekursive DFS-en. Rekkefølgen på naboene
+påvirker derfor besøksrekkefølgen, selv om alle nåbare stasjoner blir besøkt.
+
+Sammenlignet med BFS --
+
+## Tidskompleksitet
+
 Learning materials:
 Videos -
 Bro Code "Learn Quick Sort in 13 minutes" -https://www.youtube.com/watch?v=Vtckgz38QHs
