@@ -7,7 +7,6 @@ public class SearchTests
     {
         
         Console.WriteLine("========== Task 1 ==========");
-        
         int[] unsortedlist = [8, 3, 11, 7, 2, 9, 5];
         int[] sortedlist = [2, 5, 7, 9, 11, 13, 17];
         int[] emptyList = [];

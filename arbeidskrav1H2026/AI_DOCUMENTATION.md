@@ -128,7 +128,7 @@ Input: I need help with structuring my analysis in the README. Please help me cr
 *filled in task 1. Repeated this for all the tasks
 
 Output: (this an example of one of the outputs, but this was done on all the tasks
-before i started writing the analysis
+before I started writing the analysis
 ````
 # Søkealgoritmer – Lineært søk og binærsøk
 

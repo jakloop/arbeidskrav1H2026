@@ -6,7 +6,6 @@ public class DepthFirstSearch
     public static void RecursiveDFSearch(Graph graph, string station)
     {
         // if the station is already visited return 
-
         if (graph.IsEmpty())
         {
             Console.WriteLine($"The graph is empty");
