@@ -2,10 +2,42 @@
 - Student: Jakob Sørli
 - Date: 04 - 25th September
 
+## Filstruktur
+```
+Assignment1.App/
+├── Assignment1.Tasks/
+│   ├── Task1/
+│   │   ├── SearchAlgorithms.cs
+│   │   └── SearchTests.cs
+│   ├── Task2/
+│   │   ├── CustomStack.cs
+│   │   └── CustomStackTests.cs
+│   ├── Task3/
+│   │   ├── QuickSort.cs
+│   │   └── QuickSortTests.cs
+│   ├── Task4/
+│   │   ├── BFSearch.cs
+│   │   └── BFSearchTests.cs
+│   ├── Task5/
+│   │   ├── DFSearch.cs
+│   │   └── DFSearchTests.cs
+│   ├── GraphClass.cs
+│   └── TestCheck.cs
+├── Program.cs
+├── AI_DOCUMENTATION.md
+└── README.md
+```
+
 
 ## Table of contents
  - Introduction
- - Analyse (oppgave 1)
+
+# 1. Introduksjon
+Dette er det første arbeidskravet på 2. år Backend Programmering. Det dreier seg om algorimer, Big-O og datastrukturer.
+I dette arbeidskravet har jeg jobbet med, lineærsøk, binærsøk, stack, quicksort, breadth-first search og depth-first
+search. En annen sentral del av oppgaven var å teste algoritmene og skrive ut resultatene.
+
+I tillegg til dette består oppgaven av å lage en videopresentasjon hvor man skal reflektere 
 
 
 
@@ -537,7 +569,7 @@ DFS kan passe godt når du bare skal verifisere at det finnes en
 kobling mellom to punkter, som for eksempel i RouteExists() når jeg kun skulle sjekke om det var en forbindelse og 
 ikke noe mer. 
 
-## Tidskompleksitet
+## 6.5 Tidskompleksitet
 BFS har en tidskompleksistet på O(V + E), hvor V er antall noder og E er antall kanter. Det har en plasskompleksitet
 på O(V), fordi BFS i verste fall må lagre hele nivået i køen samtidig (Gokstad Akademiet, n.d.b).
 Som i eksempelelet jeg brukete med 1000 nabostasjoner for majorstuen.
@@ -549,14 +581,14 @@ rekursiv quicksort få stackoverflow.
 Den iterative metoden derimot, bruker en vanlig Stack<string> og unngår denne typen rekursiv stackoverflow.
 
 
-Learning materials:
+# Learning materials:
 Videos -
 Bro Code "Learn Quick Sort in 13 minutes" -https://www.youtube.com/watch?v=Vtckgz38QHs
 Michael Sambol "Quick sort in 4 minutes" - https://www.youtube.com/watch?v=Hoixgm4-P4M
 Michael Sambol "Breadth-first search in 4 minutes - https://www.youtube.com/watch?v=HZ5YTanv5QE
 tutorialsEUC "How to use queues in C#" - https://www.youtube.com/watch?v=4MQwKvsGCms
 
-Sources:
+# Sources:
 
 AlgorithmsNotesForProfessionals  - pdf
 Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
