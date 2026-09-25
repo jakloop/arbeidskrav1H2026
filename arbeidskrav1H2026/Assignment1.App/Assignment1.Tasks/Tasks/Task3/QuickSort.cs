@@ -4,12 +4,16 @@ public class QuickSorter
 {
     public static int Comparisons { get; private set; }
     public static int Swaps { get; private set; }
+    
+    
+    // Puts comparisons and swaps to zero
     public static void ResetComparisonsAndSwapsCount()
     {
         Comparisons = 0;
         Swaps = 0;
     }
     
+    // QuickSort recursive function
     public static void QuickSort(int[] arr, int low, int high)
     {
         // when it is not possible to divide the array any further we will return 1 or zero
@@ -23,6 +27,9 @@ public class QuickSorter
         QuickSort(arr, pivot + 1, high);
     }
 
+    // Partition function
+    // finds pivot for the quicksort function
+    // finds the correct position for the pivot
     private static int Partition(int[] arr, int low, int high)
     {
         // pivot is the highest index value in the array
@@ -51,7 +58,7 @@ public class QuickSorter
             }
         }
         i++;
-        // temporary holder of value
+
         // puts the pivot at the "end" of the lower numbers.
         int temp2 = arr[i];
         arr[i] = arr[high];

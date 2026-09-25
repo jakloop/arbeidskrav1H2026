@@ -4,8 +4,6 @@ public class BFSearchTests
 {
     public void Run()
     { 
-        
-        TestCheck testcheck = new TestCheck();
     // BSF from majorstuen
     // Shortest distance from majorstuen -> grønland korteste avstand = 4
     // ullevål -> tøyen rute mellom grenene
@@ -68,23 +66,17 @@ public class BFSearchTests
     Console.WriteLine($"{TestCheck.Check(-1, lonelyNode2)}");
     Console.WriteLine(" ");
     
-    
-    
-
-    // var graph = new Graph();
     // ukjent start hånderes uten krasj
     Console.WriteLine("Unknown departure station");
     int unknownStart = BFSearch.ShortestDistance(graph, "Sesam Stasjon", "Grønland");
     Console.WriteLine($"{TestCheck.Check(-1, unknownStart)}");
     Console.WriteLine(" ");
     
-    
     // ukjent mål hånderes uten krasj
     Console.WriteLine("Unknown destination");
     int unknownEnd = BFSearch.ShortestDistance(graph, "Majorstuen", "Sesam Stasjon");
     Console.WriteLine($"{TestCheck.Check(-1, unknownEnd)}");
     Console.WriteLine(" ");
-    
     
     // tom graf håndteres uten krasj
     Console.WriteLine("Empty graph traversal, handeled without crash");

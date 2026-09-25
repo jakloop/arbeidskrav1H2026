@@ -4,8 +4,6 @@ public class CustomStackTests
 {
     public void Run()
     {
-        TestCheck testcheck = new TestCheck();
-
         Console.WriteLine("========== Task 2 CUSTOM STACK ==========");
 
         Console.WriteLine("Test pop empty stack");
@@ -21,7 +19,8 @@ public class CustomStackTests
         }
         Console.WriteLine(" ");
         
-        Console.WriteLine("Test pop on stack");
+        
+        Console.WriteLine("Test pop on stack with elements");
         var stack2 = new CustomStack<int>();
         stack2.Push(1);
         try

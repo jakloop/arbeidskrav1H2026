@@ -6,6 +6,7 @@ public class CustomStack<T>
     private T[] items;
     private int count;
 
+    // Constructor of CustomStack
     public CustomStack()
     {
         // array size

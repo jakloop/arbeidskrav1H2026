@@ -2,11 +2,31 @@ namespace arbeidskrav1H2026.searchalgorithms;
 
 public class DepthFirstSearch
 {
-    // Recursive depth first search
-    //
-    public static void RecursiveDFSearch(Graph graph, string station, HashSet<string> visited)
+    // Recursive depth first search wrapper method
+    public static void RecursiveDFSearch(Graph graph, string station)
     {
         // if the station is already visited return 
+
+        if (graph.IsEmpty())
+        {
+            Console.WriteLine($"The graph is empty");
+            return;
+        }
+
+        if (!graph.ContainsStation(station))
+        {
+            Console.WriteLine($"The station {station} does not exist");
+            return;
+        }
+        
+        HashSet<string> visited = new HashSet<string>();
+        RecursiveDFSearch(graph, station, visited);
+
+    }
+
+    // recursive depth first search method
+    private static void RecursiveDFSearch(Graph graph, string station, HashSet<string> visited)
+    {
         if (visited.Contains(station))
         {
             return;
@@ -25,9 +45,9 @@ public class DepthFirstSearch
             RecursiveDFSearch(graph, neighbor, visited);
         }
     }
+    
     // Iterative depth first search
-    //
-    public static int IterativeDFSearch(Graph graph,  string station)
+    public static void IterativeDFSearch(Graph graph,  string station)
     {
         // create empty stack and hashset
         Stack<string> stack = new Stack<string>();
@@ -36,13 +56,13 @@ public class DepthFirstSearch
         if (graph.IsEmpty())
         {
             Console.WriteLine($"The graph is empty");
-            return -1;
+            return;
         }
 
         if (!graph.ContainsStation(station))
         {
             Console.WriteLine($"The station {station} does not exist");
-            return -1;
+            return;
         }
         
         // starts with one station in the stack on the outside of the while loop
@@ -53,41 +73,68 @@ public class DepthFirstSearch
         {
             //remove the station from the stack 
             string currentStation = stack.Pop();
-            Console.WriteLine($"Besøkte - {currentStation}");
             
             // if the station is not in the visited list add it below
             if (!visited.Contains(currentStation))
             {
                 visited.Add(currentStation);
+                Console.WriteLine($"Besøkte - {currentStation}");
                 
                 // get all the neighbors from the current station
-                // from stack overflow forum
-                var neighbors = graph.GetNeighbors(currentStation).Where(x => !visited.Contains(x));
-                
-                // for all the neighbors
-                foreach(var neighbor in neighbors)
+                foreach (string neighbor in graph.GetNeighbors(currentStation))
                 {
-                    // push the next station in the collection
+                    // if the neighbor has not been visited -> add to stack
+                    if (!visited.Contains(neighbor))
+                    {
+                        stack.Push(neighbor);
+                    }
+                }
+            }
+        }
+        
+    }
+
+    // Checks if there is a route between stationA and StationB
+    public static bool RouteExists(Graph graph, string stationA, string stationB)
+    {
+        if (graph.IsEmpty())
+        {
+            return false;
+        }
+
+        if (!graph.ContainsStation(stationA) || !graph.ContainsStation(stationB))
+        {
+            return false;
+        }
+
+        Stack<string> stack = new Stack<string>();
+        HashSet<string> visited = new HashSet<string>();
+
+        stack.Push(stationA);
+
+        while (stack.Count > 0)
+        {
+            string currentStation = stack.Pop();
+
+            if (!visited.Contains(currentStation))
+            {
+                visited.Add(currentStation);
+            }
+
+            if (currentStation == stationB)
+            {
+                return true;
+            }
+
+            foreach (string neighbor in graph.GetNeighbors(currentStation))
+            {
+                if (!visited.Contains(neighbor))
+                {
                     stack.Push(neighbor);
                 }
             }
         }
-        return -1;
-        
-    }
-    
-    // implementer RouteExists?
-    
-    
-    
-    
-}
 
-// tests
-// empty graph
-// Unknown starting node
-// only one node
-// every node is only handled one time each travers
-// long chain
-// om backtracking fungerer i forgreining
-// frakoblede komponenter
+        return false;
+    }
+}
