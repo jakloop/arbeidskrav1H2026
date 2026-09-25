@@ -64,6 +64,7 @@ public class DFSearchTests
         Console.WriteLine("Recursive and iterative depth first search with unknow station");
         Console.WriteLine("Recursive: ");
         DepthFirstSearch.RecursiveDFSearch(graphDFS, "Unknown");
+        Console.WriteLine(" ");
         Console.WriteLine("Iterative: ");
         DepthFirstSearch.IterativeDFSearch(graphDFS, "Unknown");
         

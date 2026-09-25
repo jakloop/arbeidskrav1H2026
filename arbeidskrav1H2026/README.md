@@ -656,8 +656,8 @@ ikke noe mer.
 BFS har en tidskompleksistet på O(V + E), hvor V er antall noder og E er antall kanter. Det har en plasskompleksitet
 på O(V), fordi BFS i verste fall må lagre hele nivået i køen samtidig (Gokstad Akademiet, ingen dato C).
 Som i eksempelelet jeg illustrerte med 1000 nabostasjoner for majorstuen.
-Når DFS brukes på en naboliste så bruker traverseringen O(V + E) og optil O(V) plasskompleksitet (Gokstad Akademiet,
-n.d.c) . De har samme tidskompleksitet og samme verste utfall.
+Når DFS brukes på en naboliste så bruker traverseringen O(V + E) og opptil O(V) plasskompleksitet (Gokstad Akademiet,
+ingen dato D) . De har samme tidskompleksitet og samme verste utfall.
 
 Noe som er annerledes er at rekursiv DFS bruker programmets kallstakk, og man kan i likhet med det jeg nevnte i om
 rekursiv quicksort få stackoverflow. 
@@ -671,13 +671,12 @@ Den iterative metoden derimot, bruker en vanlig Stack<string> og unngår denne t
 - tutorialsEUC "How to use queues in C#" - https://www.youtube.com/watch?v=4MQwKvsGCms
 
 # Sources:
-- AlgorithmsNotesForProfessionals  - pdf
 - Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
 - Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
 - Gokstad Akademiet. (ingen dato A) Teori: lineært og binært søk. Økt 1 - Uke 34 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=14&currentorg=ORG_1&scoid=110
 - Gokstad Akademiet. (ingen dato B) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
 - Gokstad Akademiet. (ingen dato C) 03-teori. Økt 3 - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=18&currentorg=ORG_1&scoid=144
-- Gokstad Akademiet. (n.d.c) Teori: Depth-First Search - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=19&currentorg=ORG_1&scoid=152
+- Gokstad Akademiet. (ingen dato D) Teori: Depth-First Search - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=19&currentorg=ORG_1&scoid=152
 - Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
 - Microsoft. (ingen dato A). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
 - Microsoft. (ingen dato B). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux
