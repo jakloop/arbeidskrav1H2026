@@ -11,32 +11,28 @@
 
 # 2. Søkealgoritmer – Lineært søk og binærsøk
 I denne oppgaven har jeg implementert LinearSearch, og BinarySearch.
-jeg har kjørt en rekke tester og svart på spørsmål i oppgaven.
 
 ## 2.0 Implementasjon
-
 ### 2.1 Lineært søk
-Lineært søk og binært søk er to veldig ulike måter å søke i et array. Linære søk søker sekvensielt
-gjennom elementene. Hvert eneste element sammenlignes med måleverdien. Algorimen stopper ved første treff
-eller når har gått gjennom hele samlingen (Gokstad Akademiet, n.d.a). Det betyr at i beste fall
+Lineært søk og binært søk er to veldig ulike måter å søke i et array. Lineære søk søker sekvensielt
+gjennom elementene og hvert eneste element sammenlignes med målverdien. Algortimen stopper ved første treff
+eller når har gått gjennom hele samlingen (Gokstad Akademiet, n.d.). Det betyr at i beste fall
 så blir den ferdig veldig tidlig, ved f.eks, tom liste, kort liste eller at den treffer verdien tidlig i listen.
 I verste fall så går den gjennom en veldig lang liste og bruker lang tid.
-
 
 ### 2.2 Binærsøk
 I binærsøk er vi avhengige av at arrayet er sortert. Dette er fordi den hele tiden prøver å peile seg
 inn på verdien basert på de grenseverdiene man har satt. Dersom dataene ikke er sorterte vil denne peilingen
-bli helt feil og man kan ikke gjennomføre et gyldig søk fordi data som kanskje skulle vært søkt blir valgt bort.
-Om man for eksempel søker etter
-I binærsøk så sammenligner man alltid den midterste verdien med "target". Hvis målverdien er større eller mindre
-forkaster man den delen hvor måleverdien umulig kan være. Dersom man treffer måleverdien med "mid", lagrer man treffet
-og fortsetter søket mot venstre, forutsett at arrayet er sortert i stigende rekkefølge mot høyre. På den måten
-får finner man den laveste indexen av verdien.
+bli helt feil og man kan ikke gjennomføre et gyldig søk, fordi data som potensielt skulle vært søkt blir valgt bort.
+
+I binærsøk så sammenligner man alltid den midterste verdien med "target". Hvis målverdien er større eller mindre,
+forkaster man den delen hvor måleverdien umulig kan være. I min implementasjon har jeg gjort det slik at når
+man treffer måleverdien med "mid", lagrer man treffet
+og fortsetter søket mot venstre, forutsatt at arrayet er sortert i stigende rekkefølge mot høyre. På den måten
+finner man den laveste indexen av verdien.
 
 ## 2.3 Hvordan sammenligninger telles
-<!-- Definer nøyaktig hva du teller som én sammenligning. -->
-<!-- Forklar at samme definisjon brukes for begge algoritmene. -->
-I denne oppgaven har jeg tolket en sammenligning som når målverdien måles
+I denne oppgaven har jeg tolket en sammenligning som, når målverdien måles
 mot en annen verdi. I linear search så sammenlignes det hver eneste verdi i 
 arrayet helt til verdien treffes.
 ```for (int i = 0; i < array.Length; i++)
@@ -49,9 +45,11 @@ break;
 }
 }
 ```
-I BinarySearch så har jeg telt sammenligninger når mid verdien sammenlignes med et 
+
+I BinarySearch så har jeg talt sammenligninger når mid verdien sammenlignes med et 
 en annen verdi. Den første sammenligningen skjer når man sjekker om mid er = målverdien.
 Den andre sjekken kommer etterpå og da sjekkes det om mid er større enn value.
+
 ```
 int mid = (left + right) / 2;
 comparisons++;
@@ -76,56 +74,60 @@ left = mid + 1;
 
 ## 2.4 Testresultater
 
-### 2.4.1 Lineært søk – testdata
-<!-- Test på [8, 3, 11, 7, 2, 9, 5]. -->
+### Testresultater
 
-| Målverdi  | Forventet indeks  | Faktisk indeks | Antall sammenligninger |
-|:----------|:------------------|:---------------|:-----------------------|
-| 7         | 3                 | 3              | 4                      |
-| 42        | -1                | -1             | 7                      |
-
-
-### 2.4.2 Binærsøk – testdata
-<!-- Test på [2, 5, 7, 9, 11, 13, 17]. -->
-
-| Målverdi  | Forventet indeks | Faktisk indeks | Antall sammenligninger |
-|:----------|:-----------------|:---------------|:-----------------------|
-| 13        | 5                | 5              | 3                      |
-| 4         | -1               | -1             | 5                      |
+| Algoritme   | Test                                          | Søkeverdi | Forventet indeks | Faktisk indeks | Sammenligninger | Resultat |
+| ----------- |-----------------------------------------------| --------: | ---------------: | -------------: | --------------: | -------- |
+| Lineært søk | Verdi finnes                                  |         7 |                3 |              3 |               4 | Bestått  |
+| Lineært søk | Verdi finnes ikke                             |        42 |               -1 |             -1 |               7 | Bestått  |
+| Binærsøk    | Verdi finnes                                  |        13 |                5 |              5 |               3 | Bestått  |
+| Binærsøk    | Verdi finnes ikke                             |         4 |               -1 |             -1 |               5 | Bestått  |
+| Binærsøk    | Usortert array, verdi ikke funnet             |         5 |               -1 |             -1 |               5 | Bestått  |
+| Binærsøk    | Usortert array, verdi funnet ved tilfeldighet |         9 |                5 |              5 |               3 | Bestått  |
+| Binærsøk    | Tomt array                                    |         1 |               -1 |             -1 |               0 | Bestått  |
+| Binærsøk    | Array med duplikater                          |         7 |                3 |              3 |               4 | Bestått  |
+| Binærsøk    | Array med ett element                         |         1 |                0 |              0 |               1 | Bestått  |
 
 
 ### 2.4.3 Binærsøk på usorterte data
 I testene hvor binærsøk ble testet på usorterte lister så kan man ikke stole på resultatet. Listen
-var [8, 3, 11, 7, 2, 9, 5].
-Jeg kjørte to forsøk, i det ene forsøket søkte den etter tallet 5 som har index 6. Her fant ikke
-algoritmen fram til tallet. Det er naturligvis fordi den er programmert til å bruke sorterte lister
+jeg testet var denne:  [ 8, 3, 11, 7, 2, 9, 5].
+Jeg kjørte to forsøk, i det ene forsøket søkte den etter tallet 5, som har index 6. Her fant
+algoritmen ikke fram til tallet. Dette er naturligvis fordi den er programmert til å bruke sorterte lister
 og styres av tallene den ser. Den gjorde akkurat som den var programmert til, den fant mid på index 3
-hvor tallet 7 befinner seg. Her forkaster den hele høyresiden og søker på venstre hvor måltallet ikke
+hvor tallet 7 befinner seg. Og så forkaster den hele høyresiden og søker på venstre siden hvor måltallet ikke
 finnes og algoritmen gjør seg ferdig.
 
-Men når jeg søker etter tallet 9 så finner den riktig index. Det er fordi den søker på høyre
-side etter den treffer mid 7. Når den kalkulerer et nytt midtpunkt så tar den 4 + 6 / 2 og finner index
+Men når jeg søker etter tallet '9' i den samme listen, så finner den riktig index. Det er fordi den søker på høyre
+side etter den treffer mid 7. Når den kalkulerer et nytt midtpunkt så tar den (4 + 6) / 2 og finner index
 5, hvor tallet 9 befinner seg. Det betyr at algoritmen var i stand til å finne fram til indeksen, til
-tross for at listen var usortert. Dette er likevel bare flaks og en grunn til at den ikke kan stoles på.
-
+tross for at listen var usortert. Dette er likevel bare flaks, så man må ikke tro at denne typen søk egner
+seg til usorterte lister.
 
 ## 2.5 Tidskompleksitet
-// TODO!
-
 ### 2.5.1 Lineært søk
-<!-- Beste tilfelle: -->
-<!-- Verste tilfelle: --> om hele arrayet må undersøkes
-<!-- Big-O: --> antall sammenligninger øker omtrent propsjonalt med antall elementer
+Lineært søk har tidskompleksitet med O(n). Det er n tall som bestemmer hvor mange sammenligninger man må
+gjøre. I det verste tilfellet så må man gå gjennom hele listen før man finner eller ikke finner målet.
 
+I det beste tilfellet så er O(1), og dette er om man treffer verdien på første sammenligning.
 
 ### 2.5.2 Binærsøk
-<!-- Beste tilfelle: -->
-<!-- Verste tilfelle: -->
-<!-- Big-O: -->
+Binærsøk har tidskompleksitet O(log n), fordi den halverer søkeområdet hver runde. Den oppfører seg da
+logaritmisk.
+I det beste tilfellet så har binærsøk O(1), da treffer den verdien på første sammenligning. Men i min kode
+så skal den derimot lete etter duplikater og skal fortsette å søket til venstre etter treff. Min kode har derfor 
+fortsatt O(log n), med mindre listen kun inneholder et element.
 
 ### 2.6 Sammenligning av de to logaritmene
-// TODO!
+Binærsøk er mer effektivt enn lineært søk når arrayet er stort fordi søkeområdet halverers for hver runde.
+Lineærsøk har tidskompleksitet O(n), som betyr
+at antall sammenligninger øker i takt med elementene. Binærsøk har O(log n), fordi søkeoområdet
+halveres for hver sammenligning. 
 
+Til gjengjeld krever binærsøk sorterte lister, noe lineærsøk
+ikke krever. Lineærsøk trenger heller ikke være mindre effektiv en binærsøk på små lister, her 
+presterer de ganske likt. Man kan se at det er få antall sammenligninger som skiller de to logaritmene
+i tester på små lister.
 
 # 3.0 Oppgave 2 - egen generisk datastruktur
 
@@ -134,16 +136,16 @@ I denne oppgaven valgte jeg å lage stakk. Jeg har verken laget stakk, sirklulæ
 så uansett hvilken jeg lagde visste jeg at dette ville bli en lærerik oppgave.
 
 ### 3.2 Hvordan datastrukturen fungerer
-<!-- Forklar hvordan strukturen fungerer. -->
 Stacken fungerer slik at jeg har to felter T[] items og int count. Disse initialiseres av
 konstruktøren. Begge feltene er private, slik at de kun kan behandles gjennom 
-APIet. T gjør stacken generisk, som betyr at den kan brukes med ulike datatyper, eks. string, 
+API-et. T gjør stacken generisk, som betyr at den kan brukes med ulike datatyper, eks. string, 
 float, int etc. 
+
 Jeg har satt en begrensning på 10 items for å kunne teste edgecase på full stack. 
 Push(T item) -  setter inn en verdi i den nåværende indeksen og plusser deretter på 1 på count.
-Da vil count nå være på èn verdi høyere enn indexen på det siste elementet. Man setter for inn verdi
-i index 0 og setter count til 1.
-Pop() - reduserer først count med en, og returnerer items[count], da får du den siste
+Da vil count nå være på èn verdi høyere enn indexen på det siste elementet. Man setter altså inn verdi
+'i' index 0 og setter count til 1.
+Pop() - reduserer først count med 1, og returnerer items[count], da får du den siste
 verdien som ble satt inn i stacken.
 Peek() - gjør ingenting med count, men returnerer items[count - 1] slik at man kan se det
 siste som har blitt satt inn.
@@ -205,11 +207,11 @@ gjennom fagstoff på Gokstad sine hjemmesider. Det har vært svært lærerikt, m
 
 # 4.0 Oppgave 3 - QuickSort()
 
-### 1. Valg av algoritme og pivotstrategi
+### 4.1 Valg av algoritme og pivotstrategi
 Jeg valgte QuickSort()-algoritmen fordi jeg syntes den virket spennende å implementere. Jeg
 har ikke implementert verken MergeSort eller QuickSort før, så valget for meg var helt tilfeldig.
 
-### 2. Hvordan QuickSort fungerer
+### 4.2 Hvordan QuickSort fungerer
 QuickSort fungerer slik at den jobber seg gjennom arrayet ved hjelp av en pivot. I min kode er pivot-strategien slik
 at man velger det siste elementet (del)arrayet som pivot. Deretter går man gjennom alle verdiene i (del)arrayet, 
 bortsett fra pivoten, og setter de verdiene som er mindre enn pivoten til venstre. Når arrayet er gjennomgått, 
@@ -224,14 +226,14 @@ uten å gjøre noe mer. Dette sørger for at rekursjonen stopper og forhindrer e
 - Algoritmen kaller deretter QuickSort() rekursivt på området til venstre og høyre for pivoten.
 - Når alle delområdene er ferdig behandlet, er hele arrayet sortert.
 
-### 3. Sammenligninger og bytter
+### 4.3 Sammenligninger og bytter
 - Jeg teller sammenligninger mellom `arr[j]` og pivoten.
 - Jeg teller også antall bytter som utføres når et element er mindre enn pivoten.
 - [Sett inn resultatene fra testene dine.]
 - Dette gjør det mulig å sammenligne hvor mye arbeid QuickSort gjør på forskjellige typer input.
 
 
-### 4. Testresultater (AI hjalp til med å lage tabellen)
+### 4.4 Testresultater (AI hjalp til med å lage tabellen)
 Jeg testet algoritmen med:
 * Vanlig/usortert array
 * Allerede sortert array
@@ -251,13 +253,13 @@ Jeg testet algoritmen med:
 
 Alle testene kontrollerer at resultatet er sortert og at kanttilfellene håndteres korrekt.
 
-### 5. Tidskompleksitet
+### 4.5 Tidskompleksitet
 - Beste tilfelle: O(n log n)
 - Gjennomsnittlig tilfelle: O(n log n)
 - Verste tilfelle: O(n^2)
 - Plasskompleksitet: O(log n) i gjennomsnitt på grunn av rekursjonen, men O(n) i verste tilfelle.
 
-### 6. Betydningen av pivotvalg
+### 4.6 Betydningen av pivotvalg
 I min strategi så velger jeg det siste elementet som pivot. Hvilken verdi dette elementet har kan påvirke ytelsen
 og hvor jevnt arrayet blir delt.
 
@@ -277,7 +279,7 @@ mens det andre delarrayet nesten er tomt. Dette gjør at man får omtrent 'n' ni
 og tidskompleksiteten blir O(n^2).
 
 
-### 7. Styrker og svakheter
+### 4.7 Styrker og svakheter
 Styrken med quicksort er at den er ganske så effektiv når pivotstrategien passer godt til arrayet.
 Da vil du kunne få en ytelse som er tilnærmet logaritmisk. En annen styrke er at alt foregår i det samme
 arrayet hele tiden. Da slipper man å returnere et nytt array som må lagres.
@@ -286,7 +288,7 @@ Svakheten til quicksort er at pivotstrategien også kan føre til O(n^2).
 Jeg har også hørt at lange lister med dype rekursjoner kan føre til stackoverflow. StackOverflow er når kjøringsstakken
 går tom for plass til nye rekursjoner fordi den inneholder for mange nestede metodekall (Microsoft. n.da).
 
-### 8. Refleksjon
+### 4.8 Refleksjon
 //TODO!
 Testene viste at 
 - Hva viste testene om forskjellen mellom de ulike inputtypene?
@@ -396,18 +398,115 @@ alle de naboene ligge i køen samtidig.
 
 
 # 6.0 Depth First Search
+Depth First Search er en søkemetode som i motsetning til BFS går i dybden før den går tilbake. I forklaringen av BFS
+så nevnte jeg at om man tar utgangspunkt i 'majorstuen' stasjonen, så vil den besøke begge naboene før den går videre til
+naboenes nabo. I DFS så går man rett fra utgangspunkt -> nabo -> nabos nabo -> etc. På den måten så går søket ut til
+en ende før den backtracker. Deretter vil eventuelle andre grener på veien bli undersøkt. Den fullfører alltid
+en gren før den går tilbake til et tidligere forgreiningspunkt.
 
 ## 6.1 Recursive
+I min rekursive metode så fungerer det som følger. Jeg har først en wrapper metode som sjekker
+om grafen er tom og at grafen inneholder stasjonen man søker ut fra.
+```
+public static void RecursiveDFSearch(Graph graph, string station)
+```
+Det er denne metoden man bruker når man skal kalle på den rekursive metoden:
+Deretter opprettes det et HashSet som holder kontroll på hvilke stasjoner som er besøkt, som igjen brukes i 
+den rekursive metoden.
+```
+    private static void RecursiveDFSearch(Graph graph, string station, HashSet<string> visited)
+```
+Det første som skjer i denne metoden er at man kontrollerer 'visited'.
+```
+        if (visited.Contains(station))
+        {
+            return;
+        }
+```
+Hvis stasjonen allerede finnes i'visited' så returnerer metoden. På denne måten unngår vi en uendelig loop hvor 
+naboer aktiverer hverandre i det uendelige. Dette er også særlig relevant når det finnes sykler i grafen.
+
+Deretter legger man til stasjonen som besøkt og skriver ut at den er besøkt:
+```
+  visited.Add(station);
+```
+
+Nå er stasjonen lagt inn i 'visited' og neste gang den eventuelt blir sendt med den rekursive funksjonen:
+```
+RecursiveDFSearch(graph, neighbor, visited)
+```
+så vet vi at den vil returnere.
+
+
+Til slutt så sjekkes alle naboene til stasjonen, og alle naboene blir sendt ut med hver sin 
+rekursive metode.
+
+```
+        foreach (string neighbor in graph.GetNeighbors(station))
+        {
+            // here the new search will begin at each neighbor
+            RecursiveDFSearch(graph, neighbor, visited);
+        }
+```
+
+
 
 ## 6.2 Iterative
+I den iterative metoden så fungerer det litt annerledes.
+Her tar man inn grafen og stasjonen som verdier,
+og det opprettes en tom stack og hashset
+```
+public static void IterativeDFSearch(Graph graph,  string station)
+{
+        Stack<string> stack = new Stack<string>();
+        HashSet<string> visited = new HashSet<string>();
+```
+Stacken holder stasjonene som skal besøkes, og HashSet brukes, i likhet med den 
+rekursive metoden for å se hvilke stasjoner som har blitt besøkt. 
+
+Deretter er gjennomføres det kontroller som sjekker om grafen er tom eller om den inneholder stasjonen man
+søker ut fra.
+
+Det første som skjer etter det er at stasjonen legges inn i stakken med 'stack.Push(station);'. Da har vi
+et element i stakken, og dette elementet skal behandles i while loopen, som går så lenge 'stack.Count > 0'.
+
+Deretter henter man ut stasjonen av stakken med stack.Pop().
+```
+            string currentStation = stack.Pop();
+```
+Om denne stasjonen du har hentet ut ikke allerede ligger i 'HashSet visited', så legger man den inn,
+og skriver ut at den er besøkt.
+
+Og så, for hver nabo av stasjonen, som ikke er besøkt, så legger man de til i stakken. Deretter begynner man 
+i while loopen igjen og tar ut det øverste elementet i stakken. På denne måten så vil stakken fylles på, så lenge det
+kommer nye naboer. Disse naboene vil havne øverst stakken og den sist innlagte av naboene vil bli behandlet først. På den
+måten så kommer man lengere og lengere ut i forgreiningene helt til man når enden. Da går while loopen løs på det neste
+øverste elementet i stakken. Når alle er passert og er registert i visited vil stakken være tom og metoden er ferdig.
+
 
 ## 6.3 RouteExists
 Jeg har valgt ruteteliknykting som utvidelse for depth first search.
-Metoden sjekker om det finnes en rute mellom to stasjoner. Den sier ikke noe avstand
-eller andre ting.
+RouteExists tar inn grafen, stasjonA og stasjonB og kjører et iterativt depth first search.
 
-## 6.4 Testing
+Den bruker også visited for å unngå samme stasjon flere ganger, og når den treffer stasjonB
+så vil metoden returnerer true og hele søket er ferdig.
 
+Metoden sjekker om det finnes en rute mellom to stasjoner, men sier ikke noe avstand
+eller andre ting. I BFS så vet man at det ikke finnes noen færre antall stopp fordi man har søkt nivå for nivå. 
+Mens i DFS så vil den stoppe med en gang den har fulgt en forgreining som treffer. Det kan hende det finnes andre
+forgreininger som er både kortere og lengere til det punktet.
+
+## 6.4 Testing (AI help with making the table)
+| Test                                     | Hva testes                              | Forventet resultat         | Resultat |
+|:-----------------------------------------|:----------------------------------------|:---------------------------|:---------|
+| Rekursiv DFS fra Majorstuen              | Besøker alle nåbare stasjoner           | 9 stasjoner besøkt         | Bestått  |
+| Iterativ DFS fra Majorstuen              | Besøker alle nåbare stasjoner med Stack | 9 stasjoner besøkt         | Bestått  |
+| DFS fra isolert Sognsvann                | Håndtering av isolert stasjon           | Kun Sognsvann besøkes      | Bestått  |
+| Iterativ DFS fra isolert Sognsvann       | Håndtering av isolert stasjon           | Kun Sognsvann besøkes      | Bestått  |
+| RouteExists Majorstuen → Ullevål Stadion | Sjekker om det finnes en rute           | `true`                     | Bestått  |
+| RouteExists Majorstuen → Sognsvann       | Sjekker rute til isolert stasjon        | `false`                    | Bestått  |
+| Ukjent startstasjon – rekursiv DFS       | Håndtering av stasjon som ikke finnes   | Feilmelding, ingen krasj   | Bestått  |
+| Ukjent startstasjon – iterativ DFS       | Håndtering av stasjon som ikke finnes   | Feilmelding, ingen krasj   | Bestått  |
 
 ## 6.5 DFS og BFS
 Begge DFS-metodene besøker de samme stasjonene, men rekkefølgen blir forskjellig. Den iterative metoden bruker en Stack,
@@ -415,9 +514,26 @@ som følger LIFO-prinsippet. Når flere naboer legges på stacken, blir den sist
 Dette gjør at den iterative DFS-en kan følge en annen gren først enn den rekursive DFS-en. Rekkefølgen på naboene
 påvirker derfor besøksrekkefølgen, selv om alle nåbare stasjoner blir besøkt.
 
-Sammenlignet med BFS --
+BFS bruker Queue og vil gjennomføre sjekkene i tur og orden, altså nivå for nivå. Først en kant unna og deretter to
+kanter unna.
+
+BFS og DFS har ulike bruksområder. Jeg vil tro at BFS vil passe godt til å undersøke grafer når avstand er viktig,
+som for eksempel om du skal ta t-banen og vil kjøre forbi færrest antal stasjoner.
+DFS kan passe godt når du bare skal verifisere at det finnes en
+kobling mellom to punkter, som for eksempel i RouteExists() når jeg kun skulle sjekke om det var en forbindelse og 
+ikke noe mer. 
 
 ## Tidskompleksitet
+BFS har en tidskompleksistet på O(V + E), hvor V er antall noder og E er antall kanter. Det har en plasskompleksitet
+på O(V), fordi BFS i verste fall må lagre hele nivået i køen samtidig (Gokstad Akademiet, n.d.b).
+Som i eksempelelet jeg brukete med 1000 nabostasjoner for majorstuen.
+Når DFS brukes på en naboliste så bruker traverseringen O(V + E) og optil O(V) plasskompleksitet (Gokstad Akademiet,
+n.d.c) . De har samme tidskompleksitet og samme verste utfall.
+
+Noe som er annerledes er at rekursiv DFS bruker programmets kallstakk, og man kan i likhet med det jeg nevnte i om
+rekursiv quicksort få stackoverflow. 
+Den iterative metoden derimot, bruker en vanlig Stack<string> og unngår denne typen rekursiv stackoverflow.
+
 
 Learning materials:
 Videos -
@@ -431,8 +547,10 @@ Sources:
 AlgorithmsNotesForProfessionals  - pdf
 Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
 Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
+Gokstad Akademiet. (n.d.) Teori: lineært og binært søk. Øk 1 - Uke 34 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=14&currentorg=ORG_1&scoid=110
 Gokstad Akademiet. (n.d.a) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
 Gokstad Akademiet. (n.d.b) 03-teori. Økt 3 - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=18&currentorg=ORG_1&scoid=144
+Gokstad Akademiet. (n.d.c) Teori: Depth-First Search - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=19&currentorg=ORG_1&scoid=152
 Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
 Microsoft. (n.d.). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
 Microsoft. (n.da). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux

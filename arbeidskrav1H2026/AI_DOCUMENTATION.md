@@ -520,3 +520,295 @@ BFS fra `Majorstuen` besøkte stasjonene i følgende rekkefølge:
 Alle testene ga forventet resultat.
 
 ```
+
+# 10 Help with making test table
+
+input:
+```
+Hjelp meg å implementere en tabell som passer til dette i testene
+namespace arbeidskrav1H2026.searchalgorithms;
+
+public class DFSearchTests
+{
+
+    public void Run()
+    {
+        
+        Console.WriteLine("========== Task 5: Depth First Search ===========");
+        
+        
+        // Recursive DFS from majorstuen
+        Console.WriteLine("Rekursiv metode DFS Search fra majorstuen");
+        var graphDFS = new Graph();
+        graphDFS.AddConnection("Majorstuen", "Nationaltheateret");
+        graphDFS.AddConnection("Nationaltheateret", "Stortinget");
+        graphDFS.AddConnection("Stortinget", "Jernbanetorget");
+        graphDFS.AddConnection("Jernbanetorget", "Grønland");
+        graphDFS.AddConnection("Grønland" , "Tøyen");
+        graphDFS.AddConnection("Majorstuen", "Blindern");
+        graphDFS.AddConnection("Blindern", "Forskningsparken");
+        graphDFS.AddConnection("Forskningsparken", "Ullevål Stadion");
+        DepthFirstSearch.RecursiveDFSearch(graphDFS, "Majorstuen");
+        Console.WriteLine(" ");
+        
+        // Itereative DFS from majorstuen
+        Console.WriteLine("Iterativ metode DFS Search fra majorstuen");
+        DepthFirstSearch.IterativeDFSearch(graphDFS, "Majorstuen");
+        Console.WriteLine(" ");
+
+        // Comparison with BFS, different order of visits
+        
+        
+        Console.WriteLine("Rekursiv metode DFS Search på isolert stasjon");
+        // Isolatedstation, only one station is visited
+        var graphWithIsolatedStation = new Graph();
+        graphWithIsolatedStation.AddConnection("Majorstuen", "Nationaltheateret");
+        graphWithIsolatedStation.AddConnection("Nationaltheateret", "Stortinget");
+        graphWithIsolatedStation.AddConnection("Stortinget", "Jernbanetorget");
+        graphWithIsolatedStation.AddConnection("Jernbanetorget", "Grønland");
+        graphWithIsolatedStation.AddConnection("Grønland" , "Tøyen");
+        graphWithIsolatedStation.AddConnection("Majorstuen", "Blindern");
+        graphWithIsolatedStation.AddConnection("Blindern", "Forskningsparken");
+        graphWithIsolatedStation.AddConnection("Forskningsparken", "Ullevål Stadion");
+        graphWithIsolatedStation.AddStation("Sognsvann");
+        DepthFirstSearch.RecursiveDFSearch(graphWithIsolatedStation, "Sognsvann");
+        Console.WriteLine(" ");
+        
+        Console.WriteLine("Iterativ metode DFS Search på isolert stasjon");
+        DepthFirstSearch.IterativeDFSearch(graphWithIsolatedStation, "Sognsvann");
+        Console.WriteLine(" ");
+        
+        Console.WriteLine("Route exists mellomstasjoner");
+        // Route exists, there is a route between stations
+        bool routeExistsBetweenStations = DepthFirstSearch.RouteExists(graphDFS, "Majorstuen", "Ullevål Stadion");
+        Console.WriteLine($"Route exists: {routeExistsBetweenStations}");
+        Console.WriteLine(" ");
+        
+        Console.WriteLine("Route does not exists between isolated stations");
+        bool routeExistsBetweenIsolatedStations = DepthFirstSearch.RouteExists(graphWithIsolatedStation, "Majorstuen", "Sognsvann");
+        Console.WriteLine($"Route exists: {routeExistsBetweenIsolatedStations}");
+        Console.WriteLine(" ");
+        // Route not exists, route between isolated and graph exisits
+
+        // unknown station
+
+        Console.WriteLine("Recursive and iterative depth first search");
+        Console.WriteLine("Recursive: ");
+        DepthFirstSearch.RecursiveDFSearch(graphDFS, "Unknown");
+        Console.WriteLine("Iterative: ");
+        DepthFirstSearch.IterativeDFSearch(graphDFS, "Unknown");
+        
+        
+========== Task 5: Depth First Search ===========
+Rekursiv metode DFS Search fra majorstuen
+Besøkte: Majorstuen
+Besøkte: Nationaltheateret
+Besøkte: Stortinget
+Besøkte: Jernbanetorget
+Besøkte: Grønland
+Besøkte: Tøyen
+Besøkte: Blindern
+Besøkte: Forskningsparken
+Besøkte: Ullevål Stadion
+ 
+Iterativ metode DFS Search fra majorstuen
+Besøkte - Majorstuen
+Besøkte - Blindern
+Besøkte - Forskningsparken
+Besøkte - Ullevål Stadion
+Besøkte - Nationaltheateret
+Besøkte - Stortinget
+Besøkte - Jernbanetorget
+Besøkte - Grønland
+Besøkte - Tøyen
+ 
+Rekursiv metode DFS Search på isolert stasjon
+Besøkte: Sognsvann
+ 
+Iterativ metode DFS Search på isolert stasjon
+Besøkte - Sognsvann
+ 
+Route exists mellomstasjoner
+Route exists: True
+ 
+Route does not exists between isolated stations
+Route exists: False
+ 
+Recursive and iterative depth first search
+Recursive: 
+The station Unknown does not exist
+Iterative: 
+The station Unknown does not exist
+```
+
+Output:
+```
+Jeg ville brukt noe sånt:
+| Test | Hva testes | Forventet resultat | Resultat |
+| --- | --- | --- | --- |
+| Rekursiv DFS fra Majorstuen | Besøker alle nåbare stasjoner | 9 stasjoner besøkt | Bestått |
+| Iterativ DFS fra Majorstuen | Besøker alle nåbare stasjoner med Stack | 9 stasjoner besøkt | Bestått |
+| DFS fra isolert Sognsvann | Håndtering av isolert stasjon | Kun Sognsvann besøkes | Bestått |
+| Iterativ DFS fra isolert Sognsvann | Håndtering av isolert stasjon | Kun Sognsvann besøkes | Bestått |
+| RouteExists Majorstuen → Ullevål Stadion | Sjekker om det finnes en rute | `true` | Bestått |
+| RouteExists Majorstuen → Sognsvann | Sjekker rute til isolert stasjon | `false` | Bestått |
+| Ukjent startstasjon – rekursiv DFS | Håndtering av stasjon som ikke finnes | Feilmelding, ingen krasj | Bestått |
+| Ukjent startstasjon – iterativ DFS | Håndtering av stasjon som ikke finnes | Feilmelding, ingen krasj | Bestått |
+| DFS med syklus | `visited` hindrer uendelig løkke | Alle noder besøkes én gang | Bestått |
+
+```
+
+# 11. help with test result table in linear and binary search
+
+input: gjør om denne koden og resultatetene til en tabell jeg kan bruke i readme md:
+```
+\========== Task 1 ==========
+\=========== Linear Search ===========
+Linear search for 7
+Index: 3
+Comparisons = 4
+Expected value: 3, result: 3
+Test passed
+
+Linear search for 42
+Index: −1
+Comparisons = 7
+Expected value: −1, result: −1
+Test passed
+
+\=========== Binary Search ===========
+Binary search for 13
+Index: 5
+Comparisons = 3
+Expected value: 5, result: 5
+Test passed
+
+Binary search for 4
+Index: −1
+Comparisons = 5
+Expected value: −1, result: −1
+Test passed
+
+Binary search on unsorted list not found
+Index: −1
+Comparisons = 5
+Expected value: −1, result: −1
+Test passed
+
+Binary search on unsorted list found
+Index: 5
+Comparisons = 3
+Expected value: 5, result: 5
+Test passed
+
+Binary search on empty list
+Index: −1
+Comparisons = 0
+Expected value: −1, result: −1
+Test passed
+
+Binary search on list with duplicates
+Index: 3
+Comparisons = 4
+Expected value: 3, result: 3
+Test passed
+
+Binary search on list with one element found
+Index: 0
+Comparisons = 1
+Expected value: 0, result: 0
+Test passed
+
+public void Run()
+{
+    
+    Console.WriteLine("========== Task 1 ==========");
+    
+    int[] unsortedlist = [8, 3, 11, 7, 2, 9, 5];
+    int[] sortedlist = [2, 5, 7, 9, 11, 13, 17];
+    int[] emptyList = [];
+    int[] duplicatesInList = [2, 5, 6, 7, 7, 9, 9, 10, 25, 54, 64, 109];
+    int[] oneElementList = [1];
+    
+    Console.WriteLine("=========== Linear Search ===========");
+    
+    var linearSearchFound = SearchAlgorithms.LinearSearch(unsortedlist, 7);
+    Console.WriteLine("Linear search for 7");
+    Console.WriteLine($"Index: {linearSearchFound.index}");
+    Console.WriteLine($"Comparisons = {linearSearchFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(3, linearSearchFound.index)}");
+    Console.WriteLine("");
+    
+    
+    var linearSearchNotFound = SearchAlgorithms.LinearSearch(unsortedlist, 42);
+    Console.WriteLine("Linear search for 42");
+    Console.WriteLine($"Index: {linearSearchNotFound.index}");
+    Console.WriteLine($"Comparisons = {linearSearchNotFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(-1, linearSearchNotFound.index)}");
+    Console.WriteLine("");
+    
+    Console.WriteLine("=========== Binary Search ===========");
+    var binarySearchFound = SearchAlgorithms.BinarySearch(sortedlist, 13);
+    Console.WriteLine("Binary search for 13");
+    Console.WriteLine($"Index: {binarySearchFound.index}");
+    Console.WriteLine($"Comparisons = {binarySearchFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(5, binarySearchFound.index)}");
+    Console.WriteLine("");
+    
+    var binarySearchNotFound = SearchAlgorithms.BinarySearch(sortedlist, 4);
+    Console.WriteLine("Binary search for 4");
+    Console.WriteLine($"Index: {binarySearchNotFound.index}");
+    Console.WriteLine($"Comparisons = {binarySearchNotFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(-1, binarySearchNotFound.index)}");
+    Console.WriteLine("");
+
+    var binarySearchUnsortedNotFound = SearchAlgorithms.BinarySearch(unsortedlist, 5);
+    Console.WriteLine("Binary search on unsorted list not found");
+    Console.WriteLine($"Index: {binarySearchUnsortedNotFound.index}");
+    Console.WriteLine($"Comparisons = {binarySearchUnsortedNotFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(-1, binarySearchUnsortedNotFound.index)}");
+    Console.WriteLine("");
+    
+    var binarySearchUnsortedFound = SearchAlgorithms.BinarySearch(unsortedlist, 9);
+    Console.WriteLine("Binary search on unsorted list found");
+    Console.WriteLine($"Index: {binarySearchUnsortedFound.index}");
+    Console.WriteLine($"Comparisons = {binarySearchUnsortedFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(5, binarySearchUnsortedFound.index)}");
+    Console.WriteLine("");
+    
+    var binarySearchEmptyList = SearchAlgorithms.BinarySearch(emptyList, 1);
+    Console.WriteLine("Binary search on empty list");
+    Console.WriteLine($"Index: {binarySearchEmptyList.index}");
+    Console.WriteLine($"Comparisons = {binarySearchEmptyList.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(-1, binarySearchEmptyList.index)}");
+    Console.WriteLine("");
+
+    var binarySearchDuplicatesFound = SearchAlgorithms.BinarySearch(duplicatesInList, 7);
+    Console.WriteLine("Binary search on list with duplicates");
+    Console.WriteLine($"Index: {binarySearchDuplicatesFound.index}");
+    Console.WriteLine($"Comparisons = {binarySearchDuplicatesFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(3, binarySearchDuplicatesFound.index)}");
+    Console.WriteLine("");
+    
+    var binarySearchOneElementFound = SearchAlgorithms.BinarySearch(oneElementList, 1);
+    Console.WriteLine("Binary search on list with one element found");
+    Console.WriteLine($"Index: {binarySearchOneElementFound.index}");
+    Console.WriteLine($"Comparisons = {binarySearchOneElementFound.comparisons}");
+    Console.WriteLine($"{TestCheck.Check(0, binarySearchOneElementFound.index)}");
+    Console.WriteLine("");
+```
+
+output: Her er en README-klar tabell basert på testene og resultatene dine
+### Testresultater
+
+| Algoritme   | Test                              | Søkeverdi | Forventet indeks | Faktisk indeks | Sammenligninger | Resultat |
+| ----------- | --------------------------------- | --------: | ---------------: | -------------: | --------------: | -------- |
+| Lineært søk | Verdi finnes                      |         7 |                3 |              3 |               4 | Bestått  |
+| Lineært søk | Verdi finnes ikke                 |        42 |               -1 |             -1 |               7 | Bestått  |
+| Binærsøk    | Verdi finnes                      |        13 |                5 |              5 |               3 | Bestått  |
+| Binærsøk    | Verdi finnes ikke                 |         4 |               -1 |             -1 |               5 | Bestått  |
+| Binærsøk    | Usortert array, verdi finnes ikke |         5 |               -1 |             -1 |               5 | Bestått  |
+| Binærsøk    | Usortert array, verdi finnes      |         9 |                5 |              5 |               3 | Bestått  |
+| Binærsøk    | Tomt array                        |         1 |               -1 |             -1 |               0 | Bestått  |
+| Binærsøk    | Array med duplikater              |         7 |                3 |              3 |               4 | Bestått  |
+| Binærsøk    | Array med ett element             |         1 |                0 |              0 |               1 | Bestått  |

@@ -8,11 +8,11 @@ class Program
     static void Main(string[] args)
     {
         
-        // new SearchTests().Run();
+        new SearchTests().Run();
         // new CustomStackTests().Run();
         // new QuickSortTests().Run();
         // new BFSearchTests().Run();
-        new DFSearchTests().Run();
+        // new DFSearchTests().Run();
 
     }
 }

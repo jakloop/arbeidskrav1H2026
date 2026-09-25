@@ -35,25 +35,25 @@ public class SearchTests
         Console.WriteLine("Binary search for 13");
         Console.WriteLine($"Index: {binarySearchFound.index}");
         Console.WriteLine($"Comparisons = {binarySearchFound.comparisons}");
-        Console.WriteLine($"{TestCheck.Check(13, binarySearchFound.index)}");
+        Console.WriteLine($"{TestCheck.Check(5, binarySearchFound.index)}");
         Console.WriteLine("");
         
         var binarySearchNotFound = SearchAlgorithms.BinarySearch(sortedlist, 4);
         Console.WriteLine("Binary search for 4");
         Console.WriteLine($"Index: {binarySearchNotFound.index}");
         Console.WriteLine($"Comparisons = {binarySearchNotFound.comparisons}");
-        Console.WriteLine($"{TestCheck.Check(4, binarySearchNotFound.index)}");
+        Console.WriteLine($"{TestCheck.Check(-1, binarySearchNotFound.index)}");
         Console.WriteLine("");
 
         var binarySearchUnsortedNotFound = SearchAlgorithms.BinarySearch(unsortedlist, 5);
-        Console.WriteLine("Binary search on unsorted list found");
+        Console.WriteLine("Binary search on unsorted list not found");
         Console.WriteLine($"Index: {binarySearchUnsortedNotFound.index}");
         Console.WriteLine($"Comparisons = {binarySearchUnsortedNotFound.comparisons}");
         Console.WriteLine($"{TestCheck.Check(-1, binarySearchUnsortedNotFound.index)}");
         Console.WriteLine("");
         
         var binarySearchUnsortedFound = SearchAlgorithms.BinarySearch(unsortedlist, 9);
-        Console.WriteLine("Binary search on unsorted list not found");
+        Console.WriteLine("Binary search on unsorted list found");
         Console.WriteLine($"Index: {binarySearchUnsortedFound.index}");
         Console.WriteLine($"Comparisons = {binarySearchUnsortedFound.comparisons}");
         Console.WriteLine($"{TestCheck.Check(5, binarySearchUnsortedFound.index)}");
