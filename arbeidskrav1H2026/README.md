@@ -18,7 +18,7 @@ jeg har kjørt en rekke tester og svart på spørsmål i oppgaven.
 ### 2.1 Lineært søk
 Lineært søk og binært søk er to veldig ulike måter å søke i et array. Linære søk søker sekvensielt
 gjennom elementene. Hvert eneste element sammenlignes med måleverdien. Algorimen stopper ved første treff
-eller når har gått gjennom hele samlingen (Gokstad Akademiet, Økt1 uke 34). Det betyr at i beste fall
+eller når har gått gjennom hele samlingen (Gokstad Akademiet, n.d.a). Det betyr at i beste fall
 så blir den ferdig veldig tidlig, ved f.eks, tom liste, kort liste eller at den treffer verdien tidlig i listen.
 I verste fall så går den gjennom en veldig lang liste og bruker lang tid.
 
@@ -299,12 +299,15 @@ Testene viste at
 ## 5.1 Forklaring av Graph
 
 For å lage grafen som brukes i Breadth First Search og Depth First Search
-så har jeg brukt en 'adjacecy list'. Det består av en dictionary med nøkkel og verdier.
+så har jeg brukt en 'adjacecy list'. Det består av en dictionary med nøkkel/key og verdier/value.
 Hvor nøkkelene består av stasjonene og verdiene er nabostasjonene. For eksempel, hvis Majorstuen
-har to naboer: NationalTheateret og Blindern vil Key være ["Majorstuen"] og value være ["Nationaltheateret", "Blindern"].
-Nationaltheateret på sin side kan ha ["Majorstuen", "Stortinget"] som sine keys. Og sånn dannes kantene mellom
-stasjonene. Keys er også satt om som HashSet<string> som gjør at man sikrer at verdiene bare kan skrives en gang.
-En annen grunn til at det er satt opp som HashSet er at dette er en rask value å hente fra. 
+har to naboer, NationalTheateret og Blindern, vil nøkkelen være ["Majorstuen"] og verdien være ["Nationaltheateret", 
+"Blindern"].
+Når Nationaltheateret er nøkkel vil den ha ["Majorstuen", "Stortinget"] som sine values. Og sånn dannes kantene mellom
+stasjonene. Verdiene er også satt om som HashSet<string> som gjør at man sikrer at man hindrer duplikatstasjoner i
+verdilista. En annen grunn til at det er satt opp som HashSet er at dette er en rask value å hente fra, man slipper 
+for eksempel å kjøre en loop. Man henter med ytesle O[1] fordi man kan hente objektet direkte ut, som i en liste med
+en index.
 
 For å lage stasjoner så bruker man 'AddStation()'. Her sjekkes det først om grafen allerede inneholder 
 stasjonen, og hvis den ikke gjør det så oppretter den en ny Key med den verdien.
@@ -326,22 +329,48 @@ Når denne sjekken passeres så legges de inn som nøkler hos hverandre
         graph[stationA].Add(stationB);
         graph[stationB].Add(stationA);
 ```
-TODO!
-snakke om GetNeighbors, ContainsStation, IsEmpty
-TODO TODO TODO TODO
+
+GetNeighbors() - lar oss see hvilke naboer en stasjon har.
+
+ContainsStation() - lar oss sjekke om grafen inneholder den stasjonen vi er 
+ute etter ved hjelp av.
+```
+return graph.ContainsKey(station);
+```
+
+IsEmpty() - Sjekker om grafen er tom.
+
 
 ## 5.2 Breadth First Search
+Breadth First Search er en algoritme som fungerer slik at den går gjennom grafen horisontalt. 
+
+Man går gjennom hver node og legger til naboene i køen som skal sjekkes. Når da en nabo sjekkes så så legger man også til
+dens naboer i køen. I en kø (queue), så opererer man etter 'first in first out' prinsippet. Det gjør at man sjekker
+elementene i den rekkefølgen de ble lagt inn i. 
+
+Man kan for eksempel se på 'majorstuen', som er nabo med både 
+'Nationaltheateret' og 'Blindern'. Via disse så går stasjonene ut i 2 ulike grener, og man kan se at begge disse naboene
+som er 1 stasjon unna sjekkes først. Deretter går man løs på naboenes nabo som er 2 stasjoner unna 'majorstuen'.
+På denne måten sjekkes hvert eneste 'nivå' slik at man har gått gjennom alle stasjonene som har kobling til 'majorstuen'.
+
+For å unngå å gjennomgå samme stasjon flere ganger så lagrer metodene de besøkte stasjonene i en HashSet verdi. HashSet
+har den egenskapen at man ikke kan lagre like duplikater. Så hver gang man skal sjekke en nabo i køen så sjekkes
+det om den allerede finnes i den listen. Da besøkes hver stasjon som er koblet til stasjonA kun en gang.
 
 ## 5.3 ShortestDistance - Korteste vei
+I ShortestDistance() så kan man finne ut hva som er færrest mulig antall kanter mellom stasjonA og stasjonB.
+Den fungerer ganske likt som Breadt First Search, men her sjekkes stasjonene i køen mot stasjonB for å se om man
+har kommet frem. Hvis man har kommet frem så returneres distansen med 'distance[current]'. Dersom grafen går gjennom
+hele køen uten å finne stasjonB så returneres -1, med en melding om at det ikke finnes en rute mellom stasjonene. 
 
 ## 5.4 Tests (AI help with making the table)
 Dette er testene jeg kjørte på algoritmen
 
 | Test                    | Hva testes                                      | Forventet resultat | Resultat |
-| ----------------------- | ----------------------------------------------- | -----------------: | -------: |
+| ----------------------- |-------------------------------------------------| -----------------: | -------: |
 | BFS fra Majorstuen      | Besøksrekkefølgen gjennom alle nåbare stasjoner | 9 stasjoner besøkt |  Bestått |
 | Majorstuen → Grønland   | Korteste antall stopp                           |                  4 |  Bestått |
-| Tøyen → Ullevål Stadion | Korteste rute mellom de to grenene              |                  8 |  Bestått |
+| Tøyen → Ullevål Stadion | Færrest antall kanter mellom de to grenene      |                  8 |  Bestått |
 | BFS fra isolert stasjon | Kun den isolerte stasjonen skal besøkes         |   1 stasjon besøkt |  Bestått |
 | Sognsvann → Tøyen       | Ingen rute mellom isolert stasjon og Tøyen      |                 -1 |  Bestått |
 | Ukjent startstasjon     | Håndtering av stasjon som ikke finnes           |                 -1 |  Bestått |
@@ -354,12 +383,19 @@ BFS fra `Majorstuen` besøkte stasjonene i følgende rekkefølge:
 
 Alle testene ga forventet resultat.
 
-## 5.5 Tidskompleksitet
+## 5.5 Plass og tidsskompleksitet
+BFS har tidskompleksitet O(V + E). V er antall noder(eller stasjoner i dette tilfellet og E er antall kanter.
+
+O(V+E) forklares ved at hver stasjon (V) bare besøkes maks en gang, og at hver forbindelse undersøkes når naboene
+blir gått gjennom.
+
+BFS har en plasskomplekistet: O(V), fordi BFS i aller verste konsekvens må lagre et veldig langt nivå i 
+køen samtidig (Gokstad Akakademiet, n.d.b) . La oss si at 'majorstuen' ikke er koblet til bare to naboer, men for eksempel 1000. Da må
+alle de naboene ligge i køen samtidig.
 
 
 
-
-# 6.0 Breadth First Search
+# 6.0 Depth First Search
 
 Learning materials:
 Videos -
@@ -373,7 +409,8 @@ Sources:
 AlgorithmsNotesForProfessionals  - pdf
 Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
 Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
-Gokstad Akademiet. (n.d.) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
+Gokstad Akademiet. (n.d.a) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
+Gokstad Akademiet. (n.d.b) 03-teori. Økt 3 - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=18&currentorg=ORG_1&scoid=144
 Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
 Microsoft. (n.d.). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
 Microsoft. (n.da). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux
