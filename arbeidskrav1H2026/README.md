@@ -672,13 +672,13 @@ Michael Sambol "Breadth-first search in 4 minutes - https://www.youtube.com/watc
 tutorialsEUC "How to use queues in C#" - https://www.youtube.com/watch?v=4MQwKvsGCms
 
 # Sources:
-AlgorithmsNotesForProfessionals  - pdf
-Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
-Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
-Gokstad Akademiet. (ingen dato A) Teori: lineært og binært søk. Økt 1 - Uke 34 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=14&currentorg=ORG_1&scoid=110
-Gokstad Akademiet. (ingen dato B) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
-Gokstad Akademiet. (ingen dato C) 03-teori. Økt 3 - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=18&currentorg=ORG_1&scoid=144
-Gokstad Akademiet. (n.d.c) Teori: Depth-First Search - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=19&currentorg=ORG_1&scoid=152
-Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
-Microsoft. (ingen dato A). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
-Microsoft. (ingen dato B). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux
+- AlgorithmsNotesForProfessionals  - pdf
+- Breadth First Search or BFS for a Graph - https://www.geeksforgeeks.org/dsa/breadth-first-search-or-bfs-for-a-graph/
+- Depth First Search or DFS for a Graph - https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
+- Gokstad Akademiet. (ingen dato A) Teori: lineært og binært søk. Økt 1 - Uke 34 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=14&currentorg=ORG_1&scoid=110
+- Gokstad Akademiet. (ingen dato B) Teori: sortering og ytelse. Økt 2 - Uke 35 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=15&currentorg=ORG_1&scoid=119
+- Gokstad Akademiet. (ingen dato C) 03-teori. Økt 3 - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=18&currentorg=ORG_1&scoid=144
+- Gokstad Akademiet. (n.d.c) Teori: Depth-First Search - Uke 36 - https://lms.gokstadakademiet.no/mod/scorm/player.php?a=19&currentorg=ORG_1&scoid=152
+- Implementing Depth First Search into C# using List and Stack - https://stackoverflow.com/questions/5804844/implementing-depth-first-search-into-c-sharp-using-list-and-stack
+- Microsoft. (ingen dato A). Stack<T> class. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-10.0#remarks
+- Microsoft. (ingen dato B). Debug StackOverflow errors. Microsoft Learn - https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-stackoverflow?tabs=linux
